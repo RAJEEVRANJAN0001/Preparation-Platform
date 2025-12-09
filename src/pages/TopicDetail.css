@@ -1,0 +1,143 @@
+/* Topic Detail Page Styles */
+
+.topic-header {
+    margin-bottom: 32px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-main);
+    border-radius: var(--radius-md);
+    color: var(--text-main);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 20px;
+}
+
+.back-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.topic-title-section {
+    margin-bottom: 16px;
+}
+
+.topic-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: var(--text-main);
+}
+
+.topic-description {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.topic-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Content Sections */
+.topic-content {
+    margin-bottom: 32px;
+}
+
+.content-section {
+    margin-bottom: 24px;
+    padding: 24px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    color: var(--text-main);
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border-main);
+}
+
+.section-content {
+    line-height: 1.8;
+    color: var(--text-main);
+}
+
+.section-content pre {
+    background: var(--bg-inset);
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-subtle);
+}
+
+.section-content code {
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.section-content strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.section-content ul {
+    margin: 12px 0;
+    padding-left: 24px;
+}
+
+.section-content li {
+    margin-bottom: 8px;
+}
+
+/* Sidebar Layout */
+.topic-sidebar-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 24px;
+}
+
+@media (max-width: 1024px) {
+    .topic-sidebar-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.practice-card {
+    padding: 16px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.practice-card:hover {
+    border-color: var(--primary);
+    transform: translateX(4px);
+}
+
+.resource-card {
+    padding: 16px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.resource-card:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-md);
+}
+
+.complete-btn:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
+}
