@@ -78,11 +78,11 @@ def fib_tab(n):
             }
         ],
         practiceProblems: [
-            { title: 'Climbing Stairs', difficulty: 'Easy', link: '#' },
-            { title: 'House Robber', difficulty: 'Medium', link: '#' },
-            { title: 'Coin Change', difficulty: 'Medium', link: '#' },
-            { title: 'Longest Increasing Subsequence', difficulty: 'Medium', link: '#' },
-            { title: 'Edit Distance', difficulty: 'Hard', link: '#' }
+            { title: 'Climbing Stairs', difficulty: 'Easy', link: 'https://leetcode.com/problems/climbing-stairs/' },
+            { title: 'House Robber', difficulty: 'Medium', link: 'https://leetcode.com/problems/house-robber/' },
+            { title: 'Coin Change', difficulty: 'Medium', link: 'https://leetcode.com/problems/coin-change/' },
+            { title: 'Longest Increasing Subsequence', difficulty: 'Medium', link: 'https://leetcode.com/problems/longest-increasing-subsequence/' },
+            { title: 'Edit Distance', difficulty: 'Hard', link: 'https://leetcode.com/problems/edit-distance/' }
         ],
         resources: [
             { title: 'Best DSA concepts for FAANG', type: 'PDF', link: '/PLACEMENT NOTES/Best DSA concepts for FAANG.pdf' },
@@ -190,9 +190,9 @@ def get_user(user_id):
             }
         ],
         practiceProblems: [
-            { title: 'LRU Cache Implementation', difficulty: 'Medium', link: '#' },
-            { title: 'Design a Cache System', difficulty: 'Hard', link: '#' },
-            { title: 'Implement LFU Cache', difficulty: 'Hard', link: '#' }
+            { title: 'LRU Cache Implementation', difficulty: 'Medium', link: 'https://leetcode.com/problems/lru-cache/' },
+            { title: 'Design a Cache System', difficulty: 'Hard', link: 'https://www.geeksforgeeks.org/design-a-cache-system/' },
+            { title: 'Implement LFU Cache', difficulty: 'Hard', link: 'https://leetcode.com/problems/lfu-cache/' }
         ],
         resources: [
             { title: 'System Design Basics', type: 'PDF', link: '/PLACEMENT NOTES/System Design Basics.pdf' }
@@ -311,9 +311,9 @@ import { FixedSizeList } from 'react-window'
             }
         ],
         practiceProblems: [
-            { title: 'Optimize Re-renders', difficulty: 'Medium', link: '#' },
-            { title: 'Implement Virtual Scrolling', difficulty: 'Hard', link: '#' },
-            { title: 'Code Split a Large App', difficulty: 'Medium', link: '#' }
+            { title: 'Optimize Re-renders', difficulty: 'Medium', link: 'https://react.dev/reference/react/memo' },
+            { title: 'Implement Virtual Scrolling', difficulty: 'Hard', link: 'https://github.com/bvaughn/react-window' },
+            { title: 'Code Split a Large App', difficulty: 'Medium', link: 'https://react.dev/reference/react/lazy' }
         ],
         resources: [
             { title: 'React Handwritten Notes', type: 'PDF', link: '/PLACEMENT NOTES/React-Handwritten-notes.pdf' },
@@ -429,9 +429,9 @@ WHERE idx_scan = 0;
             }
         ],
         practiceProblems: [
-            { title: 'Design Optimal Indexes', difficulty: 'Hard', link: '#' },
-            { title: 'Query Optimization', difficulty: 'Medium', link: '#' },
-            { title: 'Index vs Full Table Scan', difficulty: 'Medium', link: '#' }
+            { title: 'Design Optimal Indexes', difficulty: 'Hard', link: 'https://www.w3resource.com/sql-exercises/movie-database-exercise/index.php' },
+            { title: 'Query Optimization', difficulty: 'Medium', link: 'https://www.geeksforgeeks.org/sql-query-optimization/' },
+            { title: 'Index vs Full Table Scan', difficulty: 'Medium', link: 'https://www.geeksforgeeks.org/indexing-in-databases-set-1/' }
         ],
         resources: [
             { title: 'DBMS Notes', type: 'PDF', link: '/PLACEMENT NOTES/DBMS_Notes (2).pdf' },

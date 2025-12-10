@@ -78,14 +78,21 @@ function TopicDetail() {
                     <h3 style={{ fontSize: 16, marginBottom: 16 }}>Practice Problems</h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                         {topic.practiceProblems.map((problem, idx) => (
-                            <div key={idx} className="practice-card dense-card">
+                            <a
+                                key={idx}
+                                href={problem.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="practice-card dense-card"
+                                style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+                            >
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                     <span style={{ fontWeight: 500, fontSize: 14 }}>{problem.title}</span>
                                     <span className={`badge badge-${problem.difficulty === 'Hard' ? 'orange' : problem.difficulty === 'Medium' ? 'blue' : 'green'}`}>
                                         {problem.difficulty}
                                     </span>
                                 </div>
-                            </div>
+                            </a>
                         ))}
                     </div>
                 </div>
@@ -95,7 +102,14 @@ function TopicDetail() {
                     <h3 style={{ fontSize: 16, marginBottom: 16 }}>Resources</h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                         {topic.resources.map((resource, idx) => (
-                            <div key={idx} className="resource-card dense-card">
+                            <a
+                                key={idx}
+                                href={resource.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="resource-card dense-card"
+                                style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+                            >
                                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                                     <BookOpen size={18} color="var(--primary)" />
                                     <div style={{ flexGrow: 1 }}>
@@ -104,7 +118,7 @@ function TopicDetail() {
                                     </div>
                                     <ExternalLink size={16} color="var(--text-muted)" />
                                 </div>
-                            </div>
+                            </a>
                         ))}
                     </div>
 
