@@ -311,7 +311,7 @@
 
 /* Buttons */
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: #000000;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -327,7 +327,7 @@
 
 .btn-primary:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .btn-primary:disabled {
@@ -450,6 +450,15 @@
 
 [data-theme="dark"] .answer-section textarea {
     background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .btn-primary {
+    background: #ffffff;
+    color: #000000;
+}
+
+[data-theme="dark"] .btn-primary:hover:not(:disabled) {
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
 }
 
 /* Responsive Design */
