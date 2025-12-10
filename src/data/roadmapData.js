@@ -1,6 +1,7 @@
 /**
- * Comprehensive Roadmap Data for Different Career Paths
- */
+ * Comprehensive Roadmap Data for Different Career Paths */
+
+import { extraRoadmaps } from './extraRoadmaps';
 
 export const roadmapData = {
     frontend: {
@@ -583,7 +584,8 @@ export const roadmapData = {
                 resources: []
             }
         ]
-    }
+    },
+    ...extraRoadmaps
 }
 
 export default roadmapData

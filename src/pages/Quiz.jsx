@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrainCircuit, CheckCircle, AlertCircle, ArrowRight, RotateCw, BookOpen, Server, Globe } from 'lucide-react'
+import { BrainCircuit, CheckCircle, AlertCircle, ArrowRight, RotateCw, BookOpen, Server, Globe, Network, Calculator } from 'lucide-react'
 import Button from '../components/Button'
 import PageHeader from '../components/PageHeader'
 import { quizTopics, getQuizByTopic } from '../data/quizData'
@@ -18,7 +18,9 @@ function Quiz() {
         dsa: <BrainCircuit size={32} />,
         os: <Server size={32} />,
         dbms: <BookOpen size={32} />,
-        web: <Globe size={32} />
+        web: <Globe size={32} />,
+        cn: <Network size={32} />,
+        aptitude: <Calculator size={32} />
     }
 
     const handleStartQuiz = (topicId) => {

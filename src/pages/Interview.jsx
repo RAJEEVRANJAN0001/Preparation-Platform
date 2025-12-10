@@ -1,326 +1,455 @@
-import { useState, useEffect, useRef } from 'react'
-import { Send, Bot, User, Download, RefreshCw, Loader2, CheckCircle2 } from 'lucide-react'
+import { useState, useRef } from 'react'
+import { Mic, Volume2, CheckCircle2, XCircle, Lightbulb, Target, Briefcase } from 'lucide-react'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 import ReactMarkdown from 'react-markdown'
-import { InterviewManager, ConversationState } from '../utils/interviewManager'
+import PageHeader from '../components/PageHeader'
 import Button from '../components/Button'
 import './Interview.css'
 
+// Predefined Interview Questions by Role
+const interviewQuestions = {
+    'Frontend Developer': [
+        {
+            id: 'fe-1',
+            question: "Explain the Virtual DOM in React and how it improves performance.",
+            difficulty: "Medium",
+            category: "Technical",
+            hints: ["Mention diffing algorithm", "Compare with real DOM", "Explain reconciliation"]
+        },
+        {
+            id: 'fe-2',
+            question: "What is the difference between useEffect and useLayoutEffect?",
+            difficulty: "Medium",
+            category: "Technical",
+            hints: ["Timing of execution", "When to use each", "Visual changes"]
+        },
+        {
+            id: 'fe-3',
+            question: "Describe a challenging UI problem you solved and your approach.",
+            difficulty: "Medium",
+            category: "Behavioral",
+            hints: ["Use STAR method", "Mention specific technologies", "Explain impact"]
+        },
+        {
+            id: 'fe-4',
+            question: "How would you optimize a React application with performance issues?",
+            difficulty: "Hard",
+            category: "Technical",
+            hints: ["React.memo", "Code splitting", "Lazy loading", "useMemo/useCallback"]
+        },
+        {
+            id: 'fe-5',
+            question: "Explain CSS specificity and how to manage it in large applications.",
+            difficulty: "Easy",
+            category: "Technical",
+            hints: ["Specificity hierarchy", "BEM methodology", "CSS-in-JS solutions"]
+        }
+    ],
+    'Backend Developer': [
+        {
+            id: 'be-1',
+            question: "Explain the difference between SQL and NoSQL databases. When would you use each?",
+            difficulty: "Medium",
+            category: "Technical",
+            hints: ["Data structure", "Scalability", "ACID vs BASE", "Use cases"]
+        },
+        {
+            id: 'be-2',
+            question: "What is the N+1 query problem and how do you solve it?",
+            difficulty: "Hard",
+            category: "Technical",
+            hints: ["Database queries", "Eager loading", "JOIN operations", "ORM optimization"]
+        },
+        {
+            id: 'be-3',
+            question: "Describe your experience with API design and RESTful principles.",
+            difficulty: "Medium",
+            category: "Technical",
+            hints: ["HTTP methods", "Status codes", "Resource naming", "Versioning"]
+        },
+        {
+            id: 'be-4',
+            question: "How would you handle a production database outage?",
+            difficulty: "Hard",
+            category: "Behavioral",
+            hints: ["Incident response", "Communication", "Recovery plan", "Post-mortem"]
+        },
+        {
+            id: 'be-5',
+            question: "Explain authentication vs authorization. Implement JWT-based auth.",
+            difficulty: "Medium",
+            category: "Technical",
+            hints: ["Auth vs Authz", "Token structure", "Refresh tokens", "Security"]
+        }
+    ],
+    'Full Stack Developer': [
+        {
+            id: 'fs-1',
+            question: "Walk me through building a scalable web application from scratch.",
+            difficulty: "Hard",
+            category: "Technical",
+            hints: ["Architecture", "Tech stack", "Database design", "Deployment"]
+        },
+        {
+            id: 'fs-2',
+            question: "Explain how you would implement real-time features in a web app.",
+            difficulty: "Medium",
+            category: "Technical",
+            hints: ["WebSockets", "Server-Sent Events", "Polling", "Trade-offs"]
+        },
+        {
+            id: 'fs-3',
+            question: "Describe a time you had to debug a complex full-stack issue.",
+            difficulty: "Medium",
+            category: "Behavioral",
+            hints: ["Debugging process", "Tools used", "Root cause", "Prevention"]
+        },
+        {
+            id: 'fs-4',
+            question: "How do you ensure API security in a production application?",
+            difficulty: "Hard",
+            category: "Technical",
+            hints: ["Authentication", "Rate limiting", "CORS", "Input validation", "HTTPS"]
+        },
+        {
+            id: 'fs-5',
+            question: "Explain your approach to state management in modern web apps.",
+            difficulty: "Medium",
+            category: "Technical",
+            hints: ["Redux vs Context", "Server state", "Local state", "Trade-offs"]
+        }
+    ],
+    'Data Analyst': [
+        {
+            id: 'da-1',
+            question: "Explain the difference between WHERE and HAVING clauses in SQL.",
+            difficulty: "Easy",
+            category: "Technical",
+            hints: ["Filtering rows vs groups", "Execution order", "Aggregate functions"]
+        },
+        {
+            id: 'da-2',
+            question: "How would you analyze user churn for a subscription service?",
+            difficulty: "Medium",
+            category: "Technical",
+            hints: ["Metrics", "Cohort analysis", "Visualization", "Recommendations"]
+        },
+        {
+            id: 'da-3',
+            question: "Describe your experience with data visualization tools.",
+            difficulty: "Easy",
+            category: "Behavioral",
+            hints: ["Tools used", "Dashboard design", "Stakeholder communication"]
+        },
+        {
+            id: 'da-4',
+            question: "What is A/B testing and how do you measure its success?",
+            difficulty: "Medium",
+            category: "Technical",
+            hints: ["Hypothesis", "Sample size", "Statistical significance", "Metrics"]
+        },
+        {
+            id: 'da-5',
+            question: "How do you handle missing or inconsistent data in analysis?",
+            difficulty: "Medium",
+            category: "Technical",
+            hints: ["Data cleaning", "Imputation methods", "Impact assessment", "Documentation"]
+        }
+    ],
+    'DevOps Engineer': [
+        {
+            id: 'do-1',
+            question: "Explain CI/CD and describe a pipeline you've implemented.",
+            difficulty: "Medium",
+            category: "Technical",
+            hints: ["Build", "Test", "Deploy stages", "Tools", "Automation"]
+        },
+        {
+            id: 'do-2',
+            question: "What is containerization and how does Docker work?",
+            difficulty: "Easy",
+            category: "Technical",
+            hints: ["Containers vs VMs", "Images", "Dockerfile", "Benefits"]
+        },
+        {
+            id: 'do-3',
+            question: "Describe how you would handle a production incident.",
+            difficulty: "Hard",
+            category: "Behavioral",
+            hints: ["Detection", "Mitigation", "Communication", "Post-mortem"]
+        },
+        {
+            id: 'do-4',
+            question: "Explain Infrastructure as Code and your experience with it.",
+            difficulty: "Medium",
+            category: "Technical",
+            hints: ["Terraform/CloudFormation", "Version control", "Benefits", "Best practices"]
+        },
+        {
+            id: 'do-5',
+            question: "How do you monitor and ensure application reliability?",
+            difficulty: "Hard",
+            category: "Technical",
+            hints: ["Monitoring tools", "Metrics", "Alerting", "SLAs/SLOs"]
+        }
+    ]
+}
+
 function Interview() {
-    const [messages, setMessages] = useState([])
-    const [input, setInput] = useState('')
-    const [isLoading, setIsLoading] = useState(false)
-    const [apiKey, setApiKey] = useState(localStorage.getItem('gemini_api_key') || '')
-    const [showSettings, setShowSettings] = useState(!localStorage.getItem('gemini_api_key'))
-    const [interviewManager, setInterviewManager] = useState(null)
-    const [interviewStarted, setInterviewStarted] = useState(false)
-    const messagesEndRef = useRef(null)
+    const [selectedRole, setSelectedRole] = useState(null)
+    const [currentQuestion, setCurrentQuestion] = useState(null)
+    const [userAnswer, setUserAnswer] = useState('')
+    const [feedback, setFeedback] = useState(null)
+    const [isAnalyzing, setIsAnalyzing] = useState(false)
+    const [completedQuestions, setCompletedQuestions] = useState([])
+    const textareaRef = useRef(null)
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || localStorage.getItem('gemini_api_key') || ''
 
-    useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-    }, [messages])
-
-    const startInterview = async () => {
-        if (!apiKey) {
-            setShowSettings(true)
-            return
-        }
-
-        const manager = new InterviewManager(apiKey)
-        setInterviewManager(manager)
-        setInterviewStarted(true)
-
-        // Get greeting
-        const greeting = await manager.processMessage('')
-        setMessages([{ id: Date.now(), sender: 'ai', text: greeting }])
+    const selectQuestion = (question) => {
+        setCurrentQuestion(question)
+        setUserAnswer('')
+        setFeedback(null)
     }
 
-    const resetInterview = () => {
-        setMessages([])
-        setInterviewManager(null)
-        setInterviewStarted(false)
-        setInput('')
-    }
+    const analyzeAnswer = async () => {
+        if (!userAnswer.trim() || !apiKey) return
 
-    const exportTranscript = () => {
-        if (!interviewManager) return
-
-        const transcript = interviewManager.exportTranscript()
-        const blob = new Blob([JSON.stringify(transcript, null, 2)], { type: 'application/json' })
-        const url = URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.href = url
-        a.download = `interview-${transcript.candidate.fullName || 'transcript'}-${Date.now()}.json`
-        a.click()
-        URL.revokeObjectURL(url)
-    }
-
-    const handleSend = async () => {
-        if (!input.trim() || !interviewManager) return
-
-        const userMessage = { id: Date.now(), sender: 'user', text: input }
-        setMessages(prev => [...prev, userMessage])
-        setInput('')
-        setIsLoading(true)
-
+        setIsAnalyzing(true)
         try {
-            const response = await interviewManager.processMessage(input)
-            setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'ai', text: response }])
+            const genAI = new GoogleGenerativeAI(apiKey)
+            const model = genAI.getGenerativeModel({ model: 'gemini-pro' })
+
+            const prompt = `You are an expert technical interviewer. Analyze this interview answer and provide detailed feedback.
+
+Question: ${currentQuestion.question}
+Difficulty: ${currentQuestion.difficulty}
+Category: ${currentQuestion.category}
+
+Candidate's Answer:
+${userAnswer}
+
+Provide feedback in this format:
+1. **Strengths:** What the candidate did well
+2. **Areas for Improvement:** What could be better
+3. **Score:** Rate out of 10
+4. **Suggestions:** Specific tips to improve the answer
+
+Be constructive, encouraging, and specific.`
+
+            const result = await model.generateContent(prompt)
+            const feedbackText = result.response.text()
+            
+            setFeedback(feedbackText)
+            
+            // Mark question as completed
+            if (!completedQuestions.includes(currentQuestion.id)) {
+                setCompletedQuestions(prev => [...prev, currentQuestion.id])
+            }
         } catch (error) {
-            setMessages(prev => [...prev, {
-                id: Date.now() + 1,
-                sender: 'ai',
-                text: 'Error: Could not process your message. Please try again.'
-            }])
+            console.error('Analysis error:', error)
+            setFeedback('Error analyzing answer. Please try again.')
         } finally {
-            setIsLoading(false)
+            setIsAnalyzing(false)
         }
     }
 
-    const saveApiKey = (key) => {
-        setApiKey(key)
-        localStorage.setItem('gemini_api_key', key)
-        setShowSettings(false)
+    const resetPractice = () => {
+        setSelectedRole(null)
+        setCurrentQuestion(null)
+        setUserAnswer('')
+        setFeedback(null)
+        setCompletedQuestions([])
     }
 
-    const getProgressColor = (percentage) => {
-        if (percentage < 30) return '#f5576c'
-        if (percentage < 70) return '#ffa726'
-        return '#10b981'
+    const getDifficultyColor = (difficulty) => {
+        switch (difficulty) {
+            case 'Easy': return '#10b981'
+            case 'Medium': return '#f59e0b'
+            case 'Hard': return '#ef4444'
+            default: return '#6b7280'
+        }
     }
 
     return (
-        <div className="app-container">
-            {/* Settings Modal */}
-            {showSettings && (
-                <div className="settings-modal-overlay">
-                    <div className="settings-modal">
-                        <h2 className="page-title" style={{ fontSize: 18, marginBottom: 16 }}>Configure API Key</h2>
-                        <p style={{ fontSize: 14, color: 'var(--text-muted)', marginBottom: 16 }}>
-                            You need a Gemini API key to use the mock interview feature.
-                        </p>
-                        <input
-                            type="password"
-                            placeholder="Paste Gemini API Key"
-                            className="api-input"
-                            defaultValue={apiKey}
-                            onChange={(e) => setApiKey(e.target.value)}
-                        />
-                        <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end', marginTop: 16 }}>
-                            <Button variant="primary" onClick={() => saveApiKey(apiKey)}>Save Key</Button>
-                            {interviewStarted && (
-                                <Button variant="ghost" onClick={() => setShowSettings(false)}>Cancel</Button>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            )}
+        <div className="interview-page">
+            <PageHeader
+                title="Interview Practice"
+                description="Practice interview questions by role and get AI-powered feedback"
+                icon={<Briefcase size={40} />}
+            />
 
             <div className="interview-container">
-                {/* Sidebar */}
-                <div className="interview-sidebar">
-                    <div className="sidebar-header">
-                        <h2>Interview Dashboard</h2>
+                {!selectedRole ? (
+                    // Role Selection Screen
+                    <div className="role-selection">
+                        <h2>Select Your Interview Role</h2>
+                        <div className="roles-grid">
+                            {Object.keys(interviewQuestions).map((role) => (
+                                <div
+                                    key={role}
+                                    className="role-card"
+                                    onClick={() => setSelectedRole(role)}
+                                >
+                                    <div className="role-icon">
+                                        <Target size={32} />
+                                    </div>
+                                    <h3>{role}</h3>
+                                    <p>{interviewQuestions[role].length} questions</p>
+                                    <div className="role-progress">
+                                        {completedQuestions.filter(id =>
+                                            interviewQuestions[role].some(q => q.id === id)
+                                        ).length} / {interviewQuestions[role].length} completed
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
+                ) : !currentQuestion ? (
+                    // Question Selection Screen
+                    <div className="question-selection">
+                        <div className="selection-header">
+                            <button className="btn-back" onClick={() => setSelectedRole(null)}>
+                                ← Back to Roles
+                            </button>
+                            <h2>{selectedRole}</h2>
+                            <p>Select a question to practice</p>
+                        </div>
 
-                    {interviewStarted && interviewManager ? (
-                        <>
-                            {/* Current Stage */}
-                            <div className="sidebar-section">
-                                <h3>Current Stage</h3>
-                                <div className="stage-badge">
-                                    {interviewManager.getStateDescription()}
-                                </div>
-                            </div>
-
-                            {/* Progress */}
-                            <div className="sidebar-section">
-                                <h3>Progress</h3>
-                                <div className="progress-circle-container">
-                                    <svg className="progress-circle" viewBox="0 0 120 120">
-                                        <circle
-                                            cx="60"
-                                            cy="60"
-                                            r="54"
-                                            fill="none"
-                                            stroke="var(--border-color)"
-                                            strokeWidth="8"
-                                        />
-                                        <circle
-                                            cx="60"
-                                            cy="60"
-                                            r="54"
-                                            fill="none"
-                                            stroke={getProgressColor(interviewManager.candidate.getCompletionPercentage())}
-                                            strokeWidth="8"
-                                            strokeDasharray={`${2 * Math.PI * 54}`}
-                                            strokeDashoffset={`${2 * Math.PI * 54 * (1 - interviewManager.candidate.getCompletionPercentage() / 100)}`}
-                                            strokeLinecap="round"
-                                            transform="rotate(-90 60 60)"
-                                        />
-                                        <text x="60" y="60" textAnchor="middle" dy="7" fontSize="24" fontWeight="700" fill="var(--text-main)">
-                                            {interviewManager.candidate.getCompletionPercentage()}%
-                                        </text>
-                                    </svg>
-                                </div>
-                            </div>
-
-                            {/* Candidate Info */}
-                            {interviewManager.candidate.fullName && (
-                                <div className="sidebar-section">
-                                    <h3>Candidate Info</h3>
-                                    <div className="candidate-info">
-                                        {interviewManager.candidate.fullName && (
-                                            <div className="info-item">
-                                                <span className="info-label">Name:</span>
-                                                <span className="info-value">{interviewManager.candidate.fullName}</span>
-                                            </div>
-                                        )}
-                                        {interviewManager.candidate.email && (
-                                            <div className="info-item">
-                                                <span className="info-label">Email:</span>
-                                                <span className="info-value">{interviewManager.candidate.email}</span>
-                                            </div>
-                                        )}
-                                        {interviewManager.candidate.yearsExperience !== null && (
-                                            <div className="info-item">
-                                                <span className="info-label">Experience:</span>
-                                                <span className="info-value">{interviewManager.candidate.yearsExperience} years</span>
-                                            </div>
-                                        )}
-                                        {interviewManager.candidate.desiredPositions.length > 0 && (
-                                            <div className="info-item">
-                                                <span className="info-label">Position:</span>
-                                                <span className="info-value">{interviewManager.candidate.desiredPositions.join(', ')}</span>
-                                            </div>
+                        <div className="questions-list">
+                            {interviewQuestions[selectedRole].map((question) => (
+                                <div
+                                    key={question.id}
+                                    className={`question-item ${completedQuestions.includes(question.id) ? 'completed' : ''}`}
+                                    onClick={() => selectQuestion(question)}
+                                >
+                                    <div className="question-header">
+                                        <span
+                                            className="difficulty-badge"
+                                            style={{ backgroundColor: getDifficultyColor(question.difficulty) }}
+                                        >
+                                            {question.difficulty}
+                                        </span>
+                                        <span className="category-tag">{question.category}</span>
+                                        {completedQuestions.includes(question.id) && (
+                                            <CheckCircle2 size={20} className="completed-icon" />
                                         )}
                                     </div>
+                                    <p className="question-text">{question.question}</p>
                                 </div>
-                            )}
-
-                            {/* Actions */}
-                            <div className="sidebar-section">
-                                <h3>Actions</h3>
-                                <div className="sidebar-actions">
-                                    <Button variant="outline" size="small" onClick={exportTranscript} style={{ width: '100%' }}>
-                                        <Download size={16} /> Export
-                                    </Button>
-                                    <Button variant="outline" size="small" onClick={resetInterview} style={{ width: '100%' }}>
-                                        <RefreshCw size={16} /> Reset
-                                    </Button>
-                                </div>
-                            </div>
-                        </>
-                    ) : (
-                        <div className="sidebar-section">
-                            <div className="welcome-info">
-                                <h3>Welcome!</h3>
-                                <p>Start the mock interview to practice your interview skills with our AI interviewer.</p>
-
-                                <div className="interview-steps">
-                                    <h4>Interview Process:</h4>
-                                    <ol>
-                                        <li>Basic Information</li>
-                                        <li>Professional Experience</li>
-                                        <li>Technical Skills</li>
-                                        <li>Technical Q&A</li>
-                                        <li>Wrap Up</li>
-                                    </ol>
-                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    // Question Practice Screen
+                    <div className="question-practice">
+                        <div className="practice-header">
+                            <button className="btn-back" onClick={() => setCurrentQuestion(null)}>
+                                ← Back to Questions
+                            </button>
+                            <div className="practice-meta">
+                                <span
+                                    className="difficulty-badge"
+                                    style={{ backgroundColor: getDifficultyColor(currentQuestion.difficulty) }}
+                                >
+                                    {currentQuestion.difficulty}
+                                </span>
+                                <span className="category-tag">{currentQuestion.category}</span>
                             </div>
                         </div>
-                    )}
-                </div>
 
-                {/* Main Chat Area */}
-                <div className="interview-main">
-                    {!interviewStarted ? (
-                        <div className="interview-welcome">
-                            <div className="welcome-card-interview">
-                                <div className="welcome-icon">
-                                    <Bot size={64} />
-                                </div>
-                                <h1>Mock Interview Practice</h1>
-                                <p>
-                                    Practice your interview skills with our AI-powered interviewer.
-                                    Get real-time feedback and improve your responses.
-                                </p>
-                                <Button variant="primary" size="large" onClick={startInterview}>
-                                    Start Interview
-                                </Button>
-                            </div>
-                        </div>
-                    ) : (
-                        <>
-                            {/* Messages */}
-                            <div className="interview-messages">
-                                {messages.map((msg) => (
-                                    <div key={msg.id} className={`message-wrapper ${msg.sender}`}>
-                                        <div className="message-avatar">
-                                            {msg.sender === 'ai' ? <Bot size={20} /> : <User size={20} />}
-                                        </div>
-                                        <div className="message-bubble">
-                                            {msg.sender === 'ai' ? (
-                                                <ReactMarkdown>{msg.text}</ReactMarkdown>
-                                            ) : (
-                                                msg.text
-                                            )}
-                                        </div>
-                                    </div>
-                                ))}
-                                {isLoading && (
-                                    <div className="message-wrapper ai">
-                                        <div className="message-avatar"><Bot size={20} /></div>
-                                        <div className="message-bubble">
-                                            <Loader2 className="animate-spin" size={16} style={{ marginRight: 8 }} />
-                                            Thinking...
-                                        </div>
-                                    </div>
-                                )}
-                                <div ref={messagesEndRef} />
-                            </div>
+                        <div className="question-content">
+                            <h3>{currentQuestion.question}</h3>
 
-                            {/* Input Area */}
-                            {interviewManager?.state !== ConversationState.ENDED ? (
-                                <div className="interview-input-area">
-                                    <textarea
-                                        value={input}
-                                        onChange={(e) => setInput(e.target.value)}
-                                        onKeyDown={(e) => {
-                                            if (e.key === 'Enter' && !e.shiftKey) {
-                                                e.preventDefault()
-                                                handleSend()
-                                            }
-                                        }}
-                                        placeholder="Type your response..."
-                                        rows={2}
-                                        className="interview-input"
-                                    />
+                            {/* Hints Section */}
+                            <details className="hints-section">
+                                <summary>
+                                    <Lightbulb size={18} />
+                                    View Hints ({currentQuestion.hints.length})
+                                </summary>
+                                <ul>
+                                    {currentQuestion.hints.map((hint, index) => (
+                                        <li key={index}>{hint}</li>
+                                    ))}
+                                </ul>
+                            </details>
+
+                            {/* Answer Input */}
+                            <div className="answer-section">
+                                <label>Your Answer:</label>
+                                <textarea
+                                    ref={textareaRef}
+                                    value={userAnswer}
+                                    onChange={(e) => setUserAnswer(e.target.value)}
+                                    placeholder="Type your detailed answer here... Be as thorough as possible."
+                                    rows={12}
+                                    disabled={isAnalyzing}
+                                />
+                                <div className="answer-meta">
+                                    <span className="char-count">
+                                        {userAnswer.length} characters
+                                    </span>
                                     <button
-                                        className="interview-send-btn"
-                                        onClick={handleSend}
-                                        disabled={isLoading || !input.trim()}
+                                        className="btn-primary"
+                                        onClick={analyzeAnswer}
+                                        disabled={!userAnswer.trim() || isAnalyzing}
                                     >
-                                        <Send size={20} />
+                                        {isAnalyzing ? (
+                                            <>Analyzing...</>
+                                        ) : (
+                                            <>
+                                                <Target size={18} />
+                                                Get AI Feedback
+                                            </>
+                                        )}
                                     </button>
                                 </div>
-                            ) : (
-                                <div className="interview-completed">
-                                    <CheckCircle2 size={48} style={{ color: '#10b981' }} />
-                                    <h2>Interview Completed!</h2>
-                                    <p>Thank you for completing the mock interview. You can export the transcript or start a new interview.</p>
-                                    <div style={{ display: 'flex', gap: 12, marginTop: 24 }}>
-                                        <Button variant="primary" onClick={exportTranscript}>
-                                            <Download size={16} /> Export Transcript
-                                        </Button>
-                                        <Button variant="outline" onClick={resetInterview}>
-                                            <RefreshCw size={16} /> New Interview
-                                        </Button>
+                            </div>
+
+                            {/* Feedback Section */}
+                            {feedback && (
+                                <div className="feedback-section">
+                                    <h4>
+                                        <CheckCircle2 size={20} />
+                                        AI Feedback
+                                    </h4>
+                                    <div className="feedback-content">
+                                        {feedback.split('\n').map((line, index) => (
+                                            <p key={index}>{line}</p>
+                                        ))}
+                                    </div>
+                                    <div className="feedback-actions">
+                                        <button
+                                            className="btn-secondary"
+                                            onClick={() => {
+                                                setCurrentQuestion(null)
+                                                setUserAnswer('')
+                                                setFeedback(null)
+                                            }}
+                                        >
+                                            Next Question
+                                        </button>
+                                        <button
+                                            className="btn-secondary"
+                                            onClick={() => {
+                                                setUserAnswer('')
+                                                setFeedback(null)
+                                            }}
+                                        >
+                                            Try Again
+                                        </button>
                                     </div>
                                 </div>
                             )}
-                        </>
-                    )}
-                </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Reset Button */}
+                {selectedRole && (
+                    <button className="btn-reset" onClick={resetPractice}>
+                        Start Over
+                    </button>
+                )}
             </div>
         </div>
     )

@@ -33,31 +33,37 @@
 /* Light Theme (Default) */
 :root {
   --bg-surface: #ffffff;
-  --bg-subtle: #f9fafb;
-  /* Gray 50 */
-  --bg-inset: #f3f4f6;
-  /* Gray 100 */
-
-  --border-main: #e5e7eb;
+  --bg-subtle: #f8f9fa;
+  /* Light Gray */
+  --bg-inset: #e9ecef;
   /* Gray 200 */
-  --border-subtle: #f3f4f6;
 
-  --text-main: #111827;
-  /* Gray 900 */
-  --text-muted: #6b7280;
-  /* Gray 50 */
-  --text-faint: #9ca3af;
-  /* Gray 400 */
+  --border-main: #dee2e6;
+  /* Gray 300 */
+  --border-subtle: #e9ecef;
 
-  --primary: #2563eb;
-  /* Blue 600 */
-  --primary-light: #eff6ff;
+  --text-main: #212529;
+  /* Dark Gray */
+  --text-muted: #495057;
+  /* Gray 600 */
+  --text-faint: #6c757d;
+  /* Gray 500 */
 
-  --accent-orange: #f97316;
-  --accent-green: #10b981;
-  --accent-purple: #8b5cf6;
+  --primary: #0d6efd;
+  /* Bootstrap Blue */
+  --primary-light: #cfe2ff;
 
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --accent-orange: #fd7e14;
+  --accent-green: #198754;
+  --accent-purple: #6f42c1;
+
+  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.08);
+  
+  /* Additional colors for better contrast */
+  --bg-secondary: #f1f3f5;
+  --text-secondary: #6c757d;
+  --text-primary: #212529;
+  --border-color: #dee2e6;
 }
 
 /* Dark Theme */
@@ -81,6 +87,15 @@
   --primary-light: #1e3a8a;
 
   --shadow-card: none;
+  
+  /* Additional dark theme colors */
+  --bg-secondary: #1f1f23;
+  --text-secondary: #a1a1aa;
+  --text-primary: #f4f4f5;
+  --border-color: #2a2a2e;
+  --accent-orange: #f97316;
+  --accent-green: #10b981;
+  --accent-purple: #8b5cf6;
 }
 
 body {

@@ -3,19 +3,26 @@ import { Link } from 'react-router-dom'
 import {
   BookOpen, PenTool, Calendar, Bot,
   Target, Zap,
-  Clock, CheckCircle, ArrowRight
+  Clock, ArrowRight
 } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import './Home.css'
 
 function Home() {
-  const [stats] = useState({
-    totalNotes: 17,
-    quizzesTaken: 0,
-    streak: 0,
-    xp: 0
-  })
-  const [streak] = useState(0)
+  const [currentTime, setCurrentTime] = useState(new Date())
+  const [greeting, setGreeting] = useState('')
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  useEffect(() => {
+    const hour = currentTime.getHours()
+    if (hour < 12) setGreeting('Good Morning')
+    else if (hour < 18) setGreeting('Good Afternoon')
+    else setGreeting('Good Evening')
+  }, [currentTime])
 
   const quickActions = [
     {
@@ -85,43 +92,16 @@ function Home() {
 
   return (
     <div className="app-container">
-      <PageHeader
-        title="Dashboard"
-        subtitle={`Welcome back! ${streak > 0 ? `You're on a ${streak}-day streak 🔥` : "Let's start learning today!"}`}
-        showBack={false}
-      />
-
-      {/* Hero Stats */}
-      <div className="hero-stats">
-        <div className="stat-card-large" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
-          <div className="stat-icon"><BookOpen size={32} /></div>
-          <div className="stat-info">
-            <div className="stat-value">{stats?.totalNotes || 17}</div>
-            <div className="stat-label">Study Resources</div>
+      {/* Enhanced Header */}
+      <div className="dashboard-header">
+        <div className="header-content">
+          <div className="greeting-section">
+            <h1 className="greeting-title">{greeting}! 👋</h1>
+            <p className="greeting-subtitle">Ready to level up your skills today?</p>
           </div>
-        </div>
-
-        <div className="stat-card-large" style={{ background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' }}>
-          <div className="stat-icon"><PenTool size={32} /></div>
-          <div className="stat-info">
-            <div className="stat-value">{stats?.quizzesTaken || 0}</div>
-            <div className="stat-label">Quizzes Completed</div>
-          </div>
-        </div>
-
-        <div className="stat-card-large" style={{ background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' }}>
-          <div className="stat-icon"><Zap size={32} /></div>
-          <div className="stat-info">
-            <div className="stat-value">{stats?.xp || 0}</div>
-            <div className="stat-label">Total XP</div>
-          </div>
-        </div>
-
-        <div className="stat-card-large" style={{ background: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' }}>
-          <div className="stat-icon"><CheckCircle size={32} /></div>
-          <div className="stat-info">
-            <div className="stat-value">{streak}</div>
-            <div className="stat-label">Day Streak</div>
+          <div className="time-display">
+            <div className="current-time">{currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
+            <div className="current-date">{currentTime.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}</div>
           </div>
         </div>
       </div>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini API Model Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .test-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 30px;
+            transition: transform 0.2s;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+        }
+        .test-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .result {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        .result.success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        .result.error {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        .result.testing {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+        .model-name {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .response {
+            margin-top: 8px;
+            padding: 10px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .api-key {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-family: monospace;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Gemini API Model Tester</h1>
+        <p class="subtitle">Testing which Gemini models work with your API key</p>
+        
+        <div class="api-key">
+            <strong>API Key:</strong> AIzaSyAsrff_4AQFQ9yBmiEg-djaFEwfAYh0NwU
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="totalTests">0</div>
+                <div class="stat-label">Tests Run</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="successCount">0</div>
+                <div class="stat-label">Successful</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="failCount">0</div>
+                <div class="stat-label">Failed</div>
+            </div>
+        </div>
+
+        <button class="test-button" onclick="runAllTests()" id="testBtn">
+            🚀 Run All Model Tests
+        </button>
+
+        <div id="results"></div>
+    </div>
+
+    <script type="module">
+        import { GoogleGenerativeAI } from 'https://esm.run/@google/generative-ai';
+
+        const API_KEY = 'AIzaSyAsrff_4AQFQ9yBmiEg-djaFEwfAYh0NwU';
+        const genAI = new GoogleGenerativeAI(API_KEY);
+
+        const models = [
+            'gemini-pro',
+            'gemini-1.5-pro',
+            'gemini-1.5-flash',
+            'gemini-1.5-flash-8b',
+            'gemini-2.0-flash-exp',
+            'gemini-exp-1206',
+        ];
+
+        let totalTests = 0;
+        let successCount = 0;
+        let failCount = 0;
+
+        function updateStats() {
+            document.getElementById('totalTests').textContent = totalTests;
+            document.getElementById('successCount').textContent = successCount;
+            document.getElementById('failCount').textContent = failCount;
+        }
+
+        async function testModel(modelName) {
+            const resultsDiv = document.getElementById('results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'result testing';
+            resultDiv.innerHTML = `
+                <div class="model-name">🔄 Testing: ${modelName}</div>
+                <div>Please wait...</div>
+            `;
+            resultsDiv.appendChild(resultDiv);
+
+            totalTests++;
+            updateStats();
+
+            try {
+                const model = genAI.getGenerativeModel({ model: modelName });
+                const prompt = "Say 'Hello! I'm working.' in one short sentence.";
+                
+                const startTime = Date.now();
+                const result = await model.generateContent(prompt);
+                const endTime = Date.now();
+                
+                const response = await result.response;
+                const text = response.text();
+                
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    <div class="model-name">✅ ${modelName} - SUCCESS</div>
+                    <div>Response time: ${endTime - startTime}ms</div>
+                    <div class="response">${text}</div>
+                `;
+                successCount++;
+                updateStats();
+                return { success: true, model: modelName, text };
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <div class="model-name">❌ ${modelName} - FAILED</div>
+                    <div class="response">Error: ${error.message || error.toString()}</div>
+                `;
+                failCount++;
+                updateStats();
+                return { success: false, model: modelName, error: error.message };
+            }
+        }
+
+        window.runAllTests = async function() {
+            const btn = document.getElementById('testBtn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Testing...';
+            
+            document.getElementById('results').innerHTML = '';
+            totalTests = 0;
+            successCount = 0;
+            failCount = 0;
+            updateStats();
+
+            const results = [];
+            for (const modelName of models) {
+                const result = await testModel(modelName);
+                results.push(result);
+                // Small delay between tests
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+
+            btn.disabled = false;
+            btn.textContent = '✅ Tests Complete! Run Again?';
+
+            // Add summary
+            const successfulModels = results.filter(r => r.success).map(r => r.model);
+            if (successfulModels.length > 0) {
+                const summaryDiv = document.createElement('div');
+                summaryDiv.className = 'result success';
+                summaryDiv.innerHTML = `
+                    <div class="model-name">🎉 Recommended Models for Your App:</div>
+                    <div class="response">
+                        ${successfulModels.map(m => `• <strong>${m}</strong>`).join('<br>')}
+                    </div>
+                `;
+                document.getElementById('results').insertBefore(summaryDiv, document.getElementById('results').firstChild);
+            }
+        };
+    </script>
+</body>
+</html>

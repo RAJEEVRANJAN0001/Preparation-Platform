@@ -33,7 +33,7 @@ function ResumeAnalyzer() {
         try {
             const text = await file.text()
             const genAI = new GoogleGenerativeAI(apiKey)
-            const model = genAI.getGenerativeModel({ model: 'gemini-pro' })
+            const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' })
 
             const prompt = `You are an expert resume reviewer and career coach. Analyze the following resume and provide detailed feedback:
 

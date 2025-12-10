@@ -15,13 +15,20 @@ function Chat() {
     ])
     const [input, setInput] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    const [apiKey, setApiKey] = useState(localStorage.getItem('gemini_api_key') || '')
-    const [showSettings, setShowSettings] = useState(!localStorage.getItem('gemini_api_key'))
+    const defaultApiKey = import.meta.env.VITE_GEMINI_API_KEY || ''
+    const [apiKey, setApiKey] = useState(localStorage.getItem('gemini_api_key') || defaultApiKey)
+    const [showSettings, setShowSettings] = useState(false)
     const [isListening, setIsListening] = useState(false)
 
     // Knowledge Base
     const [knowledgeBase, setKnowledgeBase] = useState([])
     const messagesEndRef = useRef(null)
+
+    useEffect(() => {
+        if (!localStorage.getItem('gemini_api_key') && defaultApiKey) {
+            localStorage.setItem('gemini_api_key', defaultApiKey)
+        }
+    }, [])
 
     // Speech
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
@@ -83,7 +90,7 @@ function Chat() {
 
         try {
             const genAI = new GoogleGenerativeAI(apiKey)
-            const model = genAI.getGenerativeModel({ model: 'gemini-pro' })
+            const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
             const context = getContext(userMessage.text)
             const prompt = `System: Helpful Technical Mentor. Context: ${context}. User: ${userMessage.text}`
 
@@ -91,7 +98,13 @@ function Chat() {
             const text = result.response.text()
             setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'ai', text }])
         } catch (error) {
-            setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'ai', text: 'Error: Could not connect to API.' }])
+            console.error('Gemini API Error:', error)
+            const errorMsg = error.message || error.toString()
+            setMessages(prev => [...prev, {
+                id: Date.now() + 1,
+                sender: 'ai',
+                text: `Error: ${errorMsg}. API Key: ${apiKey ? 'Present' : 'Missing'}. Please check console for details.`
+            }])
         } finally {
             setIsLoading(false)
         }
