@@ -94,6 +94,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Layout Utilities included in index for global use */
 .app-container {
   max-width: var(--max-width);

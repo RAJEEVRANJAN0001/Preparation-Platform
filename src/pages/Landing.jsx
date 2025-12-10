@@ -22,7 +22,17 @@ function Landing() {
         {
             icon: <Calendar size={24} />,
             title: 'Study Roadmaps',
-            description: 'Generate personalized 6-week preparation plans tailored to your target role.'
+            description: 'Follow structured learning paths for Frontend, Backend, DSA, and System Design.'
+        },
+        {
+            icon: <Bot size={24} />,
+            title: 'Mock Interviews',
+            description: 'Practice with AI-powered mock interviews and get real-time feedback on your responses.'
+        },
+        {
+            icon: <BookOpen size={24} />,
+            title: 'Resume Analyzer',
+            description: 'Get AI-powered feedback on your resume with ATS compatibility scores and suggestions.'
         }
     ]
 

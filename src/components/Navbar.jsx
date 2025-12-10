@@ -24,13 +24,16 @@ function Navbar({ theme, toggleTheme }) {
             <Link to="/chat" className={`nav-link ${isActive('/chat')}`}>AI Chat</Link>
           </li>
           <li>
+            <Link to="/interview" className={`nav-link ${isActive('/interview')}`}>Interview</Link>
+          </li>
+          <li>
+            <Link to="/roadmap" className={`nav-link ${isActive('/roadmap')}`}>Roadmap</Link>
+          </li>
+          <li>
             <Link to="/notes" className={`nav-link ${isActive('/notes')}`}>Notes</Link>
           </li>
           <li>
             <Link to="/quiz" className={`nav-link ${isActive('/quiz')}`}>Quiz</Link>
-          </li>
-          <li>
-            <Link to="/study-plan" className={`nav-link ${isActive('/study-plan')}`}>Plan</Link>
           </li>
 
           {/* Theme Toggle */}

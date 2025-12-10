@@ -1,7 +1,6 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, Clock, Award, BookOpen, CheckCircle, ExternalLink } from 'lucide-react'
 import { topicsData } from '../data/topicsData'
-import { ActivityTracker, StatsTracker } from '../utils/activityTracker'
 import './TopicDetail.css'
 
 function TopicDetail() {
@@ -21,8 +20,6 @@ function TopicDetail() {
     }
 
     const handleComplete = () => {
-        StatsTracker.addXP(50)
-        ActivityTracker.logActivity('topic-complete')
         alert(`Congratulations! You've completed "${topic.title}" and earned 50 XP!`)
     }
 

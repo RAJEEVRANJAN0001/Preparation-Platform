@@ -2,6 +2,9 @@
 .app {
     min-height: 100vh;
     background: var(--bg-subtle);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .main-content {

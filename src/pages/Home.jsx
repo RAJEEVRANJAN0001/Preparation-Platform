@@ -2,22 +2,20 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   BookOpen, PenTool, Calendar, Bot,
-  TrendingUp, Award, Target, Zap,
+  Target, Zap,
   Clock, CheckCircle, ArrowRight
 } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
-import { ActivityTracker, StatsTracker } from '../utils/activityTracker'
 import './Home.css'
 
 function Home() {
-  const [stats, setStats] = useState(null)
-  const [streak, setStreak] = useState(0)
-
-  useEffect(() => {
-    setStats(StatsTracker.getStats())
-    setStreak(ActivityTracker.getStreak())
-    ActivityTracker.logActivity()
-  }, [])
+  const [stats] = useState({
+    totalNotes: 17,
+    quizzesTaken: 0,
+    streak: 0,
+    xp: 0
+  })
+  const [streak] = useState(0)
 
   const quickActions = [
     {
@@ -51,6 +49,30 @@ function Home() {
       link: '/study-plan',
       color: 'orange',
       gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+    },
+    {
+      title: 'Mock Interview',
+      desc: 'AI Practice Sessions',
+      icon: <Bot size={24} />,
+      link: '/interview',
+      color: 'purple',
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+    },
+    {
+      title: 'Learning Roadmap',
+      desc: 'Structured Paths',
+      icon: <Target size={24} />,
+      link: '/roadmap',
+      color: 'blue',
+      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+    },
+    {
+      title: 'Interview Questions',
+      desc: 'Role-Based Prep',
+      icon: <Zap size={24} />,
+      link: '/coding-practice',
+      color: 'purple',
+      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
     }
   ]
 
@@ -96,7 +118,7 @@ function Home() {
         </div>
 
         <div className="stat-card-large" style={{ background: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' }}>
-          <div className="stat-icon"><TrendingUp size={32} /></div>
+          <div className="stat-icon"><CheckCircle size={32} /></div>
           <div className="stat-info">
             <div className="stat-value">{streak}</div>
             <div className="stat-label">Day Streak</div>
@@ -116,7 +138,6 @@ function Home() {
             key={idx}
             to={action.link}
             className="action-card-new"
-            onClick={() => ActivityTracker.logActivity()}
           >
             <div className="action-gradient" style={{ background: action.gradient }}></div>
             <div className="action-content">
@@ -143,7 +164,6 @@ function Home() {
               to={`/topic/${topic.id}`}
               className="topic-card"
               style={{ textDecoration: 'none' }}
-              onClick={() => ActivityTracker.logActivity('topic-view')}
             >
               <div className="topic-header">
                 <h4>{topic.title}</h4>

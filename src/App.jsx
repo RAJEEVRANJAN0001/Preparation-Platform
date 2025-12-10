@@ -8,6 +8,11 @@ import Chat from './pages/Chat'
 import Quiz from './pages/Quiz'
 import StudyPlan from './pages/StudyPlan'
 import TopicDetail from './pages/TopicDetail'
+import Interview from './pages/Interview'
+import Roadmap from './pages/Roadmap'
+import ResumeAnalyzer from './pages/ResumeAnalyzer'
+import JobTracker from './pages/JobTracker'
+import CodingPractice from './pages/CodingPractice'
 import './App.css'
 
 function AppContent({ theme, toggleTheme }) {
@@ -26,6 +31,11 @@ function AppContent({ theme, toggleTheme }) {
                     <Route path="/quiz" element={<Quiz />} />
                     <Route path="/study-plan" element={<StudyPlan />} />
                     <Route path="/topic/:topicId" element={<TopicDetail />} />
+                    <Route path="/interview" element={<Interview />} />
+                    <Route path="/roadmap" element={<Roadmap />} />
+                    <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
+                    <Route path="/job-tracker" element={<JobTracker />} />
+                    <Route path="/coding-practice" element={<CodingPractice />} />
                 </Routes>
             </main>
         </div>
