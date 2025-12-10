@@ -261,6 +261,21 @@
     margin-top: 24px;
 }
 
+@media (max-width: 1024px) {
+    .job-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .stat-card-job {
+        padding: 20px;
+    }
+    
+    .stat-value {
+        font-size: 32px;
+    }
+}
+
 @media (max-width: 768px) {
     .form-grid {
         grid-template-columns: 1fr;
@@ -273,5 +288,76 @@
 
     .filter-buttons {
         justify-content: center;
+    }
+    
+    .job-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .stat-card-job {
+        padding: 16px;
+    }
+    
+    .stat-value {
+        font-size: 28px;
+    }
+    
+    .stat-label {
+        font-size: 12px;
+    }
+    
+    .job-card {
+        padding: 16px;
+    }
+    
+    .job-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .job-info h3 {
+        font-size: 16px;
+    }
+    
+    .job-info p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .job-stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .stat-card-job {
+        padding: 14px;
+    }
+    
+    .stat-value {
+        font-size: 24px;
+    }
+    
+    .stat-label {
+        font-size: 11px;
+    }
+    
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .job-card {
+        padding: 12px;
+        border-radius: 12px;
+    }
+    
+    .job-info h3 {
+        font-size: 14px;
+    }
+    
+    .job-info p {
+        font-size: 12px;
     }
 }

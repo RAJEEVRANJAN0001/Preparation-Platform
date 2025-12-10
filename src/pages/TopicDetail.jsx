@@ -3,6 +3,97 @@ import { ArrowLeft, Clock, Award, BookOpen, CheckCircle, ExternalLink } from 'lu
 import { topicsData } from '../data/topicsData'
 import './TopicDetail.css'
 
+const ContentRenderer = ({ content }) => {
+    // Helper to process inline formatting (bold, code)
+    const processInline = (text) => {
+        const parts = text.split(/(\*\*.*?\*\*|`.*?`)/g);
+        return parts.map((part, idx) => {
+            if (part.startsWith('**') && part.endsWith('**')) {
+                return <strong key={idx}>{part.slice(2, -2)}</strong>;
+            }
+            if (part.startsWith('`') && part.endsWith('`')) {
+                return <code key={idx}>{part.slice(1, -1)}</code>;
+            }
+            return part;
+        });
+    };
+
+    // Split content by code blocks first
+    const parts = content.split(/(```[\s\S]*?```)/g);
+
+    return (
+        <div className="section-content">
+            {parts.map((part, mainIdx) => {
+                // Return code blocks directly
+                if (part.startsWith('```') && part.endsWith('```')) {
+                    const match = part.match(/```(\w+)?\n([\s\S]*?)```/);
+                    const lang = match ? match[1] : '';
+                    const code = match ? match[2] : part.slice(3, -3);
+                    return (
+                        <pre key={mainIdx}>
+                            <code className={`language-${lang}`}>{code.trim()}</code>
+                        </pre>
+                    );
+                }
+
+                // Process standard text (lists and paragraphs)
+                // Filter out empty strings from split
+                if (!part.trim()) return null;
+
+                const lines = part.split('\n');
+                let inList = false;
+                let listItems = [];
+                const nodes = [];
+
+                lines.forEach((line, lineIdx) => {
+                    const isListItem = line.trim().startsWith('- ') || line.trim().startsWith('* ');
+
+                    if (isListItem) {
+                        if (!inList) {
+                            inList = true;
+                        }
+                        listItems.push(line.trim().substring(2));
+                    } else {
+                        if (inList) {
+                            // Flush list
+                            nodes.push(
+                                <ul key={`${mainIdx}-list-${lineIdx}`}>
+                                    {listItems.map((item, i) => (
+                                        <li key={i}>{processInline(item)}</li>
+                                    ))}
+                                </ul>
+                            );
+                            listItems = [];
+                            inList = false;
+                        }
+                        // Add paragraph if not empty
+                        if (line.trim()) {
+                            nodes.push(
+                                <p key={`${mainIdx}-p-${lineIdx}`} style={{ marginBottom: 12 }}>
+                                    {processInline(line)}
+                                </p>
+                            );
+                        }
+                    }
+                });
+
+                // Flush remaining list
+                if (inList) {
+                    nodes.push(
+                        <ul key={`${mainIdx}-list-end`}>
+                            {listItems.map((item, i) => (
+                                <li key={i}>{processInline(item)}</li>
+                            ))}
+                        </ul>
+                    );
+                }
+
+                return nodes;
+            })}
+        </div>
+    );
+};
+
 function TopicDetail() {
     const { topicId } = useParams()
     const navigate = useNavigate()
@@ -10,10 +101,11 @@ function TopicDetail() {
 
     if (!topic) {
         return (
-            <div className="app-container">
-                <div style={{ textAlign: 'center', padding: 60 }}>
+            <div className="topic-detail-container">
+                <div style={{ textAlign: 'center', padding: 60, color: 'white' }}>
                     <h2>Topic Not Found</h2>
-                    <Link to="/dashboard">← Back to Dashboard</Link>
+                    <br />
+                    <Link to="/dashboard" className="back-btn">← Back to Dashboard</Link>
                 </div>
             </div>
         )
@@ -24,132 +116,121 @@ function TopicDetail() {
     }
 
     return (
-        <div className="app-container">
-            {/* Header */}
-            <div className="topic-header">
-                <button onClick={() => navigate('/dashboard')} className="back-btn">
-                    <ArrowLeft size={18} /> Back to Dashboard
-                </button>
-
-                <div className="topic-title-section">
-                    <h1 className="topic-title">{topic.title}</h1>
-                    <p className="topic-description">{topic.description}</p>
-                </div>
-
-                <div className="topic-meta">
-                    <span className={`badge badge-${topic.difficulty === 'Hard' ? 'orange' : topic.difficulty === 'Medium' ? 'blue' : 'green'}`}>
-                        {topic.difficulty}
-                    </span>
-                    <span className="badge badge-purple">{topic.category}</span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text-muted)' }}>
-                        <Clock size={14} /> {topic.time}
-                    </span>
-                </div>
-            </div>
-
-            {/* Overview */}
-            <div className="dense-card" style={{ marginBottom: 24, padding: 24, background: 'var(--primary-light)', borderColor: 'var(--primary)' }}>
-                <h3 style={{ margin: '0 0 12px 0', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <Award size={18} /> What You'll Learn
-                </h3>
-                <p style={{ margin: '0 0 16px 0', lineHeight: 1.6 }}>{topic.overview}</p>
-                <ul style={{ margin: 0, paddingLeft: 20 }}>
-                    {topic.keyPoints.map((point, idx) => (
-                        <li key={idx} style={{ marginBottom: 6 }}>{point}</li>
-                    ))}
-                </ul>
-            </div>
-
-            {/* Content Sections */}
-            <div className="topic-content">
-                {topic.sections.map((section, idx) => (
-                    <div key={idx} className="content-section dense-card">
-                        <h2 className="section-title">{section.title}</h2>
-                        <div className="section-content" dangerouslySetInnerHTML={{ __html: section.content.replace(/\n/g, '<br/>').replace(/```(\w+)\n([\s\S]*?)```/g, '<pre><code class="language-$1">$2</code></pre>') }} />
-                    </div>
-                ))}
-            </div>
-
-            {/* Two Column Layout */}
-            <div className="topic-sidebar-layout">
-
-                {/* Practice Problems */}
-                <div>
-                    <h3 style={{ fontSize: 16, marginBottom: 16 }}>Practice Problems</h3>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                        {topic.practiceProblems.map((problem, idx) => (
-                            <a
-                                key={idx}
-                                href={problem.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="practice-card dense-card"
-                                style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
-                            >
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <span style={{ fontWeight: 500, fontSize: 14 }}>{problem.title}</span>
-                                    <span className={`badge badge-${problem.difficulty === 'Hard' ? 'orange' : problem.difficulty === 'Medium' ? 'blue' : 'green'}`}>
-                                        {problem.difficulty}
-                                    </span>
-                                </div>
-                            </a>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Resources */}
-                <div>
-                    <h3 style={{ fontSize: 16, marginBottom: 16 }}>Resources</h3>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                        {topic.resources.map((resource, idx) => (
-                            <a
-                                key={idx}
-                                href={resource.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="resource-card dense-card"
-                                style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
-                            >
-                                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                                    <BookOpen size={18} color="var(--primary)" />
-                                    <div style={{ flexGrow: 1 }}>
-                                        <div style={{ fontWeight: 500, fontSize: 14 }}>{resource.title}</div>
-                                        <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>{resource.type}</div>
-                                    </div>
-                                    <ExternalLink size={16} color="var(--text-muted)" />
-                                </div>
-                            </a>
-                        ))}
-                    </div>
-
-                    {/* Complete Button */}
-                    <button
-                        onClick={handleComplete}
-                        className="complete-btn"
-                        style={{
-                            marginTop: 24,
-                            width: '100%',
-                            padding: 16,
-                            background: 'var(--accent-green)',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: 8,
-                            fontSize: 15,
-                            fontWeight: 600,
-                            cursor: 'pointer',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            gap: 8,
-                            transition: 'all 0.3s'
-                        }}
-                    >
-                        <CheckCircle size={20} /> Mark as Complete
+        <div className="topic-detail-container">
+            <div className="max-w-wrapper">
+                {/* Header */}
+                <div className="topic-header glass-card" style={{ marginTop: 24 }}>
+                    <button onClick={() => navigate('/dashboard')} className="back-btn">
+                        <ArrowLeft size={18} /> Back to Dashboard
                     </button>
+
+                    <div className="topic-title-section">
+                        <h1 className="topic-title">{topic.title}</h1>
+                        <p className="topic-description">{topic.description}</p>
+                    </div>
+
+                    <div className="topic-meta">
+                        <span className={`meta-badge badge-${topic.difficulty === 'Hard' ? 'orange' : topic.difficulty === 'Medium' ? 'blue' : 'green'}`}>
+                            {topic.difficulty}
+                        </span>
+                        <span className="meta-badge badge-purple">{topic.category}</span>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text-secondary)', fontWeight: 600 }}>
+                            <Clock size={14} /> {topic.time}
+                        </span>
+                    </div>
                 </div>
 
-            </div>
+                {/* Overview */}
+                <div className="glass-card" style={{ marginBottom: 32 }}>
+                    <h3 style={{ margin: '0 0 16px 0', fontSize: 18, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-main)' }}>
+                        <Award size={20} className="text-primary" /> What You'll Learn
+                    </h3>
+                    <p style={{ margin: '0 0 24px 0', lineHeight: 1.8, color: 'var(--text-secondary)' }}>{topic.overview}</p>
+                    <div className="section-content">
+                        <ul>
+                            {topic.keyPoints.map((point, idx) => (
+                                <li key={idx}>{point}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
 
+                {/* Content Sections */}
+                <div className="topic-content">
+                    {topic.sections.map((section, idx) => (
+                        <div key={idx} className="content-section glass-card">
+                            <h2 className="section-title">{section.title}</h2>
+                            <ContentRenderer content={section.content} />
+                        </div>
+                    ))}
+                </div>
+
+                {/* Two Column Layout */}
+                <div className="topic-sidebar-layout">
+
+                    {/* Practice Problems */}
+                    <div className="sidebar-section">
+                        <h3>Practice Problems</h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                            {topic.practiceProblems.map((problem, idx) => (
+                                <a
+                                    key={idx}
+                                    href={problem.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="practice-card-item"
+                                >
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <span style={{ fontWeight: 600, fontSize: 15 }}>{problem.title}</span>
+                                        <span className={`meta-badge badge-${problem.difficulty === 'Hard' ? 'orange' : problem.difficulty === 'Medium' ? 'blue' : 'green'}`} style={{ fontSize: 11 }}>
+                                            {problem.difficulty}
+                                        </span>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Resources */}
+                    <div className="sidebar-section">
+                        <h3>Resources</h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                            {topic.resources.map((resource, idx) => (
+                                <a
+                                    key={idx}
+                                    href={resource.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="resource-card-item"
+                                >
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                                        <div className="resource-icon-wrapper">
+                                            <BookOpen size={20} />
+                                        </div>
+                                        <div style={{ flexGrow: 1 }}>
+                                            <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 4 }}>{resource.title}</div>
+                                            <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>{resource.type}</div>
+                                        </div>
+                                        <ExternalLink size={16} color="var(--text-muted)" />
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+
+                        {/* Complete Button */}
+                        <button
+                            onClick={handleComplete}
+                            className="complete-btn"
+                            style={{
+                                marginTop: 32
+                            }}
+                        >
+                            <CheckCircle size={20} /> Mark as Complete
+                        </button>
+                    </div>
+
+                </div>
+            </div>
         </div>
     )
 }

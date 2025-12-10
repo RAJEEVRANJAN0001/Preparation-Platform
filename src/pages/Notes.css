@@ -7,9 +7,22 @@
     align-items: start;
 }
 
+@media (max-width: 1024px) {
+    .notes-layout {
+        grid-template-columns: 200px 1fr;
+        gap: var(--sp-4);
+    }
+}
+
 @media (max-width: 768px) {
     .notes-layout {
         grid-template-columns: 1fr;
+        gap: var(--sp-3);
+    }
+    
+    .notes-sidebar {
+        position: static;
+        margin-bottom: var(--sp-4);
     }
 }
 
@@ -172,4 +185,48 @@
     color: var(--text-faint);
     border-radius: 4px;
     font-size: 11px;
+}
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 768px) {
+    .notes-grid {
+        grid-template-columns: 1fr;
+        gap: var(--sp-3);
+    }
+    
+    .note-card {
+        padding: var(--sp-4);
+    }
+    
+    .pdf-action-btn {
+        padding: 10px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .notes-grid {
+        gap: 12px;
+    }
+    
+    .note-card {
+        padding: 12px;
+    }
+    
+    .note-header h3 {
+        font-size: 14px;
+    }
+    
+    .pdf-action-btn {
+        padding: 8px;
+        font-size: 12px;
+    }
+    
+    .note-meta {
+        flex-wrap: wrap;
+    }
+    
+    .tag-pill {
+        font-size: 10px;
+    }
 }

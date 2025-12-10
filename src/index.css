@@ -206,6 +206,72 @@ button {
   color: var(--accent-purple);
 }
 
+/* Enhanced Responsive Utilities */
+@media (max-width: 1200px) {
+  :root {
+    --max-width: 100%;
+    --sp-8: 24px;
+    --sp-10: 32px;
+    --sp-12: 40px;
+  }
+  
+  .app-container {
+    padding: 0 var(--sp-4);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 56px;
+    --sp-6: 20px;
+    --sp-8: 20px;
+  }
+  
+  body {
+    font-size: 13px;
+  }
+  
+  .app-container {
+    padding: 0 var(--sp-3);
+  }
+  
+  .page-header {
+    padding: var(--sp-6) 0 var(--sp-4) 0;
+  }
+  
+  .page-title {
+    font-size: 20px;
+  }
+  
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+    gap: var(--sp-3);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --sp-4: 12px;
+    --sp-6: 16px;
+  }
+  
+  body {
+    font-size: 12px;
+  }
+  
+  .app-container {
+    padding: 0 12px;
+  }
+  
+  .page-title {
+    font-size: 18px;
+  }
+  
+  .dense-card {
+    padding: 12px;
+  }
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
