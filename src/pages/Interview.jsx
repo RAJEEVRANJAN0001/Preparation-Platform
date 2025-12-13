@@ -239,9 +239,9 @@ Be constructive, encouraging, and specific.`
 
             const result = await model.generateContent(prompt)
             const feedbackText = result.response.text()
-            
+
             setFeedback(feedbackText)
-            
+
             // Mark question as completed
             if (!completedQuestions.includes(currentQuestion.id)) {
                 setCompletedQuestions(prev => [...prev, currentQuestion.id])
@@ -414,9 +414,7 @@ Be constructive, encouraging, and specific.`
                                         AI Feedback
                                     </h4>
                                     <div className="feedback-content">
-                                        {feedback.split('\n').map((line, index) => (
-                                            <p key={index}>{line}</p>
-                                        ))}
+                                        <ReactMarkdown>{feedback}</ReactMarkdown>
                                     </div>
                                     <div className="feedback-actions">
                                         <button
