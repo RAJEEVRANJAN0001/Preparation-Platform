@@ -318,7 +318,7 @@
 
 /* Enhanced Dashboard Header */
 .dashboard-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
     border-radius: 20px;
     padding: 40px;
     margin-bottom: 40px;
@@ -611,16 +611,16 @@
         width: 56px;
         height: 56px;
     }
-    
+
     .stat-value {
         font-size: 32px;
     }
-    
+
     .action-card-new {
         padding: 20px;
         min-height: 140px;
     }
-    
+
     .action-icon-new {
         width: 44px;
         height: 44px;
@@ -645,34 +645,34 @@
     .quick-actions-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .stat-card-large {
         padding: 20px;
     }
-    
+
     .stat-icon {
         width: 48px;
         height: 48px;
     }
-    
+
     .stat-value {
         font-size: 28px;
     }
-    
+
     .stat-label {
         font-size: 12px;
     }
-    
+
     .action-card-new {
         padding: 16px;
         min-height: 120px;
     }
-    
+
     .action-icon-new {
         width: 40px;
         height: 40px;
     }
-    
+
     .topic-header h4 {
         font-size: 14px;
     }
@@ -682,35 +682,35 @@
     .greeting-title {
         font-size: 24px;
     }
-    
+
     .stat-card-large {
         padding: 16px;
         gap: 12px;
     }
-    
+
     .stat-icon {
         width: 40px;
         height: 40px;
     }
-    
+
     .stat-value {
         font-size: 24px;
     }
-    
+
     .stat-label {
         font-size: 11px;
     }
-    
+
     .action-card-new {
         padding: 14px;
         min-height: 100px;
     }
-    
+
     .action-icon-new {
         width: 36px;
         height: 36px;
     }
-    
+
     .quote-card {
         padding: 20px;
         border-radius: 12px;

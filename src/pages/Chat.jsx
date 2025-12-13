@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Send, Bot, User, Loader2, Mic, Volume2 } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { GoogleGenerativeAI } from '@google/generative-ai'
+import AnimatedBackground from '../components/AnimatedBackground'
 import './Chat.css'
 
 function Chat() {
@@ -104,6 +105,7 @@ function Chat() {
 
     return (
         <div className="app-container">
+            <AnimatedBackground />
             <div className="chat-container">
                 {/* Header */}
                 <div className="chat-header">

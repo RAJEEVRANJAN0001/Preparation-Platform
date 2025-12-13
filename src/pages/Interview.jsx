@@ -4,6 +4,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai'
 import ReactMarkdown from 'react-markdown'
 import PageHeader from '../components/PageHeader'
 import Button from '../components/Button'
+import AnimatedBackground from '../components/AnimatedBackground'
 import './Interview.css'
 
 // Predefined Interview Questions by Role
@@ -273,6 +274,7 @@ Be constructive, encouraging, and specific.`
 
     return (
         <div className="interview-page">
+            <AnimatedBackground />
             <PageHeader
                 title="Interview Practice"
                 description="Practice interview questions by role and get AI-powered feedback"
