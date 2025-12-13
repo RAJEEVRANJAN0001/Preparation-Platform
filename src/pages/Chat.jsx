@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
-import { Send, Bot, User, Settings, Loader2, Mic, Volume2 } from 'lucide-react'
+import { Send, Bot, User, Loader2, Mic, Volume2 } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { GoogleGenerativeAI } from '@google/generative-ai'
-import Button from '../components/Button'
 import './Chat.css'
 
 function Chat() {
@@ -15,20 +14,12 @@ function Chat() {
     ])
     const [input, setInput] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    const defaultApiKey = import.meta.env.VITE_GEMINI_API_KEY || ''
-    const [apiKey, setApiKey] = useState(localStorage.getItem('gemini_api_key') || defaultApiKey)
-    const [showSettings, setShowSettings] = useState(false)
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || ''
     const [isListening, setIsListening] = useState(false)
 
     // Knowledge Base
     const [knowledgeBase, setKnowledgeBase] = useState([])
     const messagesEndRef = useRef(null)
-
-    useEffect(() => {
-        if (!localStorage.getItem('gemini_api_key') && defaultApiKey) {
-            localStorage.setItem('gemini_api_key', defaultApiKey)
-        }
-    }, [])
 
     // Speech
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
@@ -42,12 +33,6 @@ function Chat() {
     }, [])
 
     useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages])
-
-    const saveApiKey = (key) => {
-        setApiKey(key)
-        localStorage.setItem('gemini_api_key', key)
-        setShowSettings(false)
-    }
 
     const toggleListening = () => {
         if (!recognition) return alert("Browser does not support speech recognition.")
@@ -81,7 +66,14 @@ function Chat() {
 
     const handleSend = async () => {
         if (!input.trim()) return
-        if (!apiKey) { setShowSettings(true); return }
+        if (!apiKey) {
+            setMessages(prev => [...prev, {
+                id: Date.now(),
+                sender: 'ai',
+                text: 'Error: API key is not configured. Please set VITE_GEMINI_API_KEY in your environment variables.'
+            }])
+            return
+        }
 
         const userMessage = { id: Date.now(), sender: 'user', text: input }
         setMessages(prev => [...prev, userMessage])
@@ -103,7 +95,7 @@ function Chat() {
             setMessages(prev => [...prev, {
                 id: Date.now() + 1,
                 sender: 'ai',
-                text: `Error: ${errorMsg}. API Key: ${apiKey ? 'Present' : 'Missing'}. Please check console for details.`
+                text: `Error: ${errorMsg}. Please check the console for details.`
             }])
         } finally {
             setIsLoading(false)
@@ -112,20 +104,6 @@ function Chat() {
 
     return (
         <div className="app-container">
-            {/* Settings Modal */}
-            {showSettings && (
-                <div className="settings-modal-overlay">
-                    <div className="settings-modal">
-                        <h2 className="page-title" style={{ fontSize: 18, marginBottom: 16 }}>Configure API Key</h2>
-                        <input type="password" placeholder="Paste Gemini API Key" className="api-input" defaultValue={apiKey} onChange={(e) => setApiKey(e.target.value)} />
-                        <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
-                            <Button variant="primary" onClick={() => saveApiKey(apiKey)}>Save Key</Button>
-                            <Button variant="ghost" onClick={() => setShowSettings(false)}>Cancel</Button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
             <div className="chat-container">
                 {/* Header */}
                 <div className="chat-header">
@@ -138,7 +116,6 @@ function Chat() {
                             </div>
                         </div>
                     </div>
-                    <Button variant="ghost" size="small" onClick={() => setShowSettings(true)}><Settings size={16} /></Button>
                 </div>
 
                 {/* Messages */}
