@@ -93,10 +93,11 @@ export class CandidateInfo {
 
 // Interview Manager Class
 export class InterviewManager {
-    constructor(apiKey) {
+    constructor(apiKey, modelName = null) {
         this.apiKey = apiKey
         this.genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null
-        this.model = this.genAI ? this.genAI.getGenerativeModel({ model: 'gemini-pro' }) : null
+        const model = modelName || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GEMINI_MODEL) || 'gemini-2.5-flash'
+        this.model = this.genAI ? this.genAI.getGenerativeModel({ model }) : null
         this.state = ConversationState.GREETING
         this.candidate = new CandidateInfo()
         this.conversationHistory = []

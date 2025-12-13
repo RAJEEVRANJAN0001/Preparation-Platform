@@ -217,7 +217,8 @@ function Interview() {
         setIsAnalyzing(true)
         try {
             const genAI = new GoogleGenerativeAI(apiKey)
-            const model = genAI.getGenerativeModel({ model: 'gemini-pro' })
+            const modelName = import.meta.env.VITE_GEMINI_MODEL || 'gemini-2.5-flash'
+            const model = genAI.getGenerativeModel({ model: modelName })
 
             const prompt = `You are an expert technical interviewer. Analyze this interview answer and provide detailed feedback.
 
