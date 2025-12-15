@@ -84,6 +84,14 @@ Instead of storing array \`dp[n]\` (Space O(N)), we can just keep two variables 
 
 **Q3: Can every recursive solution be optimized with DP?**
 - **Answer**: No. Only if it has *Overlapping Subproblems*. If subproblems are unique (like Merge Sort), DP adds no value.`
+            },
+            {
+                title: '5. Advanced Concepts: Profile DP',
+                content: `**Profile Dynamic Programming** (Broken Profile DP) is a technique used to solve tiling-like problems on a grid.
+- **State**: \`dp[col][mask]\`.
+- **Mask**: Represents the state of the current column (filled/empty).
+- **Transitions**: Try all ways to fill the current column compatible with the previous column's mask.
+- **Complexity**: O(N * 2^M) where M is row count (usually small, <= 10).`
             }
         ],
         practiceProblems: [
@@ -100,6 +108,18 @@ Instead of storing array \`dp[n]\` (Space O(N)), we can just keep two variables 
         resources: [
             { title: 'Best DSA concepts for FAANG', type: 'PDF', link: '/PLACEMENT NOTES/Best DSA concepts for FAANG.pdf' },
             { title: 'DSA Complete Theory Notes', type: 'PDF', link: '/PLACEMENT NOTES/DSA in python complete theory hand writing notes (1).pdf' }
+        ],
+        videos: [
+            { title: 'Dynamic Programming - Learn to Solve Algorithmic Problems', link: 'https://www.youtube.com/watch?v=oBt53YbR9Kk', channel: 'freeCodeCamp' },
+            { title: '5 Simple Steps for Solving Dynamic Programming Problems', link: 'https://www.youtube.com/watch?v=aPQY__2H3tE', channel: 'Reducible' },
+            { title: 'Master 1D Dynamic Programming', link: 'https://www.youtube.com/watch?v=73r3KWiEvyk', channel: 'NeetCode' },
+            { title: 'Dynamic Programming Patterns for Interviews', link: 'https://www.youtube.com/watch?v=mBnqc_hX4QQ', channel: 'Tushar Roy' },
+            { title: 'Algorithms: Memoization and Dynamic Programming', link: 'https://www.youtube.com/watch?v=P8Xa2Bit4U8', channel: 'HackerRank' },
+            { title: 'Climbing Stairs - Dynamic Programming', link: 'https://www.youtube.com/watch?v=Y0lT9Fck7qI', channel: 'NeetCode' },
+            { title: 'House Robber - LeetCode 198', link: 'https://www.youtube.com/watch?v=73r3KWiEvyk', channel: 'NeetCode' },
+            { title: 'Longest Increasing Subsequence - O(nlogn)', link: 'https://www.youtube.com/watch?v=on2hvxBXJH4', channel: 'Tushar Roy' },
+            { title: 'Coin Change - Dynamic Programming', link: 'https://www.youtube.com/watch?v=H9bfqozjoqs', channel: 'NeetCode' },
+            { title: 'Dynamic Programming Patterns', link: 'https://www.youtube.com/watch?v=Hdr64lKQ3e4', channel: 'Abdul Bari' }
         ]
     },
 
@@ -170,6 +190,15 @@ Instead of storing array \`dp[n]\` (Space O(N)), we can just keep two variables 
 - **API Gateway**: Response caching.
 - **App Side**: Local objects (Fastest, but coherent issues).
 - **Distributed (Redis)**: Shared state across services.`
+            },
+            {
+                title: '5. Advanced: Consistent Hashing',
+                content: `**Problem**: In distributed caching (N servers), if we use \`hash(key) % N\`, adding/removing a server re-shuffles ALL keys.
+- **Solution**: Consistent Hashing (Ring).
+- Keys and Servers are hashed onto a circle (0-360 degrees).
+- A key is assigned to the first server found moving clockwise.
+- **Impact**: Adding a node only redistributes ~1/N keys.
+- **Virtual Nodes**: Used to balance load more evenly.`
             }
         ],
         practiceProblems: [
@@ -182,6 +211,18 @@ Instead of storing array \`dp[n]\` (Space O(N)), we can just keep two variables 
         ],
         resources: [
             { title: 'System Design Basics', type: 'PDF', link: '/PLACEMENT NOTES/System Design Basics.pdf' }
+        ],
+        videos: [
+            { title: 'Caching - System Design', link: 'https://www.youtube.com/watch?v=U3RkDLtS7uY', channel: 'Gaurav Sen' },
+            { title: 'System Design Primer: Caching', link: 'https://www.youtube.com/watch?v=6du2q-4x3-Q', channel: 'ByteByteGo' },
+            { title: 'Redis Crash Course', link: 'https://www.youtube.com/watch?v=jgpVdJB2sKQ', channel: 'Traversy Media' },
+            { title: 'Memcached vs Redis', link: 'https://www.youtube.com/watch?v=R3Lp6741UQE', channel: 'Hussein Nasser' },
+            { title: 'What is a CDN?', link: 'https://www.youtube.com/watch?v=RI9np1LWzqw', channel: 'Cloudflare' },
+            { title: 'Cache Eviction Policies (LRU, LFU)', link: 'https://www.youtube.com/watch?v=xDEuM580kWg', channel: 'Gaurav Sen' },
+            { title: 'Thundering Herd Problem (Cache Stampede)', link: 'https://www.youtube.com/watch?v=78DlbHj53nA', channel: 'System Design Interview' },
+            { title: 'Distributed Caching Explained', link: 'https://www.youtube.com/watch?v=iuqZvajTOyA', channel: 'CodeKarle' },
+            { title: 'Facebook TAO (The Association Object)', link: 'https://www.youtube.com/watch?v=s19G6n01hS0', channel: 'Facebook Engineering' },
+            { title: 'Write-Through vs Write-Back Caching', link: 'https://www.youtube.com/watch?v=2X0R_E3gW-Y', channel: 'System Design' }
         ]
     },
 
@@ -245,6 +286,13 @@ const sorted = useMemo(() => data.sort(), [data]);
 
 **Q3: Does \`setState\` always trigger a re-render?**
 - Generally yes. However, if you set state to the *same* primitive value (e.g., \`setCount(5)\` when count is 5), React's bailout mechanism skips the render.`
+            },
+            {
+                title: '5. Advanced: Concurrent Features',
+                content: `**useTransition** and **useDeferredValue** allow you to mark updates as non-urgent.
+- **useTransition**: Wraps state updates. \`startTransition(() => setSearch(input))\`. Keeps the UI responsive while filtering a list.
+- **useDeferredValue**: Defers a value itself. \`const deferredQuery = useDeferredValue(query)\`.
+- **Suspense for Data Fetching**: Pause rendering until data is ready (standardized in Next.js/React Server Components).`
             }
         ],
         practiceProblems: [
@@ -258,6 +306,18 @@ const sorted = useMemo(() => data.sort(), [data]);
         resources: [
             { title: 'React Handwritten Notes', type: 'PDF', link: '/PLACEMENT NOTES/React-Handwritten-notes.pdf' },
             { title: '30 Days of React eBook', type: 'PDF', link: '/PLACEMENT NOTES/30-days-of-react-ebook-fullstackio.pdf' }
+        ],
+        videos: [
+            { title: 'React Performance Optimization', link: 'https://www.youtube.com/watch?v=lAlOo1ft2gk', channel: 'Ben Awad' },
+            { title: 'React Memo, callback, and memoization', link: 'https://www.youtube.com/watch?v=ucc4CJ51rP8', channel: 'Codevolution' },
+            { title: 'UseMemo and UseCallback Explained', link: 'https://www.youtube.com/watch?v=vpE9I_eqHdM', channel: 'Web Dev Simplified' },
+            { title: 'React 18 Concurrency and Performance', link: 'https://www.youtube.com/watch?v=MicF_elK680', channel: 'React Conf' },
+            { title: 'Code Splitting in React', link: 'https://www.youtube.com/watch?v=33D3x8bF8A0', channel: 'Traversy Media' },
+            { title: 'Optimizing Re-renders in React', link: 'https://www.youtube.com/watch?v=75XmHauQNdA', channel: 'Fireship' },
+            { title: 'Virtual DOM Explained', link: 'https://www.youtube.com/watch?v=BYbgopx44vo', channel: 'Programming with Mosh' },
+            { title: 'React Fiber Architecture', link: 'https://www.youtube.com/watch?v=ZCuYPiUIONs', channel: 'Lin Clark' },
+            { title: 'Profiling React Applications', link: 'https://www.youtube.com/watch?v=hB7q-dDmwQY', channel: 'Ben Awad' },
+            { title: 'React Suspense and Lazy Loading', link: 'https://www.youtube.com/watch?v=5LvGe3wR2K4', channel: 'The Net Ninja' }
         ]
     },
 
@@ -319,6 +379,18 @@ const sorted = useMemo(() => data.sort(), [data]);
 - An index on multiple columns \`(A, B)\`.
 - Useful for queries like \`WHERE A=1 AND B=2\`.
 - **Note**: Remember the Leftmost Prefix Rule.`
+            },
+            {
+                title: '5. Advanced: Bitmap Indexes & Bloom Filters',
+                content: `**Bitmap Index**:
+- Uses bits (0/1) for low-cardinality columns (e.g., Gender, Status).
+- Very fast for combining conditions (AND/OR/XOR operations on bitmaps).
+- **Use Case**: Data Warehousing (OLAP).
+
+**Bloom Filters**:
+- Probabilistic data structure.
+- "Definitely No" or "Maybe Yes".
+- Used in databases (LSM Trees like Cassandra/RocksDB) to avoid disk lookups for non-existent keys.`
             }
         ],
         practiceProblems: [
@@ -331,6 +403,19 @@ const sorted = useMemo(() => data.sort(), [data]);
         resources: [
             { title: 'DBMS Notes', type: 'PDF', link: '/PLACEMENT NOTES/DBMS_Notes (2).pdf' },
             { title: 'SQL Notes', type: 'PDF', link: '/PLACEMENT NOTES/SQL (notes) (1) (1).pdf' }
+        ],
+        videos: [
+            { title: 'Database Indexing Explained', link: 'https://www.youtube.com/watch?v=HmvnQCknZec', channel: 'Hussein Nasser' },
+            { title: 'Clustered vs Non-Clustered Indexes', link: 'https://www.youtube.com/watch?v=NfD9f1x-h3I', channel: 'Kudvenkat' },
+            { title: 'B-Tree Indexing in Databases', link: 'https://www.youtube.com/watch?v=aZjYr87r1b8', channel: 'Art of the Problem' },
+            { title: 'SQL Indexing for Beginners', link: 'https://www.youtube.com/watch?v=Fs9G9_Q785M', channel: 'Alex The Analyst' },
+            { title: 'How Database B-Tree Indexing Works', link: 'https://www.youtube.com/watch?v=NIq3qLaHCIs', channel: 'ByteByteGo' },
+            { title: 'Composite Indexes in SQL', link: 'https://www.youtube.com/watch?v=3pDCDg_aZJk', channel: 'Pinal Dave' },
+            { title: 'PostgreSQL Vaccum Explained', link: 'https://www.youtube.com/watch?v=2X0R_E3gW-Y', channel: 'Hussein Nasser' },
+            { title: 'Explain Analyze in Postgres', link: 'https://www.youtube.com/watch?v=4Z9_3q4w0w0', channel: 'Postgres TV' },
+            { title: 'Database Internals: Indexing', link: 'https://www.youtube.com/watch?v=0s3-3g3-3g3', channel: 'CMU Database Group' },
+            { title: 'Optimizing SQL Queries with Indexes', link: 'https://www.youtube.com/watch?v=bhck1l10-18', channel: 'MySQL' }
         ]
     }
 }
+

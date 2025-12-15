@@ -417,9 +417,11 @@
     text-decoration: none;
     display: block;
     height: 180px;
-    background: var(--bg-surface);
-    /* Default background */
-    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
 /* Day Mode (Light Theme) - Force Black Text */
@@ -449,11 +451,12 @@
 
 /* Night Mode (Dark Theme) - Force White Text */
 [data-theme='dark'] .action-card-new {
-    background: var(--bg-surface);
-    /* Keep surface bg */
+    background: rgba(26, 26, 26, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     color: #ffffff !important;
-    /* Force White in Night */
-    border-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 [data-theme='dark'] .action-card-new .action-content h3 {
@@ -561,18 +564,34 @@
 }
 
 .topic-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-main);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 16px;
     padding: 24px;
     transition: all 0.3s;
     cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 .topic-card:hover {
     transform: translateY(-4px);
-    border-color: var(--primary);
-    box-shadow: 0 12px 24px rgba(59, 130, 246, 0.15);
+    border-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme='dark'] .topic-card {
+    background: rgba(26, 26, 26, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .topic-card:hover {
+    background: rgba(26, 26, 26, 0.7);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
 }
 
 .topic-header {
@@ -599,11 +618,20 @@
 
 /* Quote Card Enhancement */
 .quote-card {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 16px;
     padding: 28px;
     text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='dark'] .quote-card {
+    background: rgba(26, 26, 26, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 1024px) {

@@ -1,5 +1,5 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { ArrowLeft, Clock, Award, BookOpen, CheckCircle, ExternalLink } from 'lucide-react'
+import { ArrowLeft, Clock, Award, BookOpen, CheckCircle, ExternalLink, PlayCircle } from 'lucide-react'
 import { topicsData } from '../data/topicsData'
 import './TopicDetail.css'
 
@@ -229,10 +229,65 @@ function TopicDetail() {
                         </button>
                     </div>
 
+
                 </div>
+
+                {/* Video Tutorials Section */}
+                {topic.videos && topic.videos.length > 0 && (
+                    <div className="glass-card" style={{ marginTop: 32 }}>
+                        <h3 style={{ margin: '0 0 20px 0', fontSize: 18, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-main)' }}>
+                            <PlayCircle size={20} className="text-secondary" /> Video Tutorials
+                        </h3>
+                        <div className="video-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
+                            {topic.videos.map((video, idx) => (
+                                <a
+                                    key={idx}
+                                    href={video.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="video-card"
+                                    style={{
+                                        textDecoration: 'none',
+                                        background: 'var(--bg-tertiary)',
+                                        borderRadius: 12,
+                                        overflow: 'hidden',
+                                        transition: 'transform 0.2s',
+                                        display: 'block'
+                                    }}
+                                >
+                                    <div style={{ position: 'relative', paddingTop: '56.25%', background: '#000' }}>
+                                        {/* Thumbnail placeholder or actual image if provided */}
+                                        <div style={{
+                                            position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                            color: '#fff', background: `url(https://img.youtube.com/vi/${getYouTubeId(video.link)}/hqdefault.jpg) center/cover no-repeat`
+                                        }}>
+                                            <div style={{
+                                                background: 'rgba(0,0,0,0.6)', borderRadius: '50%', padding: 12
+                                            }}>
+                                                <PlayCircle size={32} fill="white" stroke="white" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style={{ padding: 12 }}>
+                                        <h4 style={{ margin: '0 0 4px 0', fontSize: 14, fontWeight: 600, color: 'var(--text-main)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{video.title}</h4>
+                                        <p style={{ margin: 0, fontSize: 12, color: 'var(--text-muted)' }}>{video.channel || 'YouTube'}</p>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )
+}
+
+function getYouTubeId(url) {
+    if (!url) return null;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
 }
 
 export default TopicDetail
