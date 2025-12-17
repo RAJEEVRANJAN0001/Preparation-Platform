@@ -67,28 +67,34 @@ const AnimatedBackground = () => {
                 ))}
             </div>
 
-            {/* Shadow Birds Layer */}
+            {/* Shadow Birds Layer - Water Flow Pattern */}
             <div className="birds-layer">
-                {/* User requested 100 birds */}
-                {[...Array(100)].map((_, i) => (
-                    <div
-                        key={`bird-${i}`}
-                        className="shadow-bird"
-                        style={{
-                            top: `${Math.random() * 80 + 5}%`,
-                            '--bird-scale': Math.random() * 0.5 + 0.5,
-                            '--bird-delay': `${Math.random() * 100}s`,
-                            '--bird-duration': `${Math.random() * 30 + 20}s`,
-                            '--flap-duration': `${Math.random() * 0.3 + 0.4}s`,
-                            '--bob-duration': `${Math.random() * 2 + 2}s`,
-                            opacity: Math.random() * 0.5 + 0.2
-                        }}
-                    >
-                        <div className="bird-body"></div>
-                        <div className="bird-wing-left"></div>
-                        <div className="bird-wing-right"></div>
-                    </div>
-                ))}
+                {/* Staggered timing for smooth continuous flow */}
+                {[...Array(100)].map((_, i) => {
+                    // Create waves of birds for smooth flow
+                    const wave = Math.floor(i / 10); // 10 birds per wave
+                    const positionInWave = i % 10;
+
+                    return (
+                        <div
+                            key={`bird-${i}`}
+                            className="shadow-bird"
+                            style={{
+                                top: `${(positionInWave * 8) + (wave * 2) + 5}%`, // Diagonal pattern
+                                '--bird-scale': 0.5 + (positionInWave * 0.05),
+                                '--bird-delay': `${(wave * 5) + (positionInWave * 0.5)}s`, // Smooth stagger
+                                '--bird-duration': `${40 + (wave * 2)}s`, // Consistent speeds per wave
+                                '--flap-duration': `${0.5 + (positionInWave * 0.05)}s`,
+                                '--bob-duration': `${3 + (positionInWave * 0.2)}s`,
+                                opacity: 0.3 + (positionInWave * 0.03)
+                            }}
+                        >
+                            <div className="bird-body"></div>
+                            <div className="bird-wing-left"></div>
+                            <div className="bird-wing-right"></div>
+                        </div>
+                    );
+                })}
             </div>
 
             {/* Animated Grid Lines */}

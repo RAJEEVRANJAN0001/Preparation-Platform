@@ -277,14 +277,14 @@
     height: 18px;
     left: -50px;
     animation:
-        fly-across var(--bird-duration) linear infinite var(--bird-delay),
-        bobbing var(--bob-duration) ease-in-out infinite alternate var(--bird-delay);
-    filter: blur(0px);
+        fly-across var(--bird-duration) ease-in-out infinite var(--bird-delay),
+        bobbing var(--bob-duration) ease-in-out infinite var(--bird-delay);
+    filter: blur(0.5px);
+    /* Slight blur for smoother appearance */
     transform-origin: center;
-    opacity: 0.8 !important;
     z-index: 2;
     transform: scale(var(--bird-scale));
-    will-change: transform, left;
+    will-change: transform, left, opacity;
 }
 
 .bird-body {
@@ -327,53 +327,67 @@
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-/* Flight Path */
+/* Smooth Water-Flow Flight Path */
 @keyframes fly-across {
     0% {
         left: -10%;
-        transform: scale(var(--bird-scale)) translateX(0) rotate(0deg);
+        transform: scale(var(--bird-scale)) translateX(0) rotate(-2deg);
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 0.3;
+    }
+
+    95% {
+        opacity: 0.3;
     }
 
     100% {
         left: 0;
-        transform: scale(var(--bird-scale)) translateX(110vw) rotate(5deg);
+        transform: scale(var(--bird-scale)) translateX(110vw) rotate(2deg);
+        opacity: 0;
     }
 }
 
-/* Vertical Bobbing for natural feel */
+/* Gentle Vertical Wave Motion */
 @keyframes bobbing {
-    0% {
+
+    0%,
+    100% {
         margin-top: 0px;
     }
 
-    100% {
-        margin-top: 20px;
+    50% {
+        margin-top: 15px;
     }
 }
 
-/* Unified Flap Animation */
+/* Smooth Wing Flapping */
 @keyframes flap-wings {
-    0% {
-        transform: rotate(-20deg) scaleY(1);
+
+    0%,
+    100% {
+        transform: rotate(-25deg) scaleY(1);
     }
 
-    100% {
-        transform: rotate(-60deg) scaleY(0.7);
+    50% {
+        transform: rotate(-55deg) scaleY(0.75);
     }
 }
 
-/* Right wing needs inverted rotation logic in keyframe or transform flip, 
-   but simpler to keep distinct if orientation differs */
 .bird-wing-right {
     animation-name: flap-wings-right;
 }
 
 @keyframes flap-wings-right {
-    0% {
-        transform: rotate(20deg) scaleY(1);
+
+    0%,
+    100% {
+        transform: rotate(25deg) scaleY(1);
     }
 
-    100% {
-        transform: rotate(60deg) scaleY(0.7);
+    50% {
+        transform: rotate(55deg) scaleY(0.75);
     }
 }
