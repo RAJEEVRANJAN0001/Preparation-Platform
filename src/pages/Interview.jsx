@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react'
 import { Mic, Volume2, CheckCircle2, XCircle, Lightbulb, Target, Briefcase } from 'lucide-react'
-import { GoogleGenerativeAI } from '@google/generative-ai'
 import ReactMarkdown from 'react-markdown'
 import PageHeader from '../components/PageHeader'
 import Button from '../components/Button'
@@ -204,7 +203,9 @@ function Interview() {
     const [isAnalyzing, setIsAnalyzing] = useState(false)
     const [completedQuestions, setCompletedQuestions] = useState([])
     const textareaRef = useRef(null)
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || localStorage.getItem('gemini_api_key') || ''
+
+    // Backend API URL
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
 
     const selectQuestion = (question) => {
         setCurrentQuestion(question)
@@ -213,35 +214,30 @@ function Interview() {
     }
 
     const analyzeAnswer = async () => {
-        if (!userAnswer.trim() || !apiKey) return
+        if (!userAnswer.trim()) return
 
         setIsAnalyzing(true)
         try {
-            const genAI = new GoogleGenerativeAI(apiKey)
-            const modelName = import.meta.env.VITE_GEMINI_MODEL || 'gemini-2.5-flash'
-            const model = genAI.getGenerativeModel({ model: modelName })
+            // Call backend API instead of Gemini directly
+            const response = await fetch(`${API_URL}/api/interview/analyze`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    question: currentQuestion.question,
+                    answer: userAnswer,
+                    difficulty: currentQuestion.difficulty,
+                    category: currentQuestion.category
+                })
+            })
 
-            const prompt = `You are an expert technical interviewer. Analyze this interview answer and provide detailed feedback.
+            if (!response.ok) {
+                throw new Error(`Backend error: ${response.status}`)
+            }
 
-Question: ${currentQuestion.question}
-Difficulty: ${currentQuestion.difficulty}
-Category: ${currentQuestion.category}
-
-Candidate's Answer:
-${userAnswer}
-
-Provide feedback in this format:
-1. **Strengths:** What the candidate did well
-2. **Areas for Improvement:** What could be better
-3. **Score:** Rate out of 10
-4. **Suggestions:** Specific tips to improve the answer
-
-Be constructive, encouraging, and specific.`
-
-            const result = await model.generateContent(prompt)
-            const feedbackText = result.response.text()
-
-            setFeedback(feedbackText)
+            const data = await response.json()
+            setFeedback(data.feedback)
 
             // Mark question as completed
             if (!completedQuestions.includes(currentQuestion.id)) {
@@ -249,7 +245,7 @@ Be constructive, encouraging, and specific.`
             }
         } catch (error) {
             console.error('Analysis error:', error)
-            setFeedback('Error analyzing answer. Please try again.')
+            setFeedback('Error analyzing answer. Please make sure the backend server is running.')
         } finally {
             setIsAnalyzing(false)
         }

@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Send, Bot, User, Loader2, Mic, Volume2 } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
-import { GoogleGenerativeAI } from '@google/generative-ai'
 import AnimatedBackground from '../components/AnimatedBackground'
 import './Chat.css'
 
@@ -15,12 +14,14 @@ function Chat() {
     ])
     const [input, setInput] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || ''
     const [isListening, setIsListening] = useState(false)
 
     // Knowledge Base
     const [knowledgeBase, setKnowledgeBase] = useState([])
     const messagesEndRef = useRef(null)
+
+    // Backend API URL
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
 
     // Speech
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
@@ -67,14 +68,6 @@ function Chat() {
 
     const handleSend = async () => {
         if (!input.trim()) return
-        if (!apiKey) {
-            setMessages(prev => [...prev, {
-                id: Date.now(),
-                sender: 'ai',
-                text: 'Error: API key is not configured. Please set VITE_GEMINI_API_KEY in your environment variables.'
-            }])
-            return
-        }
 
         const userMessage = { id: Date.now(), sender: 'user', text: input }
         setMessages(prev => [...prev, userMessage])
@@ -82,21 +75,33 @@ function Chat() {
         setIsLoading(true)
 
         try {
-            const genAI = new GoogleGenerativeAI(apiKey)
-            const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
             const context = getContext(userMessage.text)
-            const prompt = `System: Helpful Technical Mentor. Context: ${context}. User: ${userMessage.text}`
 
-            const result = await model.generateContent(prompt)
-            const text = result.response.text()
-            setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'ai', text }])
+            // Call backend API instead of Gemini directly
+            const response = await fetch(`${API_URL}/api/chat`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: userMessage.text,
+                    context: context
+                })
+            })
+
+            if (!response.ok) {
+                throw new Error(`Backend error: ${response.status}`)
+            }
+
+            const data = await response.json()
+            setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'ai', text: data.response }])
         } catch (error) {
-            console.error('Gemini API Error:', error)
+            console.error('Chat API Error:', error)
             const errorMsg = error.message || error.toString()
             setMessages(prev => [...prev, {
                 id: Date.now() + 1,
                 sender: 'ai',
-                text: `Error: ${errorMsg}. Please check the console for details.`
+                text: `Error: ${errorMsg}. Please make sure the backend server is running.`
             }])
         } finally {
             setIsLoading(false)
