@@ -1,12 +1,14 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import {
   Bot, LayoutDashboard, FileText, Sun, Moon,
-  MessageSquare, Video, Map, BrainCircuit, Youtube
+  MessageSquare, Video, Map, BrainCircuit, Youtube, Menu, X
 } from 'lucide-react';
 import './Navbar.css';
 
 function Navbar({ theme, toggleTheme }) {
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isActive = (path) => location.pathname === path ? 'active' : '';
 
@@ -20,6 +22,14 @@ function Navbar({ theme, toggleTheme }) {
     { name: 'Quiz', path: '/quiz', icon: <BrainCircuit size={18} /> },
   ];
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -31,6 +41,7 @@ function Navbar({ theme, toggleTheme }) {
           <span>Creata Mentor</span>
         </Link>
 
+        {/* Desktop Navigation */}
         <ul className="navbar-links">
           {navItems.map((item) => (
             <li key={item.name}>
@@ -49,6 +60,56 @@ function Navbar({ theme, toggleTheme }) {
           </li>
         </ul>
 
+        {/* Mobile Hamburger Button */}
+        <button
+          className="mobile-menu-button"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle Mobile Menu"
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+      </div>
+
+      {/* Mobile Menu Backdrop */}
+      {mobileMenuOpen && (
+        <div className="mobile-menu-backdrop" onClick={closeMobileMenu}></div>
+      )}
+
+      {/* Mobile Menu Drawer */}
+      <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-menu-header">
+          <h3>Navigation</h3>
+          <button
+            className="mobile-menu-close"
+            onClick={closeMobileMenu}
+            aria-label="Close Menu"
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        <ul className="mobile-menu-links">
+          {navItems.map((item) => (
+            <li key={item.name}>
+              <Link
+                to={item.path}
+                className={`mobile-nav-link ${isActive(item.path)}`}
+                onClick={closeMobileMenu}
+              >
+                {item.icon}
+                <span>{item.name}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mobile-menu-footer">
+          <button className="mobile-theme-toggle" onClick={toggleTheme}>
+            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+            <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+          </button>
+        </div>
       </div>
     </nav>
   );
