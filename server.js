@@ -36,8 +36,9 @@ app.post('/api/chat', async (req, res) => {
             return res.status(400).json({ error: 'Message is required' });
         }
 
-        // Use gemini-2.5-flash model
-        const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+        // Use model from environment variable (Vercel) or default
+        const modelName = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+        const model = genAI.getGenerativeModel({ model: modelName });
         const prompt = `System: Helpful Technical Mentor. Context: ${context || ''}. User: ${message}`;
 
         const result = await model.generateContent(prompt);
@@ -71,8 +72,9 @@ app.post('/api/interview/analyze', async (req, res) => {
             return res.status(400).json({ error: 'Question and answer are required' });
         }
 
-        // Use gemini-2.5-flash model
-        const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+        // Use model from environment variable (Vercel) or default
+        const modelName = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+        const model = genAI.getGenerativeModel({ model: modelName });
 
         const prompt = `You are an expert technical interviewer. Analyze this interview answer and provide detailed feedback.
 

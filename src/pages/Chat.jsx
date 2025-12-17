@@ -20,8 +20,8 @@ function Chat() {
     const [knowledgeBase, setKnowledgeBase] = useState([])
     const messagesEndRef = useRef(null)
 
-    // Backend API URL
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+    // Backend API URL - Smart default: Localhost in dev, relative in prod
+    const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : '')
 
     // Speech
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition

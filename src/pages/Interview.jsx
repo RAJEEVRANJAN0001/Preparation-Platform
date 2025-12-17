@@ -204,8 +204,8 @@ function Interview() {
     const [completedQuestions, setCompletedQuestions] = useState([])
     const textareaRef = useRef(null)
 
-    // Backend API URL
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+    // Backend API URL - Smart default: Localhost in dev, relative in prod
+    const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : '')
 
     const selectQuestion = (question) => {
         setCurrentQuestion(question)
