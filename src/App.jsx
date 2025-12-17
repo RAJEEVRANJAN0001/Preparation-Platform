@@ -13,6 +13,7 @@ import Roadmap from './pages/Roadmap'
 import ResumeAnalyzer from './pages/ResumeAnalyzer'
 import JobTracker from './pages/JobTracker'
 import CodingPractice from './pages/CodingPractice'
+import VideoFeed from './pages/VideoFeed'
 import './App.css'
 
 function AppContent({ theme, toggleTheme }) {
@@ -36,6 +37,7 @@ function AppContent({ theme, toggleTheme }) {
                     <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
                     <Route path="/job-tracker" element={<JobTracker />} />
                     <Route path="/coding-practice" element={<CodingPractice />} />
+                    <Route path="/video-feed" element={<VideoFeed />} />
                 </Routes>
             </main>
         </div>
