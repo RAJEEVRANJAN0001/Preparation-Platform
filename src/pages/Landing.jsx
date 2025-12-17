@@ -40,6 +40,25 @@ function Landing() {
                     <div className="gradient-orb orb-2"></div>
                     <div className="gradient-orb orb-3"></div>
                     <div className="grid-overlay"></div>
+
+                    {/* Glassy Bubbles Animation */}
+                    <div className="bubbles-container">
+                        {[...Array(100)].map((_, i) => (
+                            <div
+                                key={i}
+                                className="glassy-bubble"
+                                style={{
+                                    left: `${Math.random() * 100}%`,
+                                    top: `${Math.random() * 100}%`,
+                                    width: `${Math.random() * 50 + 10}px`,
+                                    height: `${Math.random() * 50 + 10}px`,
+                                    animationDelay: `${Math.random() * 10}s`,
+                                    animationDuration: `${Math.random() * 10 + 10}s`,
+                                    opacity: Math.random() * 0.4 + 0.1 // Brighter: 0.1 to 0.5 opacity
+                                }}
+                            ></div>
+                        ))}
+                    </div>
                 </div>
 
                 <div className="hero-content">
@@ -74,16 +93,7 @@ function Landing() {
                 </div>
 
                 {/* Floating Elements */}
-                <div className="floating-elements">
-                    <div className="float-card card-1">
-                        <Users size={20} />
-                        <span>Join thousands preparing</span>
-                    </div>
-                    <div className="float-card card-2">
-                        <TrendingUp size={20} />
-                        <span>98% success rate</span>
-                    </div>
-                </div>
+                {/* Floating Elements Removed */}
             </section>
 
             {/* Features Section */}

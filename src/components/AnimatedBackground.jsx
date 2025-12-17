@@ -67,6 +67,30 @@ const AnimatedBackground = () => {
                 ))}
             </div>
 
+            {/* Shadow Birds Layer */}
+            <div className="birds-layer">
+                {/* User requested 100 birds */}
+                {[...Array(100)].map((_, i) => (
+                    <div
+                        key={`bird-${i}`}
+                        className="shadow-bird"
+                        style={{
+                            top: `${Math.random() * 80 + 5}%`,
+                            '--bird-scale': Math.random() * 0.5 + 0.5,
+                            '--bird-delay': `${Math.random() * 100}s`,
+                            '--bird-duration': `${Math.random() * 30 + 20}s`,
+                            '--flap-duration': `${Math.random() * 0.3 + 0.4}s`,
+                            '--bob-duration': `${Math.random() * 2 + 2}s`,
+                            opacity: Math.random() * 0.5 + 0.2
+                        }}
+                    >
+                        <div className="bird-body"></div>
+                        <div className="bird-wing-left"></div>
+                        <div className="bird-wing-right"></div>
+                    </div>
+                ))}
+            </div>
+
             {/* Animated Grid Lines */}
             <div className="grid-lines">
                 {gridLines.map((line) => (

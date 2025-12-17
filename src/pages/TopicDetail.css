@@ -17,13 +17,10 @@
 }
 
 .topic-header {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    /* Removed background causing conflict on Home page */
     border-bottom: 1px solid var(--glass-border);
     padding: 30px 0;
     margin-bottom: 40px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .max-w-wrapper {
@@ -234,11 +231,11 @@
     .topic-sidebar-layout {
         grid-template-columns: 1fr;
     }
-    
+
     .topic-title {
         font-size: 36px;
     }
-    
+
     .topic-description {
         font-size: 16px;
     }
@@ -248,35 +245,35 @@
     .topic-detail-container {
         padding-bottom: 40px;
     }
-    
+
     .topic-header {
         padding: 20px 0;
         margin-bottom: 30px;
     }
-    
+
     .max-w-wrapper {
         padding: 0 16px;
     }
-    
+
     .topic-title {
         font-size: 28px;
         margin-bottom: 12px;
     }
-    
+
     .topic-description {
         font-size: 15px;
     }
-    
+
     .topic-meta {
         gap: 8px;
         margin-top: 16px;
     }
-    
+
     .meta-badge {
         padding: 5px 12px;
         font-size: 12px;
     }
-    
+
     .glass-card {
         border-radius: 16px;
         padding: 20px;
@@ -288,21 +285,21 @@
         font-size: 24px;
         letter-spacing: -0.5px;
     }
-    
+
     .topic-description {
         font-size: 14px;
     }
-    
+
     .back-btn {
         padding: 6px 12px;
         font-size: 13px;
     }
-    
+
     .glass-card {
         padding: 16px;
         border-radius: 12px;
     }
-    
+
     .section-content li {
         padding-left: 20px;
         font-size: 13px;
