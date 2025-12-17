@@ -68,7 +68,32 @@ export const pdfNotes = [
     { id: 47, title: 'Infosys Pseudo Code', category: 'Interview', difficulty: 'Medium', fileName: 'infosys pseudo  (1).pdf', tags: ['infosys', 'pseudo-code'] },
     { id: 48, title: 'Remote Supportive Employers', category: 'Career', difficulty: 'Easy', fileName: 'Remote Supportive Employers.pdf', tags: ['remote', 'jobs'] },
     { id: 49, title: 'Document 1', category: 'General', difficulty: 'Easy', fileName: '1759288292073.pdf', tags: ['document'] },
-    { id: 50, title: 'Document 2', category: 'General', difficulty: 'Easy', fileName: '1763347294299 (1).pdf', tags: ['document'] }
+    { id: 50, title: 'Document 2', category: 'General', difficulty: 'Easy', fileName: '1763347294299 (1).pdf', tags: ['document'] },
+
+    // Newly Added
+    { id: 51, title: '190+ Python Interview Questions', category: 'Python', difficulty: 'Medium', fileName: '190+ Python Interview Questions 2025.pdf', tags: ['python', 'interview'] },
+    { id: 52, title: 'Machine Learning Basics MCQ', category: 'AI/ML', difficulty: 'Medium', fileName: '650+_Machine_Learning_Basics_Interview_Questions_and_Answers_MCQ.pdf', tags: ['ml', 'interview'] },
+    { id: 53, title: '7 Days Statistics', category: 'AI/ML', difficulty: 'Medium', fileName: '7 dayss Statistics-converted (1).pdf', tags: ['statistics', 'data-science'] },
+    { id: 54, title: 'AWS Cloud Practitioner Roadmap', category: 'DevOps', difficulty: 'Easy', fileName: 'AWS Cloud Practitioner - Roadmap.pdf', tags: ['aws', 'cloud', 'roadmap'] },
+    { id: 55, title: 'Azure Linux Docs', category: 'DevOps', difficulty: 'Medium', fileName: 'Azure Linux Doc.pdf', tags: ['azure', 'linux'] },
+    { id: 56, title: 'Big Data Interview Q&A', category: 'DBMS', difficulty: 'Hard', fileName: 'Big Data Interview QnA (1).pdf', tags: ['big-data', 'interview'] },
+    { id: 57, title: 'Secure Linux Server Guide', category: 'DevOps', difficulty: 'Hard', fileName: 'Building a Secure Linux Server from Scratch.pdf', tags: ['linux', 'security'] },
+    { id: 58, title: 'Cyber Security Roadmap', category: 'DevOps', difficulty: 'Medium', fileName: 'Cyber_Sec_Roadmap_.pdf', tags: ['security', 'roadmap'] },
+    { id: 59, title: 'DBMS Complete Handwritten Notes', category: 'DBMS', difficulty: 'Medium', fileName: 'DBMS Complete Notes Handwritten.pdf', tags: ['dbms', 'notes'] },
+    { id: 60, title: 'DBMS Notes (Alternative)', category: 'DBMS', difficulty: 'Medium', fileName: 'DBMS-Notes.pdf', tags: ['dbms', 'notes'] },
+    { id: 61, title: 'DNS Security Guide', category: 'Networks', difficulty: 'Hard', fileName: 'DNS_Security_Guide_Done.pdf', tags: ['dns', 'security'] },
+    { id: 62, title: 'Gray Hat Python', category: 'Python', difficulty: 'Hard', fileName: 'Gray Hat Python.pdf', tags: ['python', 'security'] },
+    { id: 63, title: 'ITIL 4 High Velocity IT', category: 'DevOps', difficulty: 'Medium', fileName: 'ITIL 4 High Velocity IT (AXELOS).pdf', tags: ['itil', 'management'] },
+    { id: 64, title: 'Important SQL Concepts', category: 'DBMS', difficulty: 'Medium', fileName: 'Important SQL concepts to master.pdf', tags: ['sql', 'guide'] },
+    { id: 65, title: 'Learn Complete MatPlotLib', category: 'Python', difficulty: 'Medium', fileName: 'Learn Complete MatPlotLib.pdf', tags: ['python', 'matplotlib'] },
+    { id: 66, title: 'Linux Server Configuration', category: 'DevOps', difficulty: 'Hard', fileName: 'Linux Server Configuration .pdf', tags: ['linux', 'server'] },
+    { id: 67, title: 'Linux 101 Hacks', category: 'DevOps', difficulty: 'Medium', fileName: 'Linux-101-Hacks.pdf', tags: ['linux', 'hacks'] },
+    { id: 68, title: 'Linux Bible 10th Edition', category: 'DevOps', difficulty: 'Hard', fileName: 'Linux_Bible_10th_Edition.pdf', tags: ['linux', 'book'] },
+    { id: 69, title: 'Machine Learning Fundamentals', category: 'AI/ML', difficulty: 'Medium', fileName: 'Machine Learning Fundamentals.pdf', tags: ['ml', 'basics'] },
+    { id: 70, title: 'Pro Git Book', category: 'DevOps', difficulty: 'Medium', fileName: 'Pro Git.pdf', tags: ['git', 'version-control'] },
+    { id: 71, title: 'The Terraform Book', category: 'DevOps', difficulty: 'Hard', fileName: 'The_Terraform_Book.pdf', tags: ['terraform', 'iac'] },
+    { id: 72, title: 'AWS Cloud Guide', category: 'DevOps', difficulty: 'Medium', fileName: 'aws cloud.pdf', tags: ['aws', 'cloud'] },
+    { id: 73, title: 'SQL Interview Questions (DOCX)', category: 'DBMS', difficulty: 'Medium', fileName: 'sql interview.docx', tags: ['sql', 'interview'] }
 ]
 
 export const categories = ['All', 'DSA', 'System Design', 'Web Dev', 'DBMS', 'OS', 'Networks', 'OOP', 'Python', 'AI/ML', 'DevOps', 'Interview', 'Career', 'General']
