@@ -10,7 +10,8 @@
   /* Sizing */
   --max-width: 1400px;
   /* Wider for dashboard */
-  --header-height: 60px;
+  --header-height: 72px;
+  /* Matched to Navbar height */
   --sidebar-width: 260px;
 
   --radius-xs: 4px;
