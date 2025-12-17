@@ -90,18 +90,25 @@ function Chat() {
             })
 
             if (!response.ok) {
-                throw new Error(`Backend error: ${response.status}`)
+                let errorDetails = `Backend error: ${response.status}`;
+                try {
+                    const errorData = await response.json();
+                    if (errorData.error) errorDetails = errorData.error;
+                    if (errorData.details) console.error('Backend Error Details:', errorData.details);
+                } catch (e) {
+                    // Could not parse JSON, stick with status code
+                }
+                throw new Error(errorDetails);
             }
 
             const data = await response.json()
             setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'ai', text: data.response }])
         } catch (error) {
             console.error('Chat API Error:', error)
-            const errorMsg = error.message || error.toString()
             setMessages(prev => [...prev, {
                 id: Date.now() + 1,
                 sender: 'ai',
-                text: `Error: ${errorMsg}. Please make sure the backend server is running.`
+                text: `Error: ${error.message}.`
             }])
         } finally {
             setIsLoading(false)
