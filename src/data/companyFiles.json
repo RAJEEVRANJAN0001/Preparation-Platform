@@ -882,7 +882,7 @@
     "name": "CAPGEMINI",
     "displayName": "CAPGEMINI",
     "slug": "capgemini",
-    "fileCount": 289,
+    "fileCount": 259,
     "files": [
       {
         "name": "5_6188503387646984263.pdf",
@@ -1665,56 +1665,6 @@
         "isDirectory": false
       },
       {
-        "name": "aptitude_quant_visual_new_q33.png",
-        "path": "capppg very important/12_files/aptitude_quant_visual_new_q33.png",
-        "size": 5731,
-        "sizeFormatted": "5.6 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.714Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q33_a.png",
-        "path": "capppg very important/12_files/aptitude_quant_visual_new_q33_a.png",
-        "size": 1330,
-        "sizeFormatted": "1.3 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.717Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q33_b.png",
-        "path": "capppg very important/12_files/aptitude_quant_visual_new_q33_b.png",
-        "size": 1237,
-        "sizeFormatted": "1.21 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.719Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q33_c.png",
-        "path": "capppg very important/12_files/aptitude_quant_visual_new_q33_c.png",
-        "size": 1312,
-        "sizeFormatted": "1.28 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.719Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q33_d.png",
-        "path": "capppg very important/12_files/aptitude_quant_visual_new_q33_d.png",
-        "size": 1197,
-        "sizeFormatted": "1.17 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.717Z",
-        "isDirectory": false
-      },
-      {
         "name": "assessment_2.css",
         "path": "capppg very important/12_files/assessment_2.css",
         "size": 35082,
@@ -1942,56 +1892,6 @@
         "type": "HTML",
         "extension": ".html",
         "modified": "2025-12-27T09:58:59.664Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q26.png",
-        "path": "capppg very important/15_files/aptitude_quant_visual_new_q26.png",
-        "size": 4064,
-        "sizeFormatted": "3.97 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.627Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q26_a.png",
-        "path": "capppg very important/15_files/aptitude_quant_visual_new_q26_a.png",
-        "size": 1135,
-        "sizeFormatted": "1.11 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.629Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q26_b.png",
-        "path": "capppg very important/15_files/aptitude_quant_visual_new_q26_b.png",
-        "size": 1103,
-        "sizeFormatted": "1.08 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.625Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q26_c.png",
-        "path": "capppg very important/15_files/aptitude_quant_visual_new_q26_c.png",
-        "size": 1145,
-        "sizeFormatted": "1.12 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.626Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q26_d.png",
-        "path": "capppg very important/15_files/aptitude_quant_visual_new_q26_d.png",
-        "size": 1160,
-        "sizeFormatted": "1.13 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.631Z",
         "isDirectory": false
       },
       {
@@ -2465,56 +2365,6 @@
         "isDirectory": false
       },
       {
-        "name": "aptitude_quant_visual_new_q33.png",
-        "path": "capppg very important/4_files/aptitude_quant_visual_new_q33.png",
-        "size": 5731,
-        "sizeFormatted": "5.6 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.824Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q33_a.png",
-        "path": "capppg very important/4_files/aptitude_quant_visual_new_q33_a.png",
-        "size": 1330,
-        "sizeFormatted": "1.3 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.828Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q33_b.png",
-        "path": "capppg very important/4_files/aptitude_quant_visual_new_q33_b.png",
-        "size": 1237,
-        "sizeFormatted": "1.21 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.833Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q33_c.png",
-        "path": "capppg very important/4_files/aptitude_quant_visual_new_q33_c.png",
-        "size": 1312,
-        "sizeFormatted": "1.28 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.835Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q33_d.png",
-        "path": "capppg very important/4_files/aptitude_quant_visual_new_q33_d.png",
-        "size": 1197,
-        "sizeFormatted": "1.17 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.827Z",
-        "isDirectory": false
-      },
-      {
         "name": "assessment_2.css",
         "path": "capppg very important/4_files/assessment_2.css",
         "size": 35082,
@@ -2945,56 +2795,6 @@
         "isDirectory": false
       },
       {
-        "name": "aptitude_quant_visual_new_q33.png",
-        "path": "capppg very important/6_files/4_files/aptitude_quant_visual_new_q33.png",
-        "size": 5731,
-        "sizeFormatted": "5.6 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.769Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q33_a.png",
-        "path": "capppg very important/6_files/4_files/aptitude_quant_visual_new_q33_a.png",
-        "size": 1330,
-        "sizeFormatted": "1.3 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.774Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q33_b.png",
-        "path": "capppg very important/6_files/4_files/aptitude_quant_visual_new_q33_b.png",
-        "size": 1237,
-        "sizeFormatted": "1.21 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.775Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q33_c.png",
-        "path": "capppg very important/6_files/4_files/aptitude_quant_visual_new_q33_c.png",
-        "size": 1312,
-        "sizeFormatted": "1.28 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.777Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q33_d.png",
-        "path": "capppg very important/6_files/4_files/aptitude_quant_visual_new_q33_d.png",
-        "size": 1197,
-        "sizeFormatted": "1.17 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.773Z",
-        "isDirectory": false
-      },
-      {
         "name": "assessment_2.css",
         "path": "capppg very important/6_files/4_files/assessment_2.css",
         "size": 35082,
@@ -3162,56 +2962,6 @@
         "type": "Image",
         "extension": ".png",
         "modified": "2025-12-27T09:58:59.760Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q32.png",
-        "path": "capppg very important/6_files/aptitude_quant_visual_new_q32.png",
-        "size": 2975,
-        "sizeFormatted": "2.91 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.741Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q32_a.png",
-        "path": "capppg very important/6_files/aptitude_quant_visual_new_q32_a.png",
-        "size": 811,
-        "sizeFormatted": "811 Bytes",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.813Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q32_b.png",
-        "path": "capppg very important/6_files/aptitude_quant_visual_new_q32_b.png",
-        "size": 768,
-        "sizeFormatted": "768 Bytes",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.805Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q32_c.png",
-        "path": "capppg very important/6_files/aptitude_quant_visual_new_q32_c.png",
-        "size": 747,
-        "sizeFormatted": "747 Bytes",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.812Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q32_d.png",
-        "path": "capppg very important/6_files/aptitude_quant_visual_new_q32_d.png",
-        "size": 807,
-        "sizeFormatted": "807 Bytes",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.779Z",
         "isDirectory": false
       },
       {
@@ -3422,56 +3172,6 @@
         "type": "HTML",
         "extension": ".html",
         "modified": "2025-12-27T09:58:59.619Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q39.png",
-        "path": "capppg very important/9_files/aptitude_quant_visual_new_q39.png",
-        "size": 7009,
-        "sizeFormatted": "6.84 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.650Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q39_a.png",
-        "path": "capppg very important/9_files/aptitude_quant_visual_new_q39_a.png",
-        "size": 2877,
-        "sizeFormatted": "2.81 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.644Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q39_b.png",
-        "path": "capppg very important/9_files/aptitude_quant_visual_new_q39_b.png",
-        "size": 2837,
-        "sizeFormatted": "2.77 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.643Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q39_c.png",
-        "path": "capppg very important/9_files/aptitude_quant_visual_new_q39_c.png",
-        "size": 2754,
-        "sizeFormatted": "2.69 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.642Z",
-        "isDirectory": false
-      },
-      {
-        "name": "aptitude_quant_visual_new_q39_d.png",
-        "path": "capppg very important/9_files/aptitude_quant_visual_new_q39_d.png",
-        "size": 2787,
-        "sizeFormatted": "2.72 KB",
-        "type": "Image",
-        "extension": ".png",
-        "modified": "2025-12-27T09:58:59.641Z",
         "isDirectory": false
       },
       {
@@ -4384,56 +4084,6 @@
           "isDirectory": false
         },
         {
-          "name": "aptitude_quant_visual_new_q33.png",
-          "path": "capppg very important/12_files/aptitude_quant_visual_new_q33.png",
-          "size": 5731,
-          "sizeFormatted": "5.6 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.714Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q33_a.png",
-          "path": "capppg very important/12_files/aptitude_quant_visual_new_q33_a.png",
-          "size": 1330,
-          "sizeFormatted": "1.3 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.717Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q33_b.png",
-          "path": "capppg very important/12_files/aptitude_quant_visual_new_q33_b.png",
-          "size": 1237,
-          "sizeFormatted": "1.21 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.719Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q33_c.png",
-          "path": "capppg very important/12_files/aptitude_quant_visual_new_q33_c.png",
-          "size": 1312,
-          "sizeFormatted": "1.28 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.719Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q33_d.png",
-          "path": "capppg very important/12_files/aptitude_quant_visual_new_q33_d.png",
-          "size": 1197,
-          "sizeFormatted": "1.17 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.717Z",
-          "isDirectory": false
-        },
-        {
           "name": "cb_vr_11.png",
           "path": "capppg very important/12_files/cb_vr_11.png",
           "size": 37488,
@@ -4461,56 +4111,6 @@
           "type": "Image",
           "extension": ".jpg",
           "modified": "2025-12-27T09:58:59.668Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q26.png",
-          "path": "capppg very important/15_files/aptitude_quant_visual_new_q26.png",
-          "size": 4064,
-          "sizeFormatted": "3.97 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.627Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q26_a.png",
-          "path": "capppg very important/15_files/aptitude_quant_visual_new_q26_a.png",
-          "size": 1135,
-          "sizeFormatted": "1.11 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.629Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q26_b.png",
-          "path": "capppg very important/15_files/aptitude_quant_visual_new_q26_b.png",
-          "size": 1103,
-          "sizeFormatted": "1.08 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.625Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q26_c.png",
-          "path": "capppg very important/15_files/aptitude_quant_visual_new_q26_c.png",
-          "size": 1145,
-          "sizeFormatted": "1.12 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.626Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q26_d.png",
-          "path": "capppg very important/15_files/aptitude_quant_visual_new_q26_d.png",
-          "size": 1160,
-          "sizeFormatted": "1.13 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.631Z",
           "isDirectory": false
         },
         {
@@ -4594,56 +4194,6 @@
           "isDirectory": false
         },
         {
-          "name": "aptitude_quant_visual_new_q33.png",
-          "path": "capppg very important/4_files/aptitude_quant_visual_new_q33.png",
-          "size": 5731,
-          "sizeFormatted": "5.6 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.824Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q33_a.png",
-          "path": "capppg very important/4_files/aptitude_quant_visual_new_q33_a.png",
-          "size": 1330,
-          "sizeFormatted": "1.3 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.828Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q33_b.png",
-          "path": "capppg very important/4_files/aptitude_quant_visual_new_q33_b.png",
-          "size": 1237,
-          "sizeFormatted": "1.21 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.833Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q33_c.png",
-          "path": "capppg very important/4_files/aptitude_quant_visual_new_q33_c.png",
-          "size": 1312,
-          "sizeFormatted": "1.28 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.835Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q33_d.png",
-          "path": "capppg very important/4_files/aptitude_quant_visual_new_q33_d.png",
-          "size": 1197,
-          "sizeFormatted": "1.17 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.827Z",
-          "isDirectory": false
-        },
-        {
           "name": "pa_fl_f1.png",
           "path": "capppg very important/4_files/pa_fl_f1.png",
           "size": 20496,
@@ -4724,56 +4274,6 @@
           "isDirectory": false
         },
         {
-          "name": "aptitude_quant_visual_new_q33.png",
-          "path": "capppg very important/6_files/4_files/aptitude_quant_visual_new_q33.png",
-          "size": 5731,
-          "sizeFormatted": "5.6 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.769Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q33_a.png",
-          "path": "capppg very important/6_files/4_files/aptitude_quant_visual_new_q33_a.png",
-          "size": 1330,
-          "sizeFormatted": "1.3 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.774Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q33_b.png",
-          "path": "capppg very important/6_files/4_files/aptitude_quant_visual_new_q33_b.png",
-          "size": 1237,
-          "sizeFormatted": "1.21 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.775Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q33_c.png",
-          "path": "capppg very important/6_files/4_files/aptitude_quant_visual_new_q33_c.png",
-          "size": 1312,
-          "sizeFormatted": "1.28 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.777Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q33_d.png",
-          "path": "capppg very important/6_files/4_files/aptitude_quant_visual_new_q33_d.png",
-          "size": 1197,
-          "sizeFormatted": "1.17 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.773Z",
-          "isDirectory": false
-        },
-        {
           "name": "pa_fl_f1.png",
           "path": "capppg very important/6_files/4_files/pa_fl_f1.png",
           "size": 20496,
@@ -4814,56 +4314,6 @@
           "isDirectory": false
         },
         {
-          "name": "aptitude_quant_visual_new_q32.png",
-          "path": "capppg very important/6_files/aptitude_quant_visual_new_q32.png",
-          "size": 2975,
-          "sizeFormatted": "2.91 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.741Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q32_a.png",
-          "path": "capppg very important/6_files/aptitude_quant_visual_new_q32_a.png",
-          "size": 811,
-          "sizeFormatted": "811 Bytes",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.813Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q32_b.png",
-          "path": "capppg very important/6_files/aptitude_quant_visual_new_q32_b.png",
-          "size": 768,
-          "sizeFormatted": "768 Bytes",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.805Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q32_c.png",
-          "path": "capppg very important/6_files/aptitude_quant_visual_new_q32_c.png",
-          "size": 747,
-          "sizeFormatted": "747 Bytes",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.812Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q32_d.png",
-          "path": "capppg very important/6_files/aptitude_quant_visual_new_q32_d.png",
-          "size": 807,
-          "sizeFormatted": "807 Bytes",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.779Z",
-          "isDirectory": false
-        },
-        {
           "name": "cb_vr_5.png",
           "path": "capppg very important/6_files/cb_vr_5.png",
           "size": 65044,
@@ -4871,56 +4321,6 @@
           "type": "Image",
           "extension": ".png",
           "modified": "2025-12-27T09:58:59.760Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q39.png",
-          "path": "capppg very important/9_files/aptitude_quant_visual_new_q39.png",
-          "size": 7009,
-          "sizeFormatted": "6.84 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.650Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q39_a.png",
-          "path": "capppg very important/9_files/aptitude_quant_visual_new_q39_a.png",
-          "size": 2877,
-          "sizeFormatted": "2.81 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.644Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q39_b.png",
-          "path": "capppg very important/9_files/aptitude_quant_visual_new_q39_b.png",
-          "size": 2837,
-          "sizeFormatted": "2.77 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.643Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q39_c.png",
-          "path": "capppg very important/9_files/aptitude_quant_visual_new_q39_c.png",
-          "size": 2754,
-          "sizeFormatted": "2.69 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.642Z",
-          "isDirectory": false
-        },
-        {
-          "name": "aptitude_quant_visual_new_q39_d.png",
-          "path": "capppg very important/9_files/aptitude_quant_visual_new_q39_d.png",
-          "size": 2787,
-          "sizeFormatted": "2.72 KB",
-          "type": "Image",
-          "extension": ".png",
-          "modified": "2025-12-27T09:58:59.641Z",
           "isDirectory": false
         },
         {
