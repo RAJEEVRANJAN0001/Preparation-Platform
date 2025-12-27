@@ -148,6 +148,14 @@
   /* Legacy support */
   --card-bg: #1F2937;
   /* Gray-800 */
+  /* Legacy support */
+  --card-bg: #1F2937;
+  /* Gray-800 */
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -158,12 +166,18 @@ body {
   line-height: 1.5;
   font-size: 14px;
   /* Slightly denser text */
+  /* Slightly denser text */
   -webkit-font-smoothing: antialiased;
   transition: background-color 300ms ease, color 300ms ease;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-/* Smooth transitions for all theme-aware elements */
-* {
+/* Global Box Sizing Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   transition: background-color 300ms ease,
     border-color 300ms ease,
     color 300ms ease,
