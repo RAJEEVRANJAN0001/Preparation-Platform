@@ -1,4 +1,8 @@
 /* Page Header with Back Navigation */
+.page-header {
+    margin-bottom: 32px;
+}
+
 .page-header-nav {
     display: flex;
     align-items: center;
@@ -14,7 +18,7 @@
     background: var(--bg-surface);
     border: 1px solid var(--border-main);
     border-radius: var(--radius-md);
-    color: var(--text-muted);
+    color: var(--text-main);
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -26,4 +30,36 @@
     border-color: var(--primary);
     color: var(--primary);
     background: var(--primary-light);
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Ensure visibility in both themes */
+[data-theme="light"] .page-title {
+    color: #1a1a1a;
+}
+
+[data-theme="dark"] .page-title {
+    color: #ffffff;
+}
+
+[data-theme="light"] .back-button {
+    color: #4a4a4a;
+}
+
+[data-theme="dark"] .back-button {
+    color: #e0e0e0;
 }

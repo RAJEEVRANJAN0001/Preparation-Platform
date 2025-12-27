@@ -1,18 +1,41 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Folder, Search, FileText, Download, ExternalLink } from 'lucide-react'
+import { Folder, Search, FileText, Download, ExternalLink, Eye } from 'lucide-react'
 import { pdfNotes, categories, searchNotes, getNotesByCategory } from '../data/notesData'
 import PageHeader from '../components/PageHeader'
 import AnimatedBackground from '../components/AnimatedBackground'
+import FilePreviewModal from '../components/FilePreviewModal'
 import './Notes.css'
 
 function Notes() {
     const [activeCategory, setActiveCategory] = useState('All')
     const [searchQuery, setSearchQuery] = useState('')
+    const [previewFile, setPreviewFile] = useState(null)
 
     const displayedNotes = searchQuery
         ? searchNotes(searchQuery)
         : getNotesByCategory(activeCategory)
+
+    const handlePreview = (note) => {
+        // Determine file type from extension
+        const extension = note.fileName.split('.').pop().toLowerCase();
+        let type = 'Other';
+
+        if (['pdf'].includes(extension)) type = 'PDF';
+        else if (['doc', 'docx'].includes(extension)) type = 'Document';
+        else if (['txt'].includes(extension)) type = 'Text';
+        else if (['md'].includes(extension)) type = 'Markdown';
+        else if (['html', 'htm'].includes(extension)) type = 'HTML';
+        else if (['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(extension)) type = 'Image';
+
+        setPreviewFile({
+            name: note.fileName,
+            path: note.fileName,
+            type: type,
+            extension: extension,
+            sizeFormatted: 'N/A' // Size not available in static data
+        })
+    }
 
     return (
         <div className="app-container">
@@ -104,15 +127,13 @@ function Notes() {
                                 </div>
 
                                 <div style={{ marginTop: 12, display: 'flex', gap: 8 }}>
-                                    <a
-                                        href={`/PLACEMENT NOTES/${note.fileName}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                    <button
+                                        onClick={() => handlePreview(note)}
                                         className="pdf-action-btn"
                                         style={{ flexGrow: 1 }}
                                     >
-                                        <ExternalLink size={14} /> Open PDF
-                                    </a>
+                                        <Eye size={14} /> Preview
+                                    </button>
                                     <a
                                         href={`/PLACEMENT NOTES/${note.fileName}`}
                                         download
@@ -133,6 +154,15 @@ function Notes() {
                 </div>
 
             </div>
+
+            {/* File Preview Modal */}
+            {previewFile && (
+                <FilePreviewModal
+                    file={previewFile}
+                    company="PLACEMENT NOTES"
+                    onClose={() => setPreviewFile(null)}
+                />
+            )}
         </div>
     )
 }

@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import {
   Bot, LayoutDashboard, FileText, Sun, Moon,
-  MessageSquare, Video, Map, BrainCircuit, Youtube, Menu, X
+  MessageSquare, Video, Map, BrainCircuit, Youtube, Menu, X, Briefcase
 } from 'lucide-react';
 import './Navbar.css';
 
@@ -19,6 +19,7 @@ function Navbar({ theme, toggleTheme }) {
     { name: 'Roadmap', path: '/roadmap', icon: <Map size={18} /> },
     { name: 'Video Feed', path: '/video-feed', icon: <Youtube size={18} /> },
     { name: 'Notes', path: '/notes', icon: <FileText size={18} /> },
+    { name: 'Company Notes', path: '/company-notes', icon: <Briefcase size={18} /> },
     { name: 'Quiz', path: '/quiz', icon: <BrainCircuit size={18} /> },
   ];
 

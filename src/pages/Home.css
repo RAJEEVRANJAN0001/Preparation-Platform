@@ -776,12 +776,17 @@
 @media (max-width: 768px) {
     .header-content {
         flex-direction: column;
-        gap: 24px;
+        gap: 20px;
+        align-items: stretch;
+    }
+
+    .greeting-section {
         text-align: center;
     }
 
     .time-display {
         width: 100%;
+        text-align: center;
     }
 
     .greeting-title {

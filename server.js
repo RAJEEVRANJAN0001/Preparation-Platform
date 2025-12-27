@@ -2,6 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { getAllCompanies, getCompanyFiles, searchFiles, getFilePath } from './api/companyNotesScanner.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Load environment variables
 dotenv.config({ path: '.env.server' });
@@ -12,6 +18,9 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve Company NOTES directory as static files
+app.use('/company-files', express.static(path.join(__dirname, 'Company NOTES')));
 
 // Initialize Gemini AI
 const apiKey = process.env.GEMINI_API_KEY;
@@ -152,6 +161,78 @@ Be constructive, encouraging, and specific. Focus on professional interview skil
     }
 });
 
+// ============================================
+// COMPANY NOTES API ENDPOINTS
+// ============================================
+
+// Get all companies
+app.get('/api/company-notes', (req, res) => {
+    try {
+        const companies = getAllCompanies();
+        res.json({ success: true, companies });
+    } catch (error) {
+        console.error('Error fetching companies:', error);
+        res.status(500).json({ success: false, error: 'Failed to fetch companies' });
+    }
+});
+
+// Get files for a specific company
+app.get('/api/company-notes/:companyName', (req, res) => {
+    try {
+        const { companyName } = req.params;
+        const companyData = getCompanyFiles(companyName);
+
+        if (!companyData) {
+            return res.status(404).json({ success: false, error: 'Company not found' });
+        }
+
+        res.json({ success: true, data: companyData });
+    } catch (error) {
+        console.error('Error fetching company files:', error);
+        res.status(500).json({ success: false, error: 'Failed to fetch company files' });
+    }
+});
+
+// Search files across all companies
+app.get('/api/company-notes/search', (req, res) => {
+    try {
+        const { q } = req.query;
+
+        if (!q) {
+            return res.status(400).json({ success: false, error: 'Search query is required' });
+        }
+
+        const results = searchFiles(q);
+        res.json({ success: true, results, count: results.length });
+    } catch (error) {
+        console.error('Error searching files:', error);
+        res.status(500).json({ success: false, error: 'Failed to search files' });
+    }
+});
+
+// Serve individual file using query parameter
+app.get('/api/company-notes/file/:companyName', (req, res) => {
+    try {
+        const { companyName } = req.params;
+        const { path: filePath } = req.query;
+
+        if (!filePath) {
+            return res.status(400).json({ success: false, error: 'File path is required' });
+        }
+
+        const fullPath = getFilePath(companyName, filePath);
+
+        if (!fullPath) {
+            return res.status(404).json({ success: false, error: 'File not found' });
+        }
+
+        res.sendFile(fullPath);
+    } catch (error) {
+        console.error('Error serving file:', error);
+        res.status(500).json({ success: false, error: 'Failed to serve file' });
+    }
+});
+
 // Start server if not running in Vercel (or similar serverless environment)
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, () => {
@@ -160,6 +241,10 @@ if (process.env.NODE_ENV !== 'production') {
         console.log(`   - GET  /api/health`);
         console.log(`   - POST /api/chat`);
         console.log(`   - POST /api/interview/analyze`);
+        console.log(`   - GET  /api/company-notes`);
+        console.log(`   - GET  /api/company-notes/:companyName`);
+        console.log(`   - GET  /api/company-notes/search?q=query`);
+        console.log(`   - GET  /api/company-notes/file/:companyName/*`);
     });
 }
 

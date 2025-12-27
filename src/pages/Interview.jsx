@@ -273,8 +273,8 @@ function Interview() {
             <AnimatedBackground />
             <PageHeader
                 title="Interview Practice"
-                description="Practice interview questions by role and get AI-powered feedback"
-                icon={<Briefcase size={40} />}
+                subtitle="Practice interview questions by role and get AI-powered feedback"
+                showBack={true}
             />
 
             <div className="interview-container">

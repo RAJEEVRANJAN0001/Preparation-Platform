@@ -10,10 +10,11 @@ import StudyPlan from './pages/StudyPlan'
 import TopicDetail from './pages/TopicDetail'
 import Interview from './pages/Interview'
 import Roadmap from './pages/Roadmap'
-import ResumeAnalyzer from './pages/ResumeAnalyzer'
 import JobTracker from './pages/JobTracker'
 import CodingPractice from './pages/CodingPractice'
 import VideoFeed from './pages/VideoFeed'
+import CompanyNotes from './pages/CompanyNotes'
+import CompanyDetail from './pages/CompanyDetail'
 import './App.css'
 
 function AppContent({ theme, toggleTheme }) {
@@ -34,10 +35,11 @@ function AppContent({ theme, toggleTheme }) {
                     <Route path="/topic/:topicId" element={<TopicDetail />} />
                     <Route path="/interview" element={<Interview />} />
                     <Route path="/roadmap" element={<Roadmap />} />
-                    <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
                     <Route path="/job-tracker" element={<JobTracker />} />
                     <Route path="/coding-practice" element={<CodingPractice />} />
                     <Route path="/video-feed" element={<VideoFeed />} />
+                    <Route path="/company-notes" element={<CompanyNotes />} />
+                    <Route path="/company-notes/:companyName" element={<CompanyDetail />} />
                 </Routes>
             </main>
         </div>
