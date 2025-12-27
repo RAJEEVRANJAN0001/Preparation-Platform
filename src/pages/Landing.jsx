@@ -55,94 +55,55 @@ function Landing() {
     return (
         <div className="landing-page">
             {/* Hero Section */}
-            <section className="landing-hero">
+            <section className="landing-hero glass-hero-mode">
                 <div className="hero-background">
                     <div className="gradient-orb orb-1"></div>
                     <div className="gradient-orb orb-2"></div>
                     <div className="gradient-orb orb-3"></div>
                     <div className="grid-overlay"></div>
+                </div>
 
-                    {/* Glassy Bubbles Animation */}
-                    <div className="bubbles-container">
-                        {[...Array(20)].map((_, i) => (
-                            <div
-                                key={i}
-                                className="glassy-bubble"
-                                style={{
-                                    left: `${Math.random() * 100}%`,
-                                    top: `${Math.random() * 100}%`,
-                                    width: `${Math.random() * 50 + 10}px`,
-                                    height: `${Math.random() * 50 + 10}px`,
-                                    animationDelay: `${Math.random() * 10}s`,
-                                    animationDuration: `${Math.random() * 10 + 10}s`,
-                                    opacity: Math.random() * 0.4 + 0.1
-                                }}
-                            ></div>
+                {/* Floating Glass Spheres */}
+                <div className="glass-spheres-container">
+                    <div className="glass-sphere sphere-1"></div>
+                    <div className="glass-sphere sphere-2"></div>
+                    <div className="glass-sphere sphere-3"></div>
+                </div>
+
+                <div className="hero-content centered-poster">
+                    <div className="hero-badge">
+                        <Sparkles size={14} className="sparkle-icon" />
+                        <span>The Ultimate Placement Platform</span>
+                    </div>
+
+                    <h1 className="hero-title massive-type">
+                        MASTER<br />
+                        <span className="gradient-text">YOUR SKILLS</span>
+                    </h1>
+
+                    <p className="hero-subtitle">
+                        Transform your preparation journey with our comprehensive resources.<br />
+                        Everything you need to land your dream tech job.
+                    </p>
+
+                    <div className="hero-cta-group">
+                        <Link to="/dashboard" className="hero-cta primary">
+                            Start Preparing Free <ArrowRight size={20} />
+                        </Link>
+                        <Link to="/roadmap" className="hero-cta secondary">
+                            View Roadmaps
+                        </Link>
+                    </div>
+
+                    {/* Stats moved inline or below */}
+                    <div className="hero-stats compact">
+                        {stats.map((stat, index) => (
+                            <div key={index} className="hero-stat-item">
+                                <div className="stat-number">{stat.number}</div>
+                                <div className="stat-label">{stat.label}</div>
+                            </div>
                         ))}
                     </div>
-                </div>
-
-                <div className="hero-content">
-                    <div className="hero-text-content">
-                        <div className="hero-badge">
-                            <Sparkles size={14} className="sparkle-icon" />
-                            <span>The Ultimate Placement Platform</span>
-                        </div>
-                        <h1 className="hero-title">
-                            Master Your Skills.<br />
-                            <span className="gradient-text">Level Up Your Placement.</span>
-                        </h1>
-
-                        <p className="hero-subtitle">
-                            Transform your preparation journey with our comprehensive resources,
-                            and expert-curated content. Everything you need to land your dream tech job.
-                        </p>
-
-                        <div className="hero-cta-group">
-                            <Link to="/dashboard" className="hero-cta primary">
-                                Start Preparing Free <ArrowRight size={20} />
-                            </Link>
-                            <Link to="/roadmap" className="hero-cta secondary">
-                                View Roadmaps
-                            </Link>
-                        </div>
-                    </div>
-
-                    {/* 3D Dashboard Mockup */}
-                    <div className="hero-visual">
-                        <div className="dashboard-mockup-wrapper">
-                            <div className="dashboard-mockup">
-                                <div className="mockup-header">
-                                    <div className="mockup-dots">
-                                        <span></span><span></span><span></span>
-                                    </div>
-                                    <div className="mockup-search"></div>
-                                </div>
-                                <div className="mockup-body">
-                                    <div className="mockup-sidebar"></div>
-                                    <div className="mockup-main">
-                                        <div className="mockup-card large"></div>
-                                        <div className="mockup-row">
-                                            <div className="mockup-card"></div>
-                                            <div className="mockup-card"></div>
-                                        </div>
-                                        <div className="mockup-card wide"></div>
-                                    </div>
-                                </div>
-                                <div className="glow-effect"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Stats Bar */}
-                <div className="hero-stats">
-                    {stats.map((stat, index) => (
-                        <div key={index} className="hero-stat-item">
-                            <div className="stat-number">{stat.number}</div>
-                            <div className="stat-label">{stat.label}</div>
-                        </div>
-                    ))}
                 </div>
             </section>
 
