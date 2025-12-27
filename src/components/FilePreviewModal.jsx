@@ -11,9 +11,9 @@ function FilePreviewModal({ file, company, onClose }) {
     const [error, setError] = useState(null);
 
     // Handle different file paths
-    const fileUrl = company === 'PLACEMENT NOTES'
-        ? `/PLACEMENT NOTES/${encodeURIComponent(file.path)}`
-        : `http://localhost:3001/api/company-notes/file/${company}?path=${encodeURIComponent(file.path)}`;
+    // With Vercel/Static deployment, all files are in public/Company NOTES
+    // We can access them directly via URL
+    const fileUrl = `/Company NOTES/${company}/${encodeURIComponent(file.path)}`;
 
     const isTextFile = file.type === 'Text';
     const isMarkdown = file.type === 'Markdown';

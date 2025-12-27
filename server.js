@@ -20,7 +20,8 @@ app.use(cors());
 app.use(express.json());
 
 // Serve Company NOTES directory as static files
-app.use('/company-files', express.static(path.join(__dirname, 'Company NOTES')));
+// Serve Company NOTES directory as static files
+// app.use('/company-files', express.static(path.join(__dirname, 'Company NOTES')));
 
 // Initialize Gemini AI
 const apiKey = process.env.GEMINI_API_KEY;

@@ -5,7 +5,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "generate-data": "node scripts/generate-company-data.js",
+        "build": "npm run generate-data && vite build",
         "preview": "vite preview",
         "server": "node server.js"
     },
