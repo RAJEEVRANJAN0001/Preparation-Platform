@@ -10,6 +10,7 @@ import {
     isFavorite,
     getCompanyColor
 } from '../utils/companyNotesUtils';
+import companyFilesData from '../data/companyFiles.json';
 import './CompanyNotes.css';
 
 function CompanyNotes() {
@@ -22,29 +23,24 @@ function CompanyNotes() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetchCompanies();
-        setFavorites(getFavorites());
-        setRecentlyViewed(getRecentlyViewed());
-    }, []);
-
-    const fetchCompanies = async () => {
+        // Load data directly from static JSON (generated at build time)
+        // This solves Vercel connection issues and size limits
         try {
-            setLoading(true);
-            const response = await fetch('http://localhost:3001/api/company-notes');
-            const data = await response.json();
-
-            if (data.success) {
-                setCompanies(data.companies);
+            if (companyFilesData) {
+                setCompanies(companyFilesData);
             } else {
-                setError('Failed to load companies');
+                setError('No company data found. Please run "npm run generate-data"');
             }
         } catch (err) {
-            console.error('Error fetching companies:', err);
-            setError('Failed to connect to server. Make sure the backend is running.');
+            console.error('Error loading company data:', err);
+            setError('Failed to load company data');
         } finally {
             setLoading(false);
         }
-    };
+
+        setFavorites(getFavorites());
+        setRecentlyViewed(getRecentlyViewed());
+    }, []);
 
     const handleCompanyClick = (company) => {
         navigate(`/company-notes/${company.name}`);

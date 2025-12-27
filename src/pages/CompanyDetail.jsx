@@ -11,6 +11,7 @@ import {
     addToRecentlyViewedFiles,
     canPreview
 } from '../utils/companyNotesUtils';
+import companyFilesData from '../data/companyFiles.json';
 import './CompanyDetail.css';
 
 function CompanyDetail() {
@@ -24,33 +25,37 @@ function CompanyDetail() {
     const [previewFile, setPreviewFile] = useState(null);
 
     useEffect(() => {
-        fetchCompanyData();
-    }, [companyName]);
-
-    const fetchCompanyData = async () => {
+        // Load data directly from static JSON
         try {
             setLoading(true);
-            const response = await fetch(`http://localhost:3001/api/company-notes/${companyName}`);
-            const data = await response.json();
+            if (companyFilesData) {
+                // Find company in the static data
+                const company = companyFilesData.find(c =>
+                    c.name.toLowerCase() === companyName.toLowerCase() ||
+                    c.slug === companyName.toLowerCase()
+                );
 
-            if (data.success) {
-                setCompanyData(data.data);
-                // Add to recently viewed
-                addToRecentlyViewed({
-                    name: companyName,
-                    displayName: data.data.displayName,
-                    fileCount: data.data.totalFiles
-                });
+                if (company) {
+                    setCompanyData(company);
+                    // Add to recently viewed
+                    addToRecentlyViewed({
+                        name: company.name,
+                        displayName: company.displayName,
+                        fileCount: company.fileCount
+                    });
+                } else {
+                    setError('Company not found');
+                }
             } else {
-                setError('Company not found');
+                setError('No company data found');
             }
         } catch (err) {
-            console.error('Error fetching company data:', err);
+            console.error('Error loading company data:', err);
             setError('Failed to load company data');
         } finally {
             setLoading(false);
         }
-    };
+    }, [companyName]);
 
     const handleFileClick = (file) => {
         addToRecentlyViewedFiles(file, companyName);
