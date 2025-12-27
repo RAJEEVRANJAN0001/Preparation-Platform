@@ -17,6 +17,8 @@ export function getFileIcon(fileType, extension) {
             return FileCode;
         case 'Presentation':
             return FileImage;
+        case 'Image':
+            return FileImage;
         case 'Spreadsheet':
             return FileSpreadsheet;
         case 'Encrypted':
@@ -36,6 +38,7 @@ export function getFileTypeColor(fileType) {
         'Text': '#10b981',
         'HTML': '#f59e0b',
         'Markdown': '#8b5cf6',
+        'Image': '#d946ef', // Magenta/Purple
         'Presentation': '#ec4899',
         'Spreadsheet': '#14b8a6',
         'Encrypted': '#6b7280',
@@ -202,7 +205,10 @@ export function addToRecentlyViewedFiles(file, company) {
  * Check if file can be previewed
  */
 export function canPreview(fileType) {
-    return ['PDF', 'Text', 'HTML', 'Markdown'].includes(fileType);
+    // We now allow "previewing" all files.
+    // If it's a PDF/Text/Image, we show it.
+    // If it's a Document/Other, we show the "Download to view" fallback in the modal.
+    return true;
 }
 
 /**

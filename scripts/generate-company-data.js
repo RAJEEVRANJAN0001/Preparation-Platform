@@ -26,7 +26,12 @@ function getFileType(filename) {
         '.pptx': 'Presentation',
         '.ppt': 'Presentation',
         '.xlsx': 'Spreadsheet',
-        '.xls': 'Spreadsheet'
+        '.xls': 'Spreadsheet',
+        '.png': 'Image',
+        '.jpg': 'Image',
+        '.jpeg': 'Image',
+        '.gif': 'Image',
+        '.webp': 'Image'
     };
     return typeMap[ext] || 'Other';
 }

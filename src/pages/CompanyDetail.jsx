@@ -65,7 +65,7 @@ function CompanyDetail() {
         } else {
             // Download file
             // Vercel Static path
-            const fileUrl = `/Company NOTES/${companyName}/${encodeURIComponent(file.path)}`;
+            const fileUrl = `/Company NOTES/${companyName}/${file.path.split('/').map(encodeURIComponent).join('/')}`;
             const link = document.createElement('a');
             link.href = fileUrl;
             link.download = file.name;
@@ -230,7 +230,7 @@ function FileCard({ file, companyName, onClick }) {
     const handleDownload = (e) => {
         e.stopPropagation();
         // Vercel Static path
-        const fileUrl = `/Company NOTES/${companyName}/${encodeURIComponent(file.path)}`;
+        const fileUrl = `/Company NOTES/${companyName}/${file.path.split('/').map(encodeURIComponent).join('/')}`;
         const link = document.createElement('a');
         link.href = fileUrl;
         link.download = file.name;

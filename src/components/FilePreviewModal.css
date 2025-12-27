@@ -58,41 +58,40 @@
     background: rgba(255, 255, 255, 0.02);
 }
 
-.window-controls {
+/* Replaced Mac-style controls with standard actions */
+.header-actions {
     display: flex;
-    gap: 8px;
-    width: 80px;
+    gap: 4px;
+    align-items: center;
 }
 
-.window-btn {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+.action-btn {
+    background: transparent;
     border: none;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 8px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.2s;
-    padding: 0;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.window-btn:hover {
-    transform: scale(1.1);
+.action-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.window-btn.close {
-    background-color: #ff5f56;
-    box-shadow: 0 0 6px rgba(255, 95, 86, 0.4);
+.action-btn.close-btn {
+    color: rgba(255, 255, 255, 0.8);
+    margin-left: 4px;
 }
 
-.window-btn.minimize {
-    background-color: #ffbd2e;
-    box-shadow: 0 0 6px rgba(255, 189, 46, 0.4);
-    opacity: 0.5;
-    cursor: default;
-}
-
-.window-btn.maximize {
-    background-color: #27c93f;
-    box-shadow: 0 0 6px rgba(39, 201, 63, 0.4);
+.action-btn.close-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    transform: rotate(90deg);
 }
 
 .preview-title {
@@ -130,30 +129,7 @@
     font-weight: 600;
 }
 
-.header-actions {
-    display: flex;
-    gap: 8px;
-    width: 80px;
-    justify-content: flex-end;
-}
-
-.action-btn {
-    background: transparent;
-    border: none;
-    color: rgba(255, 255, 255, 0.6);
-    padding: 8px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.action-btn:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
-}
+/* Action buttons styling moved up to header section */
 
 /* Content Body */
 .preview-body {
@@ -394,4 +370,71 @@
         transform: translateY(0) scale(1);
         opacity: 1;
     }
+}
+
+/* Document Preview Card Styles */
+.preview-download-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 24px;
+    padding: 2rem;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.file-icon-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    transition: transform 0.3s ease;
+}
+
+.file-icon-large:hover {
+    transform: scale(1.05);
+}
+
+.download-info h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0 0 8px 0;
+    font-weight: 600;
+}
+
+.download-info p {
+    color: #9ca3af;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.primary-download-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5);
+}
+
+.primary-download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px -1px rgba(59, 130, 246, 0.6);
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.primary-download-btn:active {
+    transform: translateY(0);
 }

@@ -1,7 +1,9 @@
 import { X, Download, Maximize2, ExternalLink, FileText, Code, Loader, ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { getFileIcon } from '../utils/companyNotesUtils';
 import './FilePreviewModal.css';
 
 function FilePreviewModal({ file, company, onClose }) {
@@ -13,7 +15,9 @@ function FilePreviewModal({ file, company, onClose }) {
     // Handle different file paths
     // With Vercel/Static deployment, all files are in public/Company NOTES
     // We can access them directly via URL
-    const fileUrl = `/Company NOTES/${company}/${encodeURIComponent(file.path)}`;
+    // We can access them directly via URL
+    // Ensure we handle subdirectories correctly by encoding segments but keeping slashes
+    const fileUrl = `/Company NOTES/${company}/${file.path.split('/').map(encodeURIComponent).join('/')}`;
 
     const isTextFile = file.type === 'Text';
     const isMarkdown = file.type === 'Markdown';
@@ -54,7 +58,7 @@ function FilePreviewModal({ file, company, onClose }) {
         document.body.removeChild(link);
     };
 
-    return (
+    return createPortal(
         <div className={`file-preview-overlay ${isFullscreen ? 'fullscreen' : ''}`} onClick={onClose}>
             <div className="preview-backdrop" />
 
@@ -64,12 +68,6 @@ function FilePreviewModal({ file, company, onClose }) {
             >
                 {/* Premium Modern Header */}
                 <div className="preview-header">
-                    <div className="window-controls">
-                        <button className="window-btn close" onClick={onClose} title="Close" />
-                        <button className="window-btn minimize" onClick={() => { }} disabled />
-                        <button className="window-btn maximize" onClick={() => setIsFullscreen(!isFullscreen)} title="Fullscreen" />
-                    </div>
-
                     <div className="preview-title">
                         <span className="file-icon-wrapper">
                             {isMarkdown ? <Code size={16} /> : <FileText size={16} />}
@@ -79,6 +77,9 @@ function FilePreviewModal({ file, company, onClose }) {
                     </div>
 
                     <div className="header-actions">
+                        <button className="action-btn" onClick={() => setIsFullscreen(!isFullscreen)} title="Toggle Fullscreen">
+                            <Maximize2 size={18} />
+                        </button>
                         <button className="action-btn" onClick={handleDownload} title="Download">
                             <Download size={18} />
                         </button>
@@ -91,6 +92,10 @@ function FilePreviewModal({ file, company, onClose }) {
                         >
                             <ExternalLink size={18} />
                         </a>
+                        <div className="separator-vertical" style={{ width: '1px', height: '20px', background: 'rgba(255,255,255,0.1)', margin: '0 8px' }}></div>
+                        <button className="action-btn close-btn" onClick={onClose} title="Close Preview">
+                            <X size={20} />
+                        </button>
                     </div>
                 </div>
 
@@ -109,12 +114,20 @@ function FilePreviewModal({ file, company, onClose }) {
                             <button className="retry-btn" onClick={fetchContent}>Try Again</button>
                         </div>
                     ) : !canPreview ? (
-                        <div className="preview-error">
-                            <div className="error-icon">📄</div>
-                            <h3>Preview not available</h3>
-                            <p>This file type cannot be opened in the browser.</p>
-                            <button className="retry-btn" onClick={handleDownload}>
-                                <Download size={16} style={{ marginRight: 8 }} /> Download File
+                        <div className="preview-download-card">
+                            <div className="file-icon-large" style={{ color: getTypeColor(file.type), background: `${getTypeColor(file.type)}10` }}>
+                                {(() => {
+                                    const FileIcon = getFileIcon(file.type, file.extension);
+                                    return <FileIcon size={64} />;
+                                })()}
+                            </div>
+                            <div className="download-info">
+                                <h3>{file.name}</h3>
+                                <p>This file is ready to view</p>
+                            </div>
+                            <button className="primary-download-btn" onClick={handleDownload}>
+                                <Download size={20} />
+                                <span>Download to Open</span>
                             </button>
                         </div>
                     ) : (
@@ -131,6 +144,17 @@ function FilePreviewModal({ file, company, onClose }) {
                                 <pre className="text-preview">
                                     {content}
                                 </pre>
+                            )}
+
+                            {/* Image content */}
+                            {file.type === 'Image' && (
+                                <div className="image-preview-wrapper" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100%' }}>
+                                    <img
+                                        src={fileUrl}
+                                        alt={file.name}
+                                        style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '8px' }}
+                                    />
+                                </div>
                             )}
 
                             {/* Fallback / Iframe content */}
@@ -154,7 +178,8 @@ function FilePreviewModal({ file, company, onClose }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }
 
@@ -165,6 +190,7 @@ function getTypeColor(type) {
         'Text': '#10b981',
         'HTML': '#f59e0b',
         'Markdown': '#8b5cf6',
+        'Image': '#d946ef',
         'Presentation': '#ec4899',
         'Spreadsheet': '#14b8a6',
         'Encrypted': '#6b7280',
