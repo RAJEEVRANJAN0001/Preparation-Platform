@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import {
   BookOpen, PenTool, Calendar, Bot,
   Target, Zap,
-  Clock, ArrowRight
+  Clock
 } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import AnimatedBackground from '../components/AnimatedBackground'
@@ -126,7 +126,6 @@ function Home() {
               <div className="action-icon-new">{action.icon}</div>
               <h3>{action.title}</h3>
               <p>{action.desc}</p>
-              <div className="action-arrow"><ArrowRight size={18} /></div>
             </div>
           </Link>
         ))}
