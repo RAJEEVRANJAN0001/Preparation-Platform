@@ -138,7 +138,7 @@ function Landing() {
                 {/* Stats Bar */}
                 <div className="hero-stats">
                     {stats.map((stat, index) => (
-                        <div key={index} className="stat-item">
+                        <div key={index} className="hero-stat-item">
                             <div className="stat-number">{stat.number}</div>
                             <div className="stat-label">{stat.label}</div>
                         </div>

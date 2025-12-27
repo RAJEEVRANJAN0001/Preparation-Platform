@@ -383,13 +383,15 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-.stat-item {
+.hero-stat-item {
     text-align: center;
     position: relative;
     padding: 0 20px;
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
-.stat-item:not(:last-child)::after {
+.hero-stat-item:not(:last-child)::after {
     content: '';
     position: absolute;
     right: 0;
@@ -462,8 +464,23 @@
 /* Features - Bento Grid Theme */
 .landing-features {
     padding: 120px 24px;
-    background: #000;
+    background: #020617;
     position: relative;
+    overflow: hidden;
+}
+
+/* Ambient Background Glow for Features */
+.landing-features::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(30, 58, 138, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .features-container {
@@ -513,7 +530,7 @@
 }
 
 .feature-card {
-    background: #0a0a0a;
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
     padding: 40px;
@@ -522,6 +539,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .feature-card.large {
@@ -671,7 +690,7 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .stat-item:not(:last-child)::after {
+    .hero-stat-item:not(:last-child)::after {
         display: none;
     }
 }
