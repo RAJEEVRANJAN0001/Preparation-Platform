@@ -83,20 +83,31 @@
 }
 
 /* Quick Actions Grid */
+/* Quick Actions Grid - Explicit Responsive Layout */
 .quick-actions-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    /* Desktop (Default): 4 columns */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
     margin-bottom: 48px;
 }
 
-@media (max-width: 1024px) {
+/* Laptop/Small Desktop: 3 columns */
+@media (max-width: 1200px) {
+    .quick-actions-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tablet: 2 columns */
+@media (max-width: 900px) {
     .quick-actions-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 640px) {
+/* Mobile: 1 column */
+@media (max-width: 600px) {
     .quick-actions-grid {
         grid-template-columns: 1fr;
     }
