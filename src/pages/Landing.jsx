@@ -76,9 +76,9 @@ function Landing() {
                         <span>The Ultimate Placement Platform</span>
                     </div>
 
-                    <h1 className="hero-title massive-type">
+                    <h1 className="hero-title massive-type custom-gradient-header">
                         MASTER<br />
-                        <span className="gradient-text">YOUR SKILLS</span>
+                        YOUR SKILLS
                     </h1>
 
                     <p className="hero-subtitle">

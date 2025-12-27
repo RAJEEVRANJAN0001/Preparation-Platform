@@ -886,3 +886,24 @@
         border-radius: 20px;
     }
 }
+
+/* Custom Gradient Header - Silver to Yellow */
+.hero-title.massive-type.custom-gradient-header {
+    mix-blend-mode: normal;
+    opacity: 1;
+    background: linear-gradient(180deg,
+            #E2E8F0 0%,
+            /* Silver Light */
+            #94A3B8 45%,
+            /* Silver Darker */
+            #FACC15 55%,
+            /* Yellow Bright */
+            #EAB308 100%
+            /* Yellow Darker */
+        );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
