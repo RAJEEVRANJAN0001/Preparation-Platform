@@ -1,10 +1,11 @@
 # 🎓 Creata Mentor - Placement Preparation Platform
 
-A comprehensive, AI-powered placement preparation platform designed to help students ace their technical interviews and land their dream jobs. Built with React, Vite, and powered by Google's Gemini 2.5 Flash AI.
+A comprehensive, AI-powered placement preparation platform designed to help students ace their technical interviews and land their dream jobs. Built with React, Vite, Express, and powered by Google's Gemini 2.5 Flash AI.
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![React](https://img.shields.io/badge/React-18.3.1-61DAFB?logo=react)
 ![Vite](https://img.shields.io/badge/Vite-5.4.2-646CFF?logo=vite)
+![Node](https://img.shields.io/badge/Node-20.x-green.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 ---
@@ -17,14 +18,15 @@ A comprehensive, AI-powered placement preparation platform designed to help stud
 - **Mock Interviews** - AI-generated technical questions tailored to your experience and tech stack
 
 ### 📚 Comprehensive Resources
+- **Company Placement Notes** - Access company-specific preparation materials and notes
 - **Knowledge Base** - 52+ PDF notes covering DSA, System Design, DBMS, OS, Networks, and more
+- **Video Feed** - Curated and searchable YouTube video feed for learning
 - **Interactive Quizzes** - 50+ quizzes to test your knowledge across multiple topics
 - **Learning Roadmaps** - Structured learning paths for different tech roles
 - **Coding Practice** - Role-based interview questions with hints and solutions
 
 ### 🎯 Career Tools
-- **Job Tracker** - Manage job applications with status tracking
-- **Resume Analyzer** - AI-powered resume analysis and improvement suggestions
+- **Resume Analyzer** - AI-powered resume analysis and improvement suggestions (planned)
 - **Study Planner** - Create personalized study schedules
 
 ### 🎨 Modern UI/UX
@@ -37,6 +39,8 @@ A comprehensive, AI-powered placement preparation platform designed to help stud
 
 ## 🚀 Quick Start
 
+This application uses a **secure backend server** to protect the Gemini API key. You must run both the backend and frontend.
+
 ### Prerequisites
 - Node.js 20.x or higher
 - npm or yarn
@@ -45,34 +49,49 @@ A comprehensive, AI-powered placement preparation platform designed to help stud
 ### Installation
 
 1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/Preparation-Platform.git
-cd Preparation-Platform
-```
+   ```bash
+   git clone https://github.com/yourusername/Preparation-Platform.git
+   cd Preparation-Platform
+   ```
 
 2. **Install dependencies**
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
 3. **Set up environment variables**
-```bash
-cp .env.example .env
-```
 
-Edit `.env` and add your Gemini API key:
-```env
-VITE_GEMINI_API_KEY=your_api_key_here
-VITE_GEMINI_MODEL=gemini-2.5-flash
-```
+   **For Backend:**
+   Create `.env.server` in the root directory:
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   PORT=3001
+   GEMINI_MODEL=gemini-2.5-flash
+   ```
 
-4. **Start the development server**
-```bash
-npm run dev
-```
+   **For Frontend:**
+   Create `.env` in the root directory:
+   ```env
+   VITE_API_URL=http://localhost:3001
+   VITE_YOUTUBE_API_KEY=your_youtube_api_key (Optional for Video Feed)
+   ```
 
-5. **Open your browser**
-Navigate to `http://localhost:5173`
+4. **Start the Application**
+
+   **Step 1: Start the Backend Server** (Open Terminal 1)
+   ```bash
+   npm run server
+   ```
+   *You should see: ✅ Backend server running on http://localhost:3001*
+
+   **Step 2: Start the Frontend** (Open Terminal 2)
+   ```bash
+   npm run dev
+   ```
+   *The frontend will start on http://localhost:5173*
+
+5. **Access the App**
+   Open `http://localhost:5173` in your browser.
 
 ---
 
@@ -81,239 +100,87 @@ Navigate to `http://localhost:5173`
 ```
 Preparation-Platform/
 ├── public/
-│   ├── PLACEMENT NOTES/        # 52+ PDF resources
+│   ├── PLACEMENT NOTES/        # PDF resources & Company Notes
 │   └── knowledge_base.json     # AI knowledge base
+├── server.js                   # Backend server (Express)
 ├── src/
 │   ├── components/             # Reusable components
-│   │   ├── Button.jsx
-│   │   ├── Card.jsx
-│   │   ├── PageHeader.jsx
-│   │   └── ...
-│   ├── data/                   # Static data
-│   │   ├── quizData.js
-│   │   ├── topicsData.js
-│   │   └── ...
+│   ├── data/                   # Static data & Roadmaps
 │   ├── pages/                  # Page components
+│   │   ├── CompanyNotes.jsx    # Company Placement Notes
+│   │   ├── VideoFeed.jsx       # YouTube Video Feed
+│   │   ├── JobTracker.jsx      # Job Application Tracker
 │   │   ├── Home.jsx            # Dashboard
 │   │   ├── Chat.jsx            # AI Assistant
-│   │   ├── Interview.jsx       # Interview Practice
-│   │   ├── Notes.jsx           # PDF Resources
-│   │   ├── Quiz.jsx            # Interactive Quizzes
-│   │   ├── Roadmap.jsx         # Learning Paths
 │   │   └── ...
 │   ├── utils/                  # Utility functions
-│   │   └── interviewManager.js # Mock interview logic
 │   ├── App.jsx                 # Main app component
-│   ├── index.css               # Global styles
 │   └── main.jsx                # Entry point
 ├── .env.example                # Environment template
+├── .env.server                 # Backend config (gitignored)
+├── .env                        # Frontend config
 ├── package.json
-├── vite.config.js
-└── vercel.json                 # Vercel deployment config
+└── vite.config.js
 ```
 
 ---
 
 ## 🎯 Key Features Breakdown
 
-### 1. AI Chat Assistant
-- **Technology**: Google Gemini 2.5 Flash
-- **Features**:
-  - Context-aware responses
-  - Knowledge base integration
-  - Voice input support
-  - Text-to-speech output
-  - Markdown formatting
+### 1. Secure AI Integration
+- **Architecture**: Client-Server
+- **Security**: Gemini API keys are stored server-side in `.env.server` and never exposed to the client.
+- **Backend**: Express.js server proxies requests to Google Gemini.
 
-### 2. Interview Practice
-- **5 Role Categories**:
-  - Frontend Developer
-  - Backend Developer
-  - Full Stack Developer
-  - Data Analyst
-  - DevOps Engineer
+### 2. Company Placement Notes
 - **Features**:
-  - 25+ curated questions
-  - Difficulty levels (Easy, Medium, Hard)
-  - AI-powered feedback with:
-    - Strengths analysis
-    - Areas for improvement
-    - Score out of 10
-    - Specific suggestions
-  - Progress tracking
+  - Browse notes by company
+  - View/Download PDF/DOCX materials
+  - Search and filter companies
+  - Favorites and Recently Viewed
 
-### 3. Mock Interview System
-- **Conversational Flow**:
-  - Candidate information collection
-  - Tech stack assessment
-  - Dynamic question generation
-  - Real-time feedback
-- **AI-Generated Questions** based on:
-  - Experience level
-  - Technology stack
-  - Previous answers
-
-### 4. Knowledge Base
-- **52+ PDF Resources** covering:
-  - Data Structures & Algorithms
-  - System Design
-  - Database Management
-  - Operating Systems
-  - Computer Networks
-  - Cloud Computing
-  - And more...
+### 3. Video Feed
 - **Features**:
-  - In-browser PDF viewing
-  - Download capability
-  - Search and filter
+  - Search for educational content directly within the app
+  - Powered by YouTube Data API (optional)
+  - Distraction-free learning environment
 
-### 5. Interactive Quizzes
-- **50+ Quizzes** across multiple topics
+### 5. Interview Practice & Mock Interviews
 - **Features**:
-  - Multiple choice questions
-  - Instant feedback
-  - Score tracking
-  - Detailed explanations
+   - Role-specific questions (Frontend, Backend, etc.)
+   - Real-time AI feedback on your answers
+   - Difficulty levels (Easy, Medium, Hard)
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **React 18.3.1** - UI library
-- **Vite 5.4.2** - Build tool
-- **React Router 6.26.0** - Routing
-- **React Markdown 10.1.0** - Markdown rendering
-- **Lucide React** - Icon library
+- **React 18**
+- **Vite**
+- **React Router 6**
+- **Tailwind CSS / Vanilla CSS**
 
-### AI Integration
-- **Google Generative AI 0.24.1** - Gemini API client
-- **Model**: gemini-2.5-flash
+### Backend
+- **Node.js**
+- **Express.js**
+- **Google Generative AI SDK**
 
-### Styling
-- **Vanilla CSS** - Custom styling
-- **CSS Variables** - Theme management
-- **Responsive Design** - Mobile-first approach
+### Data & Assets
+- **PDF Parse** (for note processing)
+- **Local Storage** (for user progress)
 
 ---
 
 ## 🌐 Deployment
 
-### Deploy to Vercel
+For production, you need to deploy both the backend and frontend.
 
-1. **Push to GitHub**
-```bash
-git add .
-git commit -m "Initial commit"
-git push origin main
-```
-
-2. **Import to Vercel**
-- Go to [Vercel](https://vercel.com)
-- Click "Import Project"
-- Select your repository
-
-3. **Configure Environment Variables**
-In Vercel dashboard → Settings → Environment Variables:
-```
-VITE_GEMINI_API_KEY = your_api_key_here
-VITE_GEMINI_MODEL = gemini-2.5-flash
-```
-
-4. **Deploy**
-- Click "Deploy"
-- Wait for build to complete
-- Your app is live! 🎉
-
-### Build for Production
-```bash
-npm run build
-```
-
-The optimized build will be in the `dist/` directory.
-
----
-
-## 📝 Environment Variables
-
-| Variable | Description | Required | Default |
-|----------|-------------|----------|---------|
-| `VITE_GEMINI_API_KEY` | Google Gemini API key | Yes | - |
-| `VITE_GEMINI_MODEL` | Gemini model name | No | `gemini-2.5-flash` |
-
-> **Note**: All environment variables must be prefixed with `VITE_` to be accessible in the client-side code.
-
----
-
-## 🎨 Customization
-
-### Theme
-The app supports light and dark modes. Theme colors are defined in `src/index.css` using CSS variables:
-
-```css
-:root {
-  --primary: #3b82f6;
-  --bg-main: #ffffff;
-  --text-main: #1f2937;
-  /* ... */
-}
-
-[data-theme="dark"] {
-  --bg-main: #0f172a;
-  --text-main: #f1f5f9;
-  /* ... */
-}
-```
-
-### Adding New Features
-1. Create component in `src/pages/`
-2. Add route in `src/App.jsx`
-3. Update navigation in relevant components
-4. Add styling in component's CSS file
-
----
-
-## 🧪 Testing
-
-### Manual Testing
-```bash
-npm run dev
-```
-
-Test the following features:
-- ✅ AI Chat responses
-- ✅ Interview feedback generation
-- ✅ Mock interview flow
-- ✅ Quiz functionality
-- ✅ PDF viewing
-- ✅ Navigation
-
-### Build Testing
-```bash
-npm run build
-npm run preview
-```
-
----
-
-## 📊 Performance
-
-- **Build Size**: ~562 KB (gzipped: ~176 KB)
-- **First Load**: < 2s
-- **AI Response Time**: ~5s average
-- **Lighthouse Score**: 90+
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. **Backend**: Deploy `server.js` to a Node.js host (e.g., Render, Railway, Heroku).
+   - Set `GEMINI_API_KEY` and `GEMINI_MODEL` environment variables on the host.
+2. **Frontend**: Deploy to a static host (e.g., Vercel, Netlify).
+   - Set `VITE_API_URL` to your deployed backend URL (e.g., `https://my-backend.onrender.com`).
+   - Run `npm run build` to generate the `dist` folder.
 
 ---
 
@@ -323,55 +190,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 🙏 Acknowledgments
-
-- **Google Gemini AI** - For powering the AI features
-- **Lucide Icons** - For beautiful icons
-- **React Community** - For amazing tools and libraries
-- **Vercel** - For seamless deployment
-
----
-
-## 📞 Support
-
-For support, email rajeevranjanpratapsinghj94@gmail.com or open an issue in the GitHub repository.
-
----
-
-## 🗺️ Roadmap
-
-- [ ] Add more interview questions
-- [ ] Implement user authentication
-- [ ] Add progress analytics dashboard
-- [ ] Create mobile app version
-- [ ] Add collaborative study rooms
-- [ ] Integrate video interview practice
-- [ ] Add company-specific interview prep
-
----
-
-
-
 ## ⚡ Quick Commands
 
 ```bash
 # Development
-npm run dev          # Start dev server
+npm run server       # Start backend (Port 3001)
+npm run dev          # Start frontend (Port 5173)
 
 # Production
-npm run build        # Build for production
-npm run preview      # Preview production build
-
-# Deployment
-git push origin main # Auto-deploy to Vercel (if configured)
+npm run build        # Build frontend
+npm run preview      # Preview build
 ```
-
----
-
-<div align="center">
-
-**Built with ❤️ for aspiring developers**
-
-[⭐ Star this repo](https://github.com/yourusername/Preparation-Platform) | [🐛 Report Bug](https://github.com/yourusername/Preparation-Platform/issues) | [✨ Request Feature](https://github.com/yourusername/Preparation-Platform/issues)
-
-</div>

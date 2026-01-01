@@ -10,7 +10,6 @@ import StudyPlan from './pages/StudyPlan'
 import TopicDetail from './pages/TopicDetail'
 
 import Roadmap from './pages/Roadmap'
-import JobTracker from './pages/JobTracker'
 import CodingPractice from './pages/CodingPractice'
 import VideoFeed from './pages/VideoFeed'
 import CompanyNotes from './pages/CompanyNotes'
@@ -36,7 +35,6 @@ function AppContent({ theme, toggleTheme }) {
                     <Route path="/topic/:topicId" element={<TopicDetail />} />
 
                     <Route path="/roadmap" element={<Roadmap />} />
-                    <Route path="/job-tracker" element={<JobTracker />} />
                     <Route path="/coding-practice" element={<CodingPractice />} />
                     <Route path="/video-feed" element={<VideoFeed />} />
                     <Route path="/company-notes" element={<CompanyNotes />} />
