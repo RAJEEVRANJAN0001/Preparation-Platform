@@ -8,13 +8,14 @@ import Chat from './pages/Chat'
 import Quiz from './pages/Quiz'
 import StudyPlan from './pages/StudyPlan'
 import TopicDetail from './pages/TopicDetail'
-import Interview from './pages/Interview'
+
 import Roadmap from './pages/Roadmap'
 import JobTracker from './pages/JobTracker'
 import CodingPractice from './pages/CodingPractice'
 import VideoFeed from './pages/VideoFeed'
 import CompanyNotes from './pages/CompanyNotes'
 import CompanyDetail from './pages/CompanyDetail'
+import Interview from './pages/Interview'
 import './App.css'
 
 function AppContent({ theme, toggleTheme }) {
@@ -33,13 +34,14 @@ function AppContent({ theme, toggleTheme }) {
                     <Route path="/quiz" element={<Quiz />} />
                     <Route path="/study-plan" element={<StudyPlan />} />
                     <Route path="/topic/:topicId" element={<TopicDetail />} />
-                    <Route path="/interview" element={<Interview />} />
+
                     <Route path="/roadmap" element={<Roadmap />} />
                     <Route path="/job-tracker" element={<JobTracker />} />
                     <Route path="/coding-practice" element={<CodingPractice />} />
                     <Route path="/video-feed" element={<VideoFeed />} />
                     <Route path="/company-notes" element={<CompanyNotes />} />
                     <Route path="/company-notes/:companyName" element={<CompanyDetail />} />
+                    <Route path="/interview" element={<Interview />} />
                 </Routes>
             </main>
         </div>

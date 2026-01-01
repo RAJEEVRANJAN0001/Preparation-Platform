@@ -1,398 +1,469 @@
-/* Interview Practice Page Styles */
-
-.interview-page {
-    min-height: 100vh;
-    background: var(--bg-main);
-    padding-bottom: 40px;
-}
-
+/* Theme-aware Interview Styles */
 .interview-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 32px 24px;
-}
-
-/* Role Selection Screen */
-.role-selection {
-    text-align: center;
-}
-
-.role-selection h2 {
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 48px;
-}
-
-/* Ensure visibility in both themes */
-[data-theme="light"] .role-selection h2 {
-    color: #1a1a1a;
-}
-
-[data-theme="dark"] .role-selection h2 {
-    color: #ffffff;
-}
-
-.roles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 3rem 2rem;
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+}
+
+/* Header */
+.interview-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid var(--border-main);
+    padding-bottom: 2rem;
+}
+
+.interview-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.interview-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Role Cards Grid */
+.roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    perspective: 1000px;
 }
 
 .role-card {
-    background: var(--card-bg);
-    border: 2px solid var(--border-color);
+    position: relative;
+    background: var(--bg-surface);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-main);
     border-radius: 16px;
-    padding: 32px 24px;
+    padding: 2rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    animation: cardFadeIn 0.6s ease-out backwards;
+}
+
+/* Stagger animation for cards */
+.role-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.role-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.role-card:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.role-card:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.role-card:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.role-card:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.role-card:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+.role-card:nth-child(8) {
+    animation-delay: 0.4s;
+}
+
+.role-card:nth-child(9) {
+    animation-delay: 0.45s;
+}
+
+.role-card:nth-child(10) {
+    animation-delay: 0.5s;
+}
+
+.role-card:nth-child(11) {
+    animation-delay: 0.55s;
+}
+
+.role-card:nth-child(12) {
+    animation-delay: 0.6s;
+}
+
+.role-card:nth-child(13) {
+    animation-delay: 0.65s;
+}
+
+.role-card:nth-child(14) {
+    animation-delay: 0.7s;
+}
+
+.role-card:nth-child(15) {
+    animation-delay: 0.75s;
+}
+
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Gradient overlays - theme aware */
+.role-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(100, 100, 255, 0.08) 0%, rgba(200, 100, 255, 0.04) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 16px;
+    z-index: 0;
+}
+
+[data-theme="light"] .role-card::before {
+    background: linear-gradient(135deg, rgba(100, 100, 255, 0.06) 0%, rgba(200, 100, 255, 0.03) 100%);
+}
+
+/* Unique gradient for each card */
+.role-card:nth-child(3n+1)::before {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+}
+
+[data-theme="light"] .role-card:nth-child(3n+1)::before {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(99, 102, 241, 0.04) 100%);
+}
+
+.role-card:nth-child(3n+2)::before {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(217, 70, 239, 0.05) 100%);
+}
+
+[data-theme="light"] .role-card:nth-child(3n+2)::before {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(217, 70, 239, 0.04) 100%);
+}
+
+.role-card:nth-child(3n+3)::before {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+}
+
+[data-theme="light"] .role-card:nth-child(3n+3)::before {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(34, 197, 94, 0.04) 100%);
 }
 
 .role-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--border-hover);
+    background: var(--bg-hover);
+    box-shadow: var(--shadow-lg);
+}
+
+.role-card:hover::before {
+    opacity: 1;
+}
+
+/* Shimmer effect */
+.role-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent 30%,
+            var(--shimmer-color) 50%,
+            transparent 70%);
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+    z-index: 1;
+}
+
+.role-card:hover::after {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
 }
 
 .role-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 20px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    border-radius: 16px;
+    position: relative;
+    z-index: 2;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    padding: 14px;
+    background: var(--icon-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-main);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    transition: all 0.3s ease;
+}
+
+.role-card:hover .role-icon {
+    background: var(--icon-bg-hover);
+    border-color: var(--border-hover);
+    transform: scale(1.1) rotate(5deg);
 }
 
 .role-card h3 {
-    font-size: 20px;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+    font-size: 1.25rem;
     font-weight: 600;
-    color: var(--text-main);
-    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.role-card:hover h3 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .role-card:hover h3 {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .role-card p {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-bottom: 16px;
-}
-
-.role-progress {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--primary);
-    background: var(--primary-light);
-    padding: 8px 16px;
-    border-radius: 8px;
-    display: inline-block;
-}
-
-/* Question Selection Screen */
-.question-selection {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.selection-header {
-    text-align: center;
-    margin-bottom: 40px;
     position: relative;
-}
-
-.btn-back {
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: var(--card-bg);
-    border: 2px solid var(--border-color);
-    color: var(--text-main);
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.btn-back:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-}
-
-.selection-header h2 {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 8px;
-}
-
-.selection-header p {
-    font-size: 16px;
+    z-index: 2;
     color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-grow: 1;
+    transition: color 0.3s ease;
 }
 
-.questions-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+.role-card:hover p {
+    color: var(--text-secondary);
 }
 
-.question-item {
-    background: var(--card-bg);
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    padding: 20px 24px;
+.question-count {
+    position: relative;
+    z-index: 2;
+    background: var(--badge-bg);
+    backdrop-filter: blur(10px);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--border-main);
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.role-card:hover .question-count {
+    background: var(--badge-bg-hover);
+    border-color: var(--border-hover);
+    transform: scale(1.05);
+}
+
+/* Question Section */
+.back-button {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
     cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.question-item:hover {
-    border-color: var(--primary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.question-item.completed {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.1));
-    border-color: #10b981;
-}
-
-.question-header {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
+    gap: 0.5rem;
+    transition: color 0.2s;
+    padding: 0;
+    font-weight: 500;
 }
 
-.difficulty-badge {
-    font-size: 12px;
-    font-weight: 700;
-    color: white;
-    padding: 4px 12px;
-    border-radius: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.back-button:hover {
+    color: var(--text-primary);
 }
 
-.category-tag {
-    font-size: 12px;
-    font-weight: 600;
+.question-section {
+    background: var(--bg-surface);
+    border-radius: 12px;
+    padding: 3rem;
+    border: 1px solid var(--border-main);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 2px;
+    background: var(--progress-bg);
+    margin-bottom: 2rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--text-primary);
+    transition: width 0.3s ease;
+}
+
+.question-counter {
     color: var(--text-muted);
-    background: var(--bg-main);
-    padding: 4px 12px;
-    border-radius: 6px;
-}
-
-.completed-icon {
-    margin-left: auto;
-    color: #10b981;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 1rem;
 }
 
 .question-text {
-    font-size: 16px;
-    color: var(--text-main);
-    margin: 0;
-    line-height: 1.6;
+    font-size: 2rem;
+    margin: 0 0 2.5rem;
+    color: var(--text-primary);
+    line-height: 1.3;
+    font-weight: 400;
+    letter-spacing: -0.01em;
 }
 
-/* Question Practice Screen */
-.question-practice {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.practice-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 32px;
-}
-
-.practice-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.question-content {
-    background: var(--card-bg);
-    border: 2px solid var(--border-color);
-    border-radius: 16px;
-    padding: 32px;
-}
-
-.question-content h3 {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--text-main);
-    margin-bottom: 24px;
-    line-height: 1.4;
-}
-
-/* Hints Section */
-.hints-section {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(59, 130, 246, 0.1));
-    border: 2px solid rgba(59, 130, 246, 0.2);
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin-bottom: 24px;
-}
-
-.hints-section summary {
-    font-size: 14px;
-    font-weight: 600;
-    color: #3b82f6;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    user-select: none;
-}
-
-.hints-section summary:hover {
-    opacity: 0.8;
-}
-
-.hints-section ul {
-    margin-top: 16px;
-    padding-left: 24px;
-}
-
-.hints-section li {
-    font-size: 14px;
-    color: var(--text-main);
-    margin-bottom: 8px;
-    line-height: 1.6;
-}
-
-/* Answer Section */
-.answer-section {
-    margin-bottom: 24px;
-}
-
-.answer-section label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-main);
-    margin-bottom: 12px;
-}
-
-.answer-section textarea {
+.answer-area textarea {
     width: 100%;
-    padding: 16px;
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    font-size: 14px;
-    font-family: inherit;
-    color: var(--text-main);
-    background: var(--bg-main);
+    min-height: 300px;
+    background: var(--input-bg);
+    border: 1px solid var(--border-main);
+    border-radius: 6px;
+    padding: 1.5rem;
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    line-height: 1.6;
     resize: vertical;
-    transition: all 0.2s ease;
+    margin-bottom: 2rem;
+    font-family: inherit;
+    transition: border-color 0.2s, background 0.2s;
 }
 
-.answer-section textarea:focus {
+.answer-area textarea:focus {
     outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: var(--border-focus);
+    background: var(--input-bg-focus);
 }
 
-.answer-section textarea:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+.answer-area textarea::placeholder {
+    color: var(--text-placeholder);
 }
 
-.answer-meta {
+.action-buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 12px;
+    border-top: 1px solid var(--border-main);
+    padding-top: 2rem;
 }
 
-.char-count {
-    font-size: 13px;
+.nav-button {
+    background: transparent;
+    border: 1px solid var(--border-main);
     color: var(--text-muted);
-}
-
-/* Buttons */
-.btn-primary {
-    background: #000000;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
     cursor: pointer;
-    display: inline-flex;
+    font-weight: 500;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    transition: all 0.2s ease;
+    gap: 0.5rem;
 }
 
-.btn-primary:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+.nav-button:hover:not(:disabled) {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+    background: var(--bg-hover);
 }
 
-.btn-primary:disabled {
-    opacity: 0.5;
+.nav-button:disabled {
+    opacity: 0.3;
     cursor: not-allowed;
 }
 
-.btn-secondary {
-    background: var(--card-bg);
-    color: var(--text-main);
-    border: 2px solid var(--border-color);
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.btn-secondary:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-}
-
-.btn-reset {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-    background: #ef4444;
-    color: white;
+.submit-button {
+    background: var(--button-primary-bg);
+    color: var(--button-primary-text);
     border: none;
-    padding: 14px 28px;
-    border-radius: 12px;
-    font-size: 14px;
+    padding: 0.75rem 2.5rem;
+    border-radius: 4px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 8px 16px rgba(239, 68, 68, 0.3);
-    transition: all 0.2s ease;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.btn-reset:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(239, 68, 68, 0.4);
+.submit-button:hover:not(:disabled) {
+    background: var(--button-primary-hover);
+    transform: translateY(-1px);
+}
+
+.submit-button:disabled {
+    background: var(--button-disabled-bg);
+    color: var(--button-disabled-text);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.error-message {
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+    color: var(--error-text);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
 }
 
 /* Feedback Section */
 .feedback-section {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.1));
-    border: 2px solid rgba(16, 185, 129, 0.3);
-    border-radius: 12px;
-    padding: 24px;
-    margin-top: 24px;
-    animation: slideIn 0.3s ease;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border-main);
+    animation: fadeIn 0.6s ease-out;
 }
 
-@keyframes slideIn {
+.feedback-section h3 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.feedback-content {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.feedback-content strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+@keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(10px);
@@ -404,267 +475,28 @@
     }
 }
 
-.feedback-section h4 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #10b981;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.feedback-content {
-    background: var(--card-bg);
-    border-radius: 8px;
-    padding: 24px;
-    margin-bottom: 20px;
-}
-
-/* Markdown Formatting in Feedback */
-.feedback-content h1,
-.feedback-content h2,
-.feedback-content h3,
-.feedback-content h4 {
-    color: var(--text-main);
-    font-weight: 600;
-    margin-top: 24px;
-    margin-bottom: 12px;
-    line-height: 1.3;
-}
-
-.feedback-content h1:first-child,
-.feedback-content h2:first-child,
-.feedback-content h3:first-child,
-.feedback-content h4:first-child {
-    margin-top: 0;
-}
-
-.feedback-content h1 {
-    font-size: 20px;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 8px;
-}
-
-.feedback-content h2 {
-    font-size: 18px;
-    color: var(--primary);
-}
-
-.feedback-content h3 {
-    font-size: 16px;
-}
-
-.feedback-content h4 {
-    font-size: 15px;
-}
-
-.feedback-content p {
-    font-size: 14px;
-    color: var(--text-main);
-    line-height: 1.7;
-    margin-bottom: 14px;
-}
-
-.feedback-content p:last-child {
-    margin-bottom: 0;
-}
-
-.feedback-content strong {
-    font-weight: 600;
-    color: var(--text-main);
-}
-
-.feedback-content em {
-    font-style: italic;
-    color: var(--text-muted);
-}
-
-.feedback-content ul,
-.feedback-content ol {
-    margin: 12px 0;
-    padding-left: 24px;
-}
-
-.feedback-content li {
-    font-size: 14px;
-    color: var(--text-main);
-    line-height: 1.7;
-    margin-bottom: 8px;
-}
-
-.feedback-content li:last-child {
-    margin-bottom: 0;
-}
-
-.feedback-content ul li {
-    list-style-type: disc;
-}
-
-.feedback-content ol li {
-    list-style-type: decimal;
-}
-
-.feedback-content code {
-    background: rgba(59, 130, 246, 0.1);
-    color: #3b82f6;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 13px;
-    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
-}
-
-.feedback-content pre {
-    background: var(--bg-main);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px 0;
-    overflow-x: auto;
-}
-
-.feedback-content pre code {
-    background: none;
-    padding: 0;
-    color: var(--text-main);
-    font-size: 13px;
-}
-
-.feedback-content hr {
-    border: none;
-    border-top: 2px solid var(--border-color);
-    margin: 24px 0;
-}
-
-.feedback-content blockquote {
-    border-left: 4px solid var(--primary);
-    padding-left: 16px;
-    margin: 16px 0;
-    color: var(--text-muted);
-    font-style: italic;
-}
-
-.feedback-content a {
-    color: var(--primary);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s ease;
-}
-
-.feedback-content a:hover {
-    border-bottom-color: var(--primary);
-}
-
-.feedback-actions {
-    display: flex;
-    gap: 12px;
-}
-
-/* Dark Mode Specific Styles */
-[data-theme="dark"] .role-card {
-    background: var(--card-bg);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .role-card:hover {
-    border-color: var(--primary);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .question-item {
-    background: var(--card-bg);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .question-item:hover {
-    border-color: var(--primary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .answer-section textarea {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-[data-theme="dark"] .btn-primary {
-    background: #ffffff;
-    color: #000000;
-}
-
-[data-theme="dark"] .btn-primary:hover:not(:disabled) {
-    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
     .interview-container {
-        padding: 24px 16px;
+        padding: 1.5rem;
     }
 
-    .role-selection h2 {
-        font-size: 24px;
-        margin-bottom: 32px;
+    .question-section {
+        padding: 2rem;
     }
 
-    .roles-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
+    .question-text {
+        font-size: 1.5rem;
     }
 
-    .role-card {
-        padding: 24px 20px;
+    .action-buttons {
+        gap: 1rem;
+        flex-wrap: wrap;
     }
 
-    .question-content {
-        padding: 24px 20px;
-    }
-
-    .question-content h3 {
-        font-size: 20px;
-    }
-
-    .practice-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-    }
-
-    .btn-back {
-        position: static;
-        margin-bottom: 16px;
-    }
-
-    .selection-header {
-        padding-top: 60px;
-    }
-
-    .btn-reset {
-        bottom: 16px;
-        right: 16px;
-        padding: 12px 24px;
-        font-size: 13px;
-    }
-
-    .feedback-actions {
-        flex-direction: column;
-    }
-
-    .feedback-actions button {
+    .submit-button {
         width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .role-card h3 {
-        font-size: 18px;
-    }
-
-    .question-content h3 {
-        font-size: 18px;
-    }
-
-    .difficulty-badge,
-    .category-tag {
-        font-size: 11px;
-        padding: 3px 10px;
+        order: -1;
+        margin-bottom: 1rem;
+        justify-content: center;
     }
 }

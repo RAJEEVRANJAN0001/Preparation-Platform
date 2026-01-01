@@ -86,6 +86,28 @@
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
+  /* Interview Page Specific */
+  --bg-hover: rgba(0, 0, 0, 0.02);
+  --border-hover: #9CA3AF;
+  --icon-bg: rgba(0, 0, 0, 0.04);
+  --icon-bg-hover: rgba(0, 0, 0, 0.08);
+  --badge-bg: rgba(0, 0, 0, 0.04);
+  --badge-bg-hover: rgba(0, 0, 0, 0.08);
+  --shimmer-color: rgba(255, 255, 255, 0.3);
+  --input-bg: #FFFFFF;
+  --input-bg-focus: #F9FAFB;
+  --border-focus: #6B7280;
+  --text-placeholder: #9CA3AF;
+  --progress-bg: #E5E7EB;
+  --button-primary-bg: #111827;
+  --button-primary-text: #FFFFFF;
+  --button-primary-hover: #1F2937;
+  --button-disabled-bg: #E5E7EB;
+  --button-disabled-text: #9CA3AF;
+  --error-bg: rgba(239, 68, 68, 0.1);
+  --error-border: rgba(239, 68, 68, 0.3);
+  --error-text: #DC2626;
+
   /* Legacy support */
   --card-bg: #FFFFFF;
 }
@@ -145,12 +167,30 @@
   --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
 
+  /* Interview Page Specific */
+  --bg-hover: rgba(255, 255, 255, 0.05);
+  --border-hover: #9CA3AF;
+  --icon-bg: rgba(255, 255, 255, 0.08);
+  --icon-bg-hover: rgba(255, 255, 255, 0.15);
+  --badge-bg: rgba(255, 255, 255, 0.08);
+  --badge-bg-hover: rgba(255, 255, 255, 0.15);
+  --shimmer-color: rgba(255, 255, 255, 0.1);
+  --input-bg: #0f0f0f;
+  --input-bg-focus: #141414;
+  --border-focus: #666;
+  --text-placeholder: #444;
+  --progress-bg: #222;
+  --button-primary-bg: #FFFFFF;
+  --button-primary-text: #000000;
+  --button-primary-hover: #E0E0E0;
+  --button-disabled-bg: #333;
+  --button-disabled-text: #666;
+  --error-bg: #1a0505;
+  --error-border: #4a1a1a;
+  --error-text: #ff6b6b;
+
   /* Legacy support */
   --card-bg: #1F2937;
-  /* Gray-800 */
-  /* Legacy support */
-  --card-bg: #1F2937;
-  /* Gray-800 */
 }
 
 html {

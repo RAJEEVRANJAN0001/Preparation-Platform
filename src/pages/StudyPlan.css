@@ -1,141 +1,576 @@
-/* Study Plan Styles */
-.plan-selector {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--sp-3);
-    margin-bottom: var(--sp-6);
+/* Professional Monochrome Study Plan Styles */
+
+.study-plan-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
 }
 
-.role-chip {
-    padding: var(--sp-3) var(--sp-4);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-main);
-    background: var(--bg-surface);
-    cursor: pointer;
+/* Header */
+.study-plan-header {
     text-align: center;
-    font-size: 13px;
-    font-weight: 500;
-    transition: all 0.2s;
-    color: var(--text-main);
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-main);
 }
 
-.role-chip:hover {
-    border-color: var(--primary);
-    background: var(--primary-light);
-}
-
-.role-chip.active {
-    border-color: var(--primary);
-    background: var(--primary-light);
-    color: var(--primary);
+.study-plan-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
     font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.study-plan-header p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* Role Selection Card */
+.role-selection-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-main);
+    border-radius: 12px;
+    padding: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.selection-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.selection-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.selection-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Role Categories */
+.role-categories {
+    margin-bottom: 2rem;
+}
+
+.category-section {
+    margin-bottom: 2.5rem;
+}
+
+.category-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+    margin-bottom: 1rem;
+}
+
+.role-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.role-button {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-main);
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    text-align: left;
+}
+
+.role-button:hover {
+    border-color: var(--text-faint);
+    background: var(--bg-inset);
+}
+
+.role-button.active {
+    border-color: var(--text-primary);
+    background: var(--bg-inset);
+}
+
+.role-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.role-badge {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background: var(--bg-inset);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-main);
+}
+
+/* Custom Role Input */
+.custom-role-input {
+    margin-bottom: 2rem;
+}
+
+.custom-role-input label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.role-input {
+    width: 100%;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-main);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.role-input:focus {
+    outline: none;
+    border-color: var(--text-faint);
+}
+
+.role-input::placeholder {
+    color: #444;
+}
+
+/* Generate Button */
+.generate-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all 0.2s;
+}
+
+.generate-button:hover:not(:disabled) {
+    background: #e0e0e0;
+    transform: translateY(-1px);
+}
+
+.generate-button:disabled {
+    background: #333;
+    color: var(--text-faint);
+    cursor: not-allowed;
+}
+
+/* Roadmap Header */
+.roadmap-header {
+    margin-bottom: 3rem;
+}
+
+.header-content {
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: var(--text-primary);
+}
+
+.roadmap-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.roadmap-description {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+/* Stats Cards */
+.roadmap-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-main);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-card svg {
+    color: var(--text-primary);
+}
+
+.stat-card div {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Progress Bar */
+.progress-bar-container {
+    margin-bottom: 2rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #222;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Week Cards */
+.weeks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 .week-card {
-    display: flex;
-    gap: var(--sp-4);
-    padding: var(--sp-5);
-    border: 1px solid var(--border-main);
-    border-radius: var(--radius-md);
     background: var(--bg-surface);
+    border: 1px solid var(--border-main);
+    border-radius: 12px;
+    overflow: hidden;
     transition: all 0.2s;
 }
 
 .week-card:hover {
-    border-color: var(--primary);
-    box-shadow: var(--shadow-card);
+    border-color: var(--text-faint);
+}
+
+.week-card.completed {
+    border-color: #444;
+    opacity: 0.7;
+}
+
+.week-header {
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.week-header:hover {
+    background: var(--bg-secondary);
+}
+
+.week-title-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex: 1;
 }
 
 .week-number {
-    width: 40px;
-    height: 40px;
-    background: var(--primary);
-    color: white;
+    width: 48px;
+    height: 48px;
+    background: #ffffff;
+    color: #000000;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
+    font-size: 1.1rem;
     flex-shrink: 0;
 }
 
-.week-content h4 {
-    margin: 0 0 4px 0;
-    font-size: 15px;
-    color: var(--text-main);
-}
-
-.week-content p {
-    margin: 0;
-    font-size: 13px;
+.week-card.completed .week-number {
+    background: #333;
     color: var(--text-muted);
 }
 
-@media (max-width: 1024px) {
-    .plan-selector {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--sp-2);
+.week-info {
+    flex: 1;
+}
+
+.week-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.week-focus {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.week-meta {
+    display: flex;
+    gap: 1rem;
+}
+
+.meta-item {
+    font-size: 0.85rem;
+    color: var(--text-faint);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Week Actions */
+.week-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.complete-button {
+    background: transparent;
+    border: 1px solid var(--border-main);
+    color: var(--text-muted);
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.complete-button:hover {
+    border-color: var(--text-faint);
+    color: var(--text-primary);
+}
+
+.complete-button.completed {
+    border-color: #444;
+    background: var(--bg-inset);
+    color: var(--text-muted);
+}
+
+.expand-button {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.2s;
+}
+
+.expand-button:hover {
+    color: var(--text-primary);
+}
+
+/* Week Details */
+.week-details {
+    padding: 0 2rem 2rem 2rem;
+    border-top: 1px solid var(--border-subtle);
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
     }
-    
-    .role-chip {
-        padding: var(--sp-2) var(--sp-3);
-        font-size: 12px;
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
+.detail-section {
+    margin-top: 2rem;
+}
+
+.detail-section h4 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.task-list,
+.project-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-list li,
+.project-list li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #222;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.task-list li:last-child,
+.project-list li:last-child {
+    border-bottom: none;
+}
+
+.resource-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.resource-tag {
+    background: var(--bg-inset);
+    border: 1px solid var(--border-main);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.assessment-section {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+}
+
+.assessment-text {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Footer */
+.roadmap-footer {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-main);
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+}
+
+.footer-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.footer-content p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.regenerate-button {
+    background: transparent;
+    border: 1px solid #666;
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.regenerate-button:hover {
+    background: var(--bg-inset);
+    border-color: var(--text-primary);
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .plan-selector {
-        grid-template-columns: 1fr;
-        gap: var(--sp-2);
+    .study-plan-container {
+        padding: 1.5rem;
     }
-    
-    .role-chip {
-        padding: 12px 16px;
-        font-size: 13px;
-    }
-    
-    .week-card {
-        padding: 16px;
-        gap: 12px;
-    }
-    
-    .week-number {
-        width: 36px;
-        height: 36px;
-        font-size: 14px;
-    }
-    
-    .week-content h4 {
-        font-size: 14px;
-    }
-    
-    .week-content p {
-        font-size: 12px;
-    }
-}
 
-@media (max-width: 480px) {
-    .role-chip {
-        padding: 10px 14px;
-        font-size: 12px;
+    .role-selection-card {
+        padding: 2rem;
     }
-    
-    .week-card {
-        padding: 12px;
-        gap: 10px;
+
+    .role-grid {
+        grid-template-columns: 1fr;
     }
-    
-    .week-number {
-        width: 32px;
-        height: 32px;
-        font-size: 13px;
+
+    .roadmap-stats {
+        grid-template-columns: 1fr;
     }
-    
-    .week-content h4 {
-        font-size: 13px;
+
+    .week-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
     }
-    
-    .week-content p {
-        font-size: 11px;
+
+    .week-title-section {
+        width: 100%;
+    }
+
+    .week-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .detail-section {
+        margin-top: 1.5rem;
     }
 }

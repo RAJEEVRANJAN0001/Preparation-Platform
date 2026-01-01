@@ -1,165 +1,262 @@
-import { useState } from 'react'
-import { Calendar, Download, ArrowRight, CheckCircle } from 'lucide-react'
-import Button from '../components/Button'
-import PageHeader from '../components/PageHeader'
-import './StudyPlan.css'
-
-// Expanded mock data for different roles
-const ROLE_PLANS = {
-    'SDE-1': [
-        { week: 1, topic: 'Arrays & Hashing', focus: 'Two Pointers, Sliding Window, Prefix Sum', resources: 'LeetCode Blind 75' },
-        { week: 2, topic: 'Linked Lists & Stacks', focus: 'Fast/Slow Pointers, Monotonic Stack', resources: 'Cracking the Coding Interview Ch.2' },
-        { week: 3, topic: 'Trees & Graphs', focus: 'DFS, BFS, Binary Search Trees', resources: 'NeetCode Trees Playlist' },
-        { week: 4, topic: 'Dynamic Programming', focus: '1D DP, Knapsack, LCS', resources: 'Aditya Verma DP Series' },
-        { week: 5, topic: 'System Design Basics', focus: 'Scalability, Load Balancers, Caching', resources: 'System Design Primer (GitHub)' },
-        { week: 6, topic: 'Mock Interviews', focus: 'Full-stack problems, Behavioral prep', resources: 'Pramp, Interviewing.io' }
-    ],
-    'Data Analyst': [
-        { week: 1, topic: 'SQL Fundamentals', focus: 'Joins, Aggregations, Window Functions', resources: 'Mode Analytics SQL Tutorial' },
-        { week: 2, topic: 'Python for Data', focus: 'Pandas, NumPy, Data Cleaning', resources: 'Kaggle Learn' },
-        { week: 3, topic: 'Statistics & Probability', focus: 'Hypothesis Testing, Distributions', resources: 'Khan Academy Statistics' },
-        { week: 4, topic: 'Data Visualization', focus: 'Matplotlib, Seaborn, Tableau', resources: 'Storytelling with Data (Book)' },
-        { week: 5, topic: 'Case Studies', focus: 'A/B Testing, Cohort Analysis', resources: 'DataCamp Projects' },
-        { week: 6, topic: 'Interview Prep', focus: 'SQL challenges, Take-home assignments', resources: 'StrataScratch' }
-    ],
-    'Frontend Dev': [
-        { week: 1, topic: 'JavaScript Deep Dive', focus: 'Closures, Promises, Event Loop', resources: 'JavaScript.info' },
-        { week: 2, topic: 'React Fundamentals', focus: 'Hooks, Context, Component Design', resources: 'React Docs (Beta)' },
-        { week: 3, topic: 'State Management', focus: 'Redux, Zustand, React Query', resources: 'Egghead.io Redux Course' },
-        { week: 4, topic: 'CSS & Responsive Design', focus: 'Flexbox, Grid, Mobile-first', resources: 'CSS Tricks, Kevin Powell' },
-        { week: 5, topic: 'Performance & Accessibility', focus: 'Lighthouse, ARIA, Code Splitting', resources: 'web.dev' },
-        { week: 6, topic: 'Build Projects', focus: 'Portfolio site, E-commerce clone', resources: 'Frontend Mentor' }
-    ],
-    'Backend Engineer': [
-        { week: 1, topic: 'REST API Design', focus: 'HTTP Methods, Status Codes, Versioning', resources: 'RESTful API Design (Book)' },
-        { week: 2, topic: 'Database Design', focus: 'Normalization, Indexing, Transactions', resources: 'Use The Index, Luke' },
-        { week: 3, topic: 'Authentication & Security', focus: 'JWT, OAuth, HTTPS', resources: 'OWASP Top 10' },
-        { week: 4, topic: 'Microservices Basics', focus: 'Service Communication, API Gateway', resources: 'Martin Fowler Articles' },
-        { week: 5, topic: 'Caching & Queues', focus: 'Redis, RabbitMQ, Message Brokers', resources: 'Redis University' },
-        { week: 6, topic: 'System Design', focus: 'Design Twitter, URL Shortener', resources: 'Grokking System Design' }
-    ]
-}
+import { useState } from 'react';
+import { Calendar, Download, ArrowRight, CheckCircle, Clock, Target, TrendingUp, Book, Award, ChevronDown, ChevronUp } from 'lucide-react';
+import { STUDY_PLANS, ROLE_CATEGORIES } from '../data/studyPlans';
+import './StudyPlan.css';
 
 function StudyPlan() {
-    const [role, setRole] = useState('')
-    const [generated, setGenerated] = useState(false)
+    const [selectedRole, setSelectedRole] = useState('');
+    const [customRole, setCustomRole] = useState('');
+    const [generated, setGenerated] = useState(false);
+    const [expandedWeeks, setExpandedWeeks] = useState(new Set([1]));
+    const [completedWeeks, setCompletedWeeks] = useState(new Set());
+    const [showCategories, setShowCategories] = useState(true);
 
     const handleGenerate = () => {
-        if (!role) return
-        setGenerated(true)
-    }
+        const role = customRole || selectedRole;
+        if (!role) return;
+        setGenerated(true);
+        setExpandedWeeks(new Set([1])); // Expand first week by default
+    };
 
-    const currentPlan = ROLE_PLANS[role] || ROLE_PLANS['SDE-1']
+    const toggleWeek = (weekNum) => {
+        const newExpanded = new Set(expandedWeeks);
+        if (newExpanded.has(weekNum)) {
+            newExpanded.delete(weekNum);
+        } else {
+            newExpanded.add(weekNum);
+        }
+        setExpandedWeeks(newExpanded);
+    };
 
-    return (
-        <div className="app-container">
-            <PageHeader
-                title="Personalized Study Roadmap"
-                subtitle="Generate a structured 6-week plan tailored to your target role"
-            />
+    const toggleComplete = (weekNum) => {
+        const newCompleted = new Set(completedWeeks);
+        if (newCompleted.has(weekNum)) {
+            newCompleted.delete(weekNum);
+        } else {
+            newCompleted.add(weekNum);
+        }
+        setCompletedWeeks(newCompleted);
+    };
 
-            {/* Input Section */}
-            {!generated ? (
-                <div style={{ maxWidth: 600, margin: '0 auto' }}>
-                    <div className="dense-card" style={{ padding: 40 }}>
-                        <h3 style={{ margin: '0 0 16px 0', fontSize: 16 }}>Select your target role</h3>
+    const currentRole = customRole || selectedRole;
+    const currentPlan = STUDY_PLANS[currentRole] || STUDY_PLANS['Frontend Developer'];
+    const progress = (completedWeeks.size / (currentPlan.weeks?.length || 6)) * 100;
 
-                        <div className="plan-selector">
-                            {Object.keys(ROLE_PLANS).map(r => (
-                                <button
-                                    key={r}
-                                    className={`role-chip ${role === r ? 'active' : ''}`}
-                                    onClick={() => setRole(r)}
-                                >
-                                    {r}
-                                </button>
+    if (!generated) {
+        return (
+            <div className="study-plan-container">
+                <header className="study-plan-header">
+                    <h1>Personalized Study Roadmap</h1>
+                    <p>Generate a structured 6-week plan tailored to your target role</p>
+                </header>
+
+                <div className="role-selection-card">
+                    <div className="selection-header">
+                        <h3>Select Your Target Role</h3>
+                        <p>Choose from popular roles or enter a custom role</p>
+                    </div>
+
+                    {showCategories ? (
+                        <div className="role-categories">
+                            {Object.entries(ROLE_CATEGORIES).map(([category, roles]) => (
+                                <div key={category} className="category-section">
+                                    <h4 className="category-title">{category}</h4>
+                                    <div className="role-grid">
+                                        {roles.map(role => (
+                                            <button
+                                                key={role}
+                                                className={`role-button ${selectedRole === role ? 'active' : ''}`}
+                                                onClick={() => {
+                                                    setSelectedRole(role);
+                                                    setCustomRole('');
+                                                }}
+                                            >
+                                                <span className="role-name">{role}</span>
+                                                {STUDY_PLANS[role] && (
+                                                    <span className="role-badge">
+                                                        {STUDY_PLANS[role].totalHours}h
+                                                    </span>
+                                                )}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
                             ))}
                         </div>
+                    ) : null}
 
+                    <div className="custom-role-input">
+                        <label>Or enter a custom role</label>
                         <input
                             type="text"
-                            placeholder="Or type a custom role..."
-                            value={role}
-                            onChange={(e) => setRole(e.target.value)}
-                            style={{
-                                width: '100%',
-                                padding: 12,
-                                border: '1px solid var(--border-main)',
-                                borderRadius: 'var(--radius-md)',
-                                background: 'var(--bg-subtle)',
-                                color: 'var(--text-main)',
-                                fontSize: 14,
-                                marginBottom: 24
+                            placeholder="e.g., Machine Learning Engineer, Blockchain Developer..."
+                            value={customRole}
+                            onChange={(e) => {
+                                setCustomRole(e.target.value);
+                                setSelectedRole('');
                             }}
+                            className="role-input"
                         />
+                    </div>
 
-                        <Button variant="primary" size="large" onClick={handleGenerate} disabled={!role}>
-                            Generate Roadmap <ArrowRight size={18} />
-                        </Button>
+                    <button
+                        className="generate-button"
+                        onClick={handleGenerate}
+                        disabled={!selectedRole && !customRole}
+                    >
+                        Generate Roadmap <ArrowRight size={20} />
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="study-plan-container">
+            <div className="roadmap-header">
+                <div className="header-content">
+                    <button className="back-link" onClick={() => setGenerated(false)}>
+                        ← Back to Role Selection
+                    </button>
+                    <h1>{currentRole} Study Roadmap</h1>
+                    <p className="roadmap-description">{currentPlan.description}</p>
+                </div>
+
+                <div className="roadmap-stats">
+                    <div className="stat-card">
+                        <Clock size={20} />
+                        <div>
+                            <span className="stat-label">Duration</span>
+                            <span className="stat-value">{currentPlan.duration}</span>
+                        </div>
+                    </div>
+                    <div className="stat-card">
+                        <Target size={20} />
+                        <div>
+                            <span className="stat-label">Total Hours</span>
+                            <span className="stat-value">{currentPlan.totalHours}h</span>
+                        </div>
+                    </div>
+                    <div className="stat-card">
+                        <TrendingUp size={20} />
+                        <div>
+                            <span className="stat-label">Difficulty</span>
+                            <span className="stat-value">{currentPlan.difficulty}</span>
+                        </div>
+                    </div>
+                    <div className="stat-card">
+                        <Award size={20} />
+                        <div>
+                            <span className="stat-label">Progress</span>
+                            <span className="stat-value">{Math.round(progress)}%</span>
+                        </div>
                     </div>
                 </div>
-            ) : (
-                <div style={{ maxWidth: 900, margin: '0 auto' }}>
-                    <div className="dense-card" style={{ padding: 40 }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 32 }}>
-                            <div>
-                                <h2 style={{ fontSize: 20, margin: '0 0 8px 0', color: 'var(--text-main)' }}>
-                                    {role} Preparation Plan
-                                </h2>
-                                <div style={{ display: 'flex', gap: 16, fontSize: 13, color: 'var(--text-muted)' }}>
-                                    <span>📅 Duration: 6 Weeks</span>
-                                    <span>⚡ Intensity: High</span>
-                                    <span>🎯 Focus: Interview Ready</span>
-                                </div>
-                            </div>
-                            <Button variant="ghost" size="small">
-                                <Download size={16} /> Export
-                            </Button>
-                        </div>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                            {currentPlan.map((week) => (
-                                <div key={week.week} className="week-card">
+                {progress > 0 && (
+                    <div className="progress-bar-container">
+                        <div className="progress-bar">
+                            <div className="progress-fill" style={{ width: `${progress}%` }}></div>
+                        </div>
+                        <span className="progress-text">
+                            {completedWeeks.size} of {currentPlan.weeks.length} weeks completed
+                        </span>
+                    </div>
+                )}
+            </div>
+
+            <div className="weeks-container">
+                {currentPlan.weeks.map((week) => {
+                    const isExpanded = expandedWeeks.has(week.week);
+                    const isCompleted = completedWeeks.has(week.week);
+
+                    return (
+                        <div key={week.week} className={`week-card ${isCompleted ? 'completed' : ''}`}>
+                            <div className="week-header" onClick={() => toggleWeek(week.week)}>
+                                <div className="week-title-section">
                                     <div className="week-number">{week.week}</div>
-                                    <div className="week-content" style={{ flexGrow: 1 }}>
-                                        <h4>Week {week.week}: {week.topic}</h4>
-                                        <p style={{ marginBottom: 8 }}>
-                                            <strong>Focus:</strong> {week.focus}
-                                        </p>
-                                        <p style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                                            <span className="badge badge-blue">{week.resources}</span>
-                                        </p>
+                                    <div className="week-info">
+                                        <h3>Week {week.week}: {week.topic}</h3>
+                                        <p className="week-focus">{week.focus}</p>
+                                        <div className="week-meta">
+                                            <span className="meta-item">
+                                                <Clock size={14} /> {week.hours} hours
+                                            </span>
+                                        </div>
                                     </div>
+                                </div>
+                                <div className="week-actions">
                                     <button
-                                        style={{
-                                            background: 'transparent',
-                                            border: '1px solid var(--border-main)',
-                                            borderRadius: 4,
-                                            padding: '6px 12px',
-                                            cursor: 'pointer',
-                                            fontSize: 12,
-                                            color: 'var(--text-muted)'
+                                        className={`complete-button ${isCompleted ? 'completed' : ''}`}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            toggleComplete(week.week);
                                         }}
                                     >
-                                        <CheckCircle size={14} style={{ marginRight: 4 }} /> Mark Done
+                                        <CheckCircle size={18} />
+                                        {isCompleted ? 'Completed' : 'Mark Complete'}
+                                    </button>
+                                    <button className="expand-button">
+                                        {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                                     </button>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
 
-                        <div style={{ marginTop: 32, padding: 20, background: 'var(--bg-subtle)', borderRadius: 8, textAlign: 'center' }}>
-                            <p style={{ margin: '0 0 12px 0', fontSize: 13, color: 'var(--text-muted)' }}>
-                                Need a different plan?
-                            </p>
-                            <Button variant="ghost" onClick={() => setGenerated(false)}>
-                                Regenerate Roadmap
-                            </Button>
+                            {isExpanded && (
+                                <div className="week-details">
+                                    <div className="detail-section">
+                                        <h4><Calendar size={16} /> Daily Breakdown</h4>
+                                        <ul className="task-list">
+                                            {week.dailyTasks.map((task, idx) => (
+                                                <li key={idx}>{task}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div className="detail-section">
+                                        <h4><Book size={16} /> Learning Resources</h4>
+                                        <div className="resource-tags">
+                                            {week.resources.map((resource, idx) => (
+                                                <span key={idx} className="resource-tag">{resource}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="detail-section">
+                                        <h4><Target size={16} /> Projects</h4>
+                                        <ul className="project-list">
+                                            {week.projects.map((project, idx) => (
+                                                <li key={idx}>{project}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div className="detail-section assessment-section">
+                                        <h4><Award size={16} /> Week Assessment</h4>
+                                        <p className="assessment-text">{week.assessment}</p>
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    </div>
+                    );
+                })}
+            </div>
+
+            <div className="roadmap-footer">
+                <div className="footer-content">
+                    <h3>Ready to start a different path?</h3>
+                    <p>Generate a new roadmap for another role</p>
+                    <button className="regenerate-button" onClick={() => {
+                        setGenerated(false);
+                        setCompletedWeeks(new Set());
+                        setExpandedWeeks(new Set([1]));
+                    }}>
+                        Generate New Roadmap
+                    </button>
                 </div>
-            )}
+            </div>
         </div>
-    )
+    );
 }
 
-export default StudyPlan
+export default StudyPlan;

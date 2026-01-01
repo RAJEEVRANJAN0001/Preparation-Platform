@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { BrainCircuit, CheckCircle, AlertCircle, ArrowRight, RotateCw, BookOpen, Server, Globe, Network, Calculator } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { CheckCircle, AlertCircle, ArrowRight, RotateCw, ChevronRight } from 'lucide-react'
 import Button from '../components/Button'
 import PageHeader from '../components/PageHeader'
 import { quizTopics, getQuizByTopic } from '../data/quizData'
-import './Home.css' // Reusing grid styles
+import './Quiz.css'
 
 function Quiz() {
     const [activeTopic, setActiveTopic] = useState(null)
@@ -13,15 +13,10 @@ function Quiz() {
     const [showResult, setShowResult] = useState(false)
     const [quizFinished, setQuizFinished] = useState(false)
 
-    // Icons map
-    const ICONS = {
-        dsa: <BrainCircuit size={32} />,
-        os: <Server size={32} />,
-        dbms: <BookOpen size={32} />,
-        web: <Globe size={32} />,
-        cn: <Network size={32} />,
-        aptitude: <Calculator size={32} />
-    }
+    // Scroll to top when topic changes or quiz starts
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [activeTopic, quizFinished])
 
     const handleStartQuiz = (topicId) => {
         setActiveTopic(topicId)
@@ -62,31 +57,40 @@ function Quiz() {
 
     const questions = activeTopic ? getQuizByTopic(activeTopic) : []
     const currentQ = questions[currentQuestionIdx]
+    const currentTopic = quizTopics.find(t => t.id === activeTopic)
 
     return (
         <div className="app-container">
             <PageHeader
                 title="Interactive Quizzes"
-                subtitle="Test your knowledge across core engineering domains."
+                subtitle="Test your knowledge across core engineering domains with our comprehensive question bank."
+                showBack={!!activeTopic}
             />
 
             {/* Topic Selection */}
             {!activeTopic && (
-                <div className="grid-3">
-                    {quizTopics.map(topic => (
-                        <div key={topic.id} className="dense-card" style={{ cursor: 'pointer', transition: 'all 0.2s' }} onClick={() => handleStartQuiz(topic.id)}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
-                                <div style={{ color: 'var(--primary)', background: 'var(--primary-light)', padding: 12, borderRadius: 8 }}>
-                                    {ICONS[topic.id] || <BrainCircuit />}
-                                </div>
-                                <span className={`badge ${topic.difficulty === 'High' ? 'badge-orange' : 'badge-green'}`}>
+                <div>
+                    <div className="section-header">
+                        <h2>Select a Topic</h2>
+                        <p>Choose from our wide range of engineering subjects</p>
+                    </div>
+                    <div className="grid-3">
+                        {quizTopics.map(topic => (
+                            <div key={topic.id} className="topic-card" onClick={() => handleStartQuiz(topic.id)}>
+                                <span className={`topic-difficulty diff-${topic.difficulty.toLowerCase()}`}>
                                     {topic.difficulty}
                                 </span>
+                                <div className="topic-icon-wrapper">
+                                    <topic.icon size={28} />
+                                </div>
+                                <h3 className="topic-title">{topic.name}</h3>
+                                <p className="topic-desc">Test your proficiency in {topic.name} concepts.</p>
+                                <div className="topic-badge">
+                                    {topic.count} QUESTIONS
+                                </div>
                             </div>
-                            <h3 style={{ margin: '0 0 4px 0', fontSize: 16, color: 'var(--text-main)' }}>{topic.name}</h3>
-                            <p style={{ margin: 0, fontSize: 13, color: 'var(--text-muted)' }}>{topic.count} questions available</p>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             )}
 
@@ -94,63 +98,55 @@ function Quiz() {
             {activeTopic && !quizFinished && currentQ && (
                 <div style={{ maxWidth: 800, margin: '0 auto' }}>
                     {/* Progress Bar */}
-                    <div style={{ marginBottom: 24, display: 'flex', alignItems: 'center', gap: 12 }}>
-                        <Button variant="ghost" size="small" onClick={() => setActiveTopic(null)}>Exit</Button>
-                        <div style={{ flexGrow: 1, height: 4, background: 'var(--border-main)', borderRadius: 2 }}>
-                            <div style={{ width: `${((currentQuestionIdx) / questions.length) * 100}%`, height: '100%', background: 'var(--primary)', borderRadius: 2 }}></div>
+                    <div className="progress-container">
+                        <Button variant="ghost" size="small" onClick={() => setActiveTopic(null)}>Exit Quiz</Button>
+                        <div className="progress-track">
+                            <div
+                                className="progress-fill"
+                                style={{ width: `${((currentQuestionIdx) / questions.length) * 100}%` }}
+                            ></div>
                         </div>
-                        <span style={{ fontSize: 12, color: 'var(--text-muted)', fontFamily: 'monospace' }}>
-                            {currentQuestionIdx + 1} / {questions.length}
+                        <span className="progress-text">
+                            {currentQuestionIdx + 1}/{questions.length}
                         </span>
                     </div>
 
-                    <div className="dense-card" style={{ padding: 40 }}>
-                        <span className="badge badge-blue" style={{ marginBottom: 16 }}>{quizTopics.find(t => t.id === activeTopic)?.name}</span>
-                        <h2 style={{ fontSize: 20, lineHeight: 1.5, marginBottom: 32, marginTop: 12 }}>{currentQ.question}</h2>
+                    <div className="quiz-card-container">
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+                            <span className="quiz-badge">
+                                {currentTopic?.name}
+                            </span>
+                            <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                                Score: {score}
+                            </span>
+                        </div>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                        <h2 className="question-text">{currentQ.question}</h2>
+
+                        <div className="options-grid">
                             {currentQ.options.map((opt, idx) => {
-                                let borderColor = 'var(--border-main)';
-                                let bgColor = 'var(--bg-surface)';
-
+                                let cardClass = 'option-card'
                                 if (showResult) {
+                                    cardClass += ' disabled' // Disable hover effect
                                     if (idx === currentQ.answer) {
-                                        borderColor = '#10b981';
-                                        bgColor = 'rgba(16, 185, 129, 0.05)';
+                                        cardClass += ' correct'
                                     } else if (idx === selectedOption) {
-                                        borderColor = '#ef4444';
-                                        bgColor = 'rgba(239, 68, 68, 0.05)';
+                                        cardClass += ' incorrect'
                                     }
                                 } else if (selectedOption === idx) {
-                                    borderColor = 'var(--primary)';
-                                    bgColor = 'var(--bg-subtle)';
+                                    cardClass += ' selected'
                                 }
 
                                 return (
                                     <div
                                         key={idx}
                                         onClick={() => handleOptionSelect(idx)}
-                                        style={{
-                                            padding: 16,
-                                            border: `1px solid ${borderColor}`,
-                                            background: bgColor,
-                                            borderRadius: 6,
-                                            cursor: showResult ? 'default' : 'pointer',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: 12,
-                                            fontSize: 14,
-                                            transition: 'all 0.2s',
-                                            color: 'var(--text-main)'
-                                        }}
+                                        className={cardClass}
                                     >
-                                        <div style={{
-                                            width: 18, height: 18, borderRadius: '50%',
-                                            border: `1px solid ${selectedOption === idx || (showResult && idx === currentQ.answer) ? borderColor : 'var(--text-faint)'}`,
-                                            display: 'flex', alignItems: 'center', justifyContent: 'center'
-                                        }}>
-                                            {(showResult && idx === currentQ.answer) && <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#10b981' }}></div>}
-                                            {(!showResult && selectedOption === idx) && <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--primary)' }}></div>}
+                                        <div className="option-indicator">
+                                            {showResult && idx === currentQ.answer && <CheckCircle size={14} color="#fff" />}
+                                            {showResult && idx === selectedOption && idx !== currentQ.answer && <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#fff' }} />}
+                                            {!showResult && selectedOption === idx && <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#fff' }} />}
                                         </div>
                                         {opt}
                                     </div>
@@ -158,21 +154,23 @@ function Quiz() {
                             })}
                         </div>
 
-                        <div style={{ marginTop: 32, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            {showResult && (
-                                <p style={{ margin: 0, fontSize: 13, color: 'var(--text-muted)' }}>
-                                    <span style={{ fontWeight: 600 }}>Explanation:</span> {currentQ.explanation}
-                                </p>
-                            )}
-                            <div style={{ display: 'flex', gap: 12, marginLeft: 'auto' }}>
-                                {!showResult ? (
-                                    <Button variant="primary" onClick={handleSubmitAnswer} disabled={selectedOption === null}>Check Answer</Button>
-                                ) : (
-                                    <Button variant="primary" onClick={handleNextQuestion}>
-                                        {currentQuestionIdx + 1 === questions.length ? 'Finish Quiz' : 'Next'} <ArrowRight size={16} />
-                                    </Button>
-                                )}
+                        {showResult && (
+                            <div className="explanation-box">
+                                <div className="explanation-title">Explanation</div>
+                                <p className="explanation-text">{currentQ.explanation}</p>
                             </div>
+                        )}
+
+                        <div style={{ marginTop: 32, display: 'flex', justifyContent: 'flex-end' }}>
+                            {!showResult ? (
+                                <Button variant="primary" onClick={handleSubmitAnswer} disabled={selectedOption === null}>
+                                    Check Answer
+                                </Button>
+                            ) : (
+                                <Button variant="primary" onClick={handleNextQuestion}>
+                                    {currentQuestionIdx + 1 === questions.length ? 'Finish Quiz' : 'Next Question'} <ArrowRight size={16} style={{ marginLeft: 8 }} />
+                                </Button>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -180,20 +178,37 @@ function Quiz() {
 
             {/* Results */}
             {quizFinished && (
-                <div style={{ maxWidth: 500, margin: '40px auto', textAlign: 'center' }}>
-                    <div className="dense-card" style={{ padding: 40 }}>
-                        <div style={{ width: 64, height: 64, background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px auto' }}>
-                            <CheckCircle size={32} />
-                        </div>
-                        <h2 style={{ marginBottom: 8 }}>Quiz Complete</h2>
-                        <p style={{ color: 'var(--text-muted)', marginBottom: 32 }}>
-                            You scored <strong>{score}</strong> out of {questions.length}
-                        </p>
-                        <Button variant="primary" onClick={() => setActiveTopic(null)}>Back to Topics</Button>
+                <div className="results-container">
+                    <div className="score-circle">
+                        <span className="score-number">{score}</span>
+                        <span className="score-total">out of {questions.length}</span>
+                    </div>
+
+                    <h2 className="result-message">
+                        {score === questions.length ? 'Perfect Score! 🌟' :
+                            score > questions.length * 0.8 ? 'Excellent Work! 🎉' :
+                                score > questions.length * 0.5 ? 'Good Effort! 👍' : 'Keep Practicing! 💪'}
+                    </h2>
+                    <p className="result-subtext">
+                        You've completed the {currentTopic?.name} quiz. Review the notes to improve your score.
+                    </p>
+
+                    <div className="action-buttons">
+                        <Button variant="secondary" onClick={() => {
+                            setQuizFinished(false)
+                            setCurrentQuestionIdx(0)
+                            setScore(0)
+                            setShowResult(false)
+                            setSelectedOption(null)
+                        }}>
+                            <RotateCw size={16} /> Retry Quiz
+                        </Button>
+                        <Button variant="primary" onClick={() => setActiveTopic(null)}>
+                            Explore Other Topics <ChevronRight size={16} />
+                        </Button>
                     </div>
                 </div>
             )}
-
         </div>
     )
 }
