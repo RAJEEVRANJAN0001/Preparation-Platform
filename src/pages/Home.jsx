@@ -138,23 +138,23 @@ function Home() {
           <p style={{ fontSize: 14, color: 'var(--text-muted)', margin: '4px 0 0 0' }}>Start learning these high-priority topics</p>
         </div>
 
-        <div className="topics-list">
+        <div className="recommended-topics-grid">
           {upcomingTopics.map((topic, idx) => (
             <Link
               key={idx}
               to={`/topic/${topic.id}`}
-              className="topic-card"
+              className="recommended-topic-card"
               style={{ textDecoration: 'none' }}
             >
-              <div className="topic-header">
+              <div className="recommended-topic-header">
                 <h4>{topic.title}</h4>
-                <span className={`badge badge-${topic.difficulty === 'Hard' ? 'orange' : 'blue'}`}>
+                <span className={`recommended-badge recommended-badge-${topic.difficulty === 'Hard' ? 'orange' : 'blue'}`}>
                   {topic.difficulty}
                 </span>
               </div>
-              <div className="topic-meta">
-                <span className="badge badge-purple">{topic.category}</span>
-                <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, color: 'var(--text-muted)' }}>
+              <div className="recommended-topic-meta">
+                <span className="recommended-badge recommended-badge-purple">{topic.category}</span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, color: 'var(--text-muted)' }}>
                   <Clock size={12} /> {topic.time}
                 </span>
               </div>

@@ -210,12 +210,7 @@
     }
 }
 
-/* Topics List */
-.topics-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+/* Topics List - Now defined below with grid layout */
 
 .topic-card {
     background: var(--bg-surface);
@@ -599,99 +594,124 @@
 }
 
 
-/* Enhanced Topics List */
-.topics-list {
+/* ========================================
+   RECOMMENDED TOPICS - UNIQUE ISOLATED DESIGN
+   ======================================== */
+
+/* Grid Container */
+.recommended-topics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
     margin-bottom: 32px;
+    width: 100%;
+    max-width: 100%;
 }
 
-.topic-card {
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border: 1px solid var(--border-subtle);
-    border-radius: 20px;
-    padding: 24px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+@media (max-width: 768px) {
+    .recommended-topics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Card Styling */
+.recommended-topic-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-main);
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: all 0.3s ease;
     cursor: pointer;
-    box-shadow: none;
-    position: relative;
-    overflow: hidden;
     text-decoration: none;
     display: block;
+    position: relative;
+    overflow: hidden;
 }
 
-.topic-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
-    border-color: rgba(59, 130, 246, 0.4);
-}
-
-/* Dark Theme - Premium Look */
-[data-theme='dark'] .topic-card {
-    background: transparent;
-    border: 1px solid var(--border-subtle);
-    box-shadow: none;
-}
-
-[data-theme='dark'] .topic-card:hover {
-    transform: translateY(-6px);
+.recommended-topic-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     border-color: var(--primary);
-    background: transparent;
 }
 
-/* Difficulty Strip on the side */
-.topic-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
-    opacity: 0.7;
-    transition: width 0.3s;
+[data-theme='dark'] .recommended-topic-card {
+    background: rgba(30, 30, 30, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
-.topic-card:hover::before {
-    width: 6px;
-    opacity: 1;
+[data-theme='dark'] .recommended-topic-card:hover {
+    background: rgba(40, 40, 40, 0.7);
+    border-color: var(--primary);
 }
 
-.topic-header {
+/* Header Section */
+.recommended-topic-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     gap: 12px;
 }
 
-.topic-header h4 {
-    font-size: 18px;
-    font-weight: 700;
+.recommended-topic-header h4 {
+    font-size: 15px;
+    font-weight: 600;
     margin: 0;
     color: var(--text-main);
     line-height: 1.4;
     flex: 1;
 }
 
-[data-theme='dark'] .topic-header h4 {
-    color: #f1f5f9;
-}
-
-.topic-meta {
+/* Meta Section */
+.recommended-topic-meta {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     align-items: center;
     flex-wrap: wrap;
-    padding-top: 12px;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-[data-theme='dark'] .topic-meta {
-    border-top-color: rgba(255, 255, 255, 0.05);
+/* Badges */
+.recommended-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+}
+
+.recommended-badge-blue {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.recommended-badge-orange {
+    background: rgba(249, 115, 22, 0.1);
+    color: #f97316;
+    border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.recommended-badge-purple {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8b5cf6;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+[data-theme='dark'] .recommended-badge-blue {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+}
+
+[data-theme='dark'] .recommended-badge-orange {
+    background: rgba(249, 115, 22, 0.15);
+    color: #fb923c;
+}
+
+[data-theme='dark'] .recommended-badge-purple {
+    background: rgba(139, 92, 246, 0.15);
+    color: #a78bfa;
 }
 
 /* Badge Tweaks */

@@ -70,22 +70,22 @@ function Quiz() {
             {/* Topic Selection */}
             {!activeTopic && (
                 <div>
-                    <div className="section-header">
+                    <div className="quiz-section-header">
                         <h2>Select a Topic</h2>
                         <p>Choose from our wide range of engineering subjects</p>
                     </div>
-                    <div className="grid-3">
+                    <div className="quiz-topics-grid">
                         {quizTopics.map(topic => (
-                            <div key={topic.id} className="topic-card" onClick={() => handleStartQuiz(topic.id)}>
-                                <span className={`topic-difficulty diff-${topic.difficulty.toLowerCase()}`}>
+                            <div key={topic.id} className="quiz-topic-card" onClick={() => handleStartQuiz(topic.id)}>
+                                <span className={`quiz-difficulty-badge diff-${topic.difficulty.toLowerCase()}`}>
                                     {topic.difficulty}
                                 </span>
-                                <div className="topic-icon-wrapper">
-                                    <topic.icon size={28} />
+                                <div className="quiz-icon-wrapper">
+                                    <topic.icon size={24} />
                                 </div>
-                                <h3 className="topic-title">{topic.name}</h3>
-                                <p className="topic-desc">Test your proficiency in {topic.name} concepts.</p>
-                                <div className="topic-badge">
+                                <h3 className="quiz-card-title">{topic.name}</h3>
+                                <p className="quiz-card-desc">Test your proficiency in {topic.name} concepts.</p>
+                                <div className="quiz-count-badge">
                                     {topic.count} QUESTIONS
                                 </div>
                             </div>
