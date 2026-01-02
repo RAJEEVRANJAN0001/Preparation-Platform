@@ -4,9 +4,9 @@ import './Landing.css'
 
 function Landing() {
     const stats = [
-        { number: '175+', label: 'Interview Questions' },
-        { number: '50+', label: 'Study Resources' },
-        { number: '5', label: 'Career Paths' },
+        { number: '600+', label: 'Practice Problems' },
+        { number: '600+', label: 'Quiz Questions' },
+        { number: '20+', label: 'Career Paths' },
         { number: '∞', label: 'AI-Powered Practice' }
     ]
 
