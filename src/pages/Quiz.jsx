@@ -55,6 +55,15 @@ function Quiz() {
         }
     }
 
+    const handleBackToSelection = () => {
+        setActiveTopic(null)
+        setCurrentQuestionIdx(0)
+        setScore(0)
+        setQuizFinished(false)
+        setShowResult(false)
+        setSelectedOption(null)
+    }
+
     const questions = activeTopic ? getQuizByTopic(activeTopic) : []
     const currentQ = questions[currentQuestionIdx]
     const currentTopic = quizTopics.find(t => t.id === activeTopic)
@@ -65,6 +74,7 @@ function Quiz() {
                 title="Interactive Quizzes"
                 subtitle="Test your knowledge across core engineering domains with our comprehensive question bank."
                 showBack={!!activeTopic}
+                onBack={handleBackToSelection}
             />
 
             {/* Topic Selection */}
