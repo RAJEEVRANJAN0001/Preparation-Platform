@@ -91,6 +91,216 @@ export const quizzes = {
             options: ["DFS", "BFS", "Dijkstra", "Prim's"],
             answer: 1,
             explanation: "Breadth-First Search (BFS) uses a Queue to explore neighbors level by level."
+        },
+        {
+            id: 11,
+            question: "What is the average time complexity of inserting into a Hash Table?",
+            options: ["O(n)", "O(log n)", "O(1)", "O(n²)"],
+            answer: 2,
+            explanation: "Hash tables provide O(1) average time complexity for insertion, assuming a good hash function."
+        },
+        {
+            id: 12,
+            question: "Which data structure is used to implement the 'Undo' feature in editors?",
+            options: ["Queue", "Stack", "LinkedList", "Tree"],
+            answer: 1,
+            explanation: "A Stack (LIFO) is ideal for storing previous states to allow undo operations."
+        },
+        {
+            id: 13,
+            question: "What is the maximum number of children a node in a binary tree can have?",
+            options: ["1", "2", "3", "Any number"],
+            answer: 1,
+            explanation: "By definition, a binary tree node can have at most 2 children."
+        },
+        {
+            id: 14,
+            question: "Which sorting algorithm has the best worst-case time complexity?",
+            options: ["QuickSort", "BubbleSort", "MergeSort", "SelectionSort"],
+            answer: 2,
+            explanation: "MergeSort guarantees O(n log n) even in the worst case, unlike QuickSort's O(n²)."
+        },
+        {
+            id: 15,
+            question: "What is the primary advantage of a Linked List over an Array?",
+            options: ["Faster access", "Dynamic size", "Cache locality", "Less memory"],
+            answer: 1,
+            explanation: "Linked lists can grow and shrink dynamically, whereas arrays have a fixed size."
+        },
+        {
+            id: 16,
+            question: "In a min-heap, where is the smallest element located?",
+            options: ["Leaf node", "Root", "Last node", "Randomly"],
+            answer: 1,
+            explanation: "In a min-heap, the root always contains the minimum element."
+        },
+        {
+            id: 17,
+            question: "Which traversal visits the root node last?",
+            options: ["Pre-order", "In-order", "Post-order", "Level-order"],
+            answer: 2,
+            explanation: "Post-order traversal visits left subtree, right subtree, then the root."
+        },
+        {
+            id: 18,
+            question: "What is the purpose of 'sentinel' nodes in a linked list?",
+            options: ["Store data", "Simplify boundary conditions", "Increase speed", "Save memory"],
+            answer: 1,
+            explanation: "Dummy/sentinel nodes simplify edge cases like inserting/deleting at the head or tail."
+        },
+        {
+            id: 19,
+            question: "Which data structure is efficient for prefix searching?",
+            options: ["Hash Table", "Trie", "Binary Tree", "Graph"],
+            answer: 1,
+            explanation: "A Trie (Prefix Tree) is optimized for prefix-based searches like autocomplete."
+        },
+        {
+            id: 20,
+            question: "What is the time complexity of Topsort (Topological Sort)?",
+            options: ["O(V+E)", "O(V*E)", "O(V^2)", "O(E log V)"],
+            answer: 0,
+            explanation: "Topological sort using DFS or Khan's algorithm runs in O(V + E) time."
+        },
+        {
+            id: 21,
+            question: "Which of these is a greedy algorithm?",
+            options: ["Merge Sort", "Dijkstra's Algorithm", "Floyd Warshall", "Bellman Ford"],
+            answer: 1,
+            explanation: "Dijkstra's is a greedy algorithm as it always chooses the nearest unvisited node."
+        },
+        {
+            id: 22,
+            question: "What is the degree of a leaf node in a tree?",
+            options: ["0", "1", "2", "Undefined"],
+            answer: 1,
+            explanation: "A leaf node is connected to only its parent (in a standard tree view), so degree 1. In directed/rooted, out-degree is 0."
+        },
+        {
+            id: 23,
+            question: "What does 'FIFO' stand for?",
+            options: ["First In First Out", "Fast In Fast Out", "First Input First Output", "None"],
+            answer: 0,
+            explanation: "FIFO is the principle used by Queues."
+        },
+        {
+            id: 24,
+            question: "How many edges are in a Minimum Spanning Tree (MST) with V vertices?",
+            options: ["V", "V-1", "V+1", "E-1"],
+            answer: 1,
+            explanation: "An MST is a tree connecting all vertices, so it always has V-1 edges."
+        },
+        {
+            id: 25,
+            question: "Which data structure is used for Breadth-First Search?",
+            options: ["Stack", "Queue", "Heap", "Hash Map"],
+            answer: 1,
+            explanation: "BFS uses a Queue to track nodes to visit layer by layer."
+        },
+        {
+            id: 26,
+            question: "Which data structure is used for Depth-First Search?",
+            options: ["Stack", "Queue", "Heap", "Hash Map"],
+            answer: 0,
+            explanation: "DFS uses a Stack (either explicit or via recursion)."
+        },
+        {
+            id: 27,
+            question: "What is a circular queue?",
+            options: ["A queue that never ends", "A queue where last position connects to first", "A priority queue", "A stack"],
+            answer: 1,
+            explanation: "In a circular queue, the last position is connected back to the first to optimize space."
+        },
+        {
+            id: 28,
+            question: "What is the worst-case time for bubble sort?",
+            options: ["O(n)", "O(n log n)", "O(n²)", "O(1)"],
+            answer: 2,
+            explanation: "Bubble sort has nested loops, leading to O(n²) comparisons."
+        },
+        {
+            id: 29,
+            question: "What is a Priority Queue?",
+            options: ["Queue with priorities", "Faster queue", "Stack", "Array"],
+            answer: 0,
+            explanation: "A queue where each element has a priority; high priority elements are served before lower ones."
+        },
+        {
+            id: 30,
+            question: "Which sorting algorithm uses a pivot?",
+            options: ["Merge Sort", "Quick Sort", "Insertion Sort", "Selection Sort"],
+            answer: 1,
+            explanation: "Quick Sort partitions the array around a chosen pivot element."
+        },
+        {
+            id: 31,
+            question: "What is the space complexity of DFS?",
+            options: ["O(V)", "O(V+E)", "O(1)", "O(log V)"],
+            answer: 0,
+            explanation: "The space complexity is O(V) due to the recursion stack or explicit stack in worst case."
+        },
+        {
+            id: 32,
+            question: "Which is not a linear data structure?",
+            options: ["Array", "Linked List", "Stack", "Tree"],
+            answer: 3,
+            explanation: "Trees are hierarchical (non-linear) data structures."
+        },
+        {
+            id: 33,
+            question: "Time complexity to access the nth element in a linked list?",
+            options: ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+            answer: 1,
+            explanation: "You must traverse from the head to the nth node, taking O(n) time."
+        },
+        {
+            id: 34,
+            question: "Which algo finds strongly connected components?",
+            options: ["Prim's", "Kosaraju's", "Kruskal's", "Dijkstra"],
+            answer: 1,
+            explanation: "Kosaraju's algorithm (and Tarjan's) is used to find SCCs in a graph."
+        },
+        {
+            id: 35,
+            question: "What is a Full Binary Tree?",
+            options: ["Every node has 0 or 2 children", "Every level is full", "Height is minimal", "None"],
+            answer: 0,
+            explanation: "In a full binary tree, every node has either 0 or 2 children."
+        },
+        {
+            id: 36,
+            question: "What is the main advantage of B-Trees?",
+            options: ["Fast in-memory", "Optimized for disk storage", "Simple to implement", "Uses less space"],
+            answer: 1,
+            explanation: "B-Trees are optimized for systems that read/write large blocks of data (databases, filesystems)."
+        },
+        {
+            id: 37,
+            question: "What is a sparse matrix?",
+            options: ["Matrix with many zeros", "Matrix with few zeros", "Matrix with no zeros", "Identity matrix"],
+            answer: 0,
+            explanation: "A sparse matrix is a matrix in which most of the elements are zero."
+        },
+        {
+            id: 38,
+            question: "Which complexity class represents problems solvable in polynomial time?",
+            options: ["NP", "P", "NP-Complete", "NP-Hard"],
+            answer: 1,
+            explanation: "P is the class of decision problems solvable by a deterministic Turing machine in polynomial time."
+        },
+        {
+            id: 39,
+            question: "What is dynamic programming?",
+            options: ["Running code dynamically", "Solving problems by breaking into overlapping subproblems", "Randomized algo", "Iterative algo"],
+            answer: 1,
+            explanation: "DP solves complex problems by breaking them into simpler subproblems and storing their solutions."
+        },
+        {
+            id: 40,
+            question: "In a stack, push and pop are?",
+            options: ["O(n)", "O(1)", "O(log n)", "O(n²)"],
+            answer: 1,
+            explanation: "Push and pop operations in a stack only affect the top element, taking O(1) time."
         }
         // ... (Assume 30 more questions added here for a total of 40)
     ],
@@ -129,6 +339,216 @@ export const quizzes = {
             options: ["High CPU usage", "Excessive paging activity", "Disk failure", "Network congestion"],
             answer: 1,
             explanation: "Thrashing occurs when the system spends more time swapping pages than executing tasks."
+        },
+        {
+            id: 6,
+            question: "What is a 'deadlock'?",
+            options: ["System shutdown", "Processes waiting indefinitely for each other", "Memory leak", "CPU idle"],
+            answer: 1,
+            explanation: "Deadlock is a situation where a set of processes are blocked because each process is holding a resource and waiting for another resource acquired by some other process."
+        },
+        {
+            id: 7,
+            question: "Which of the following is NOT a condition for deadlock?",
+            options: ["Mutual Exclusion", "Hold and Wait", "No Preemption", "Context Switching"],
+            answer: 3,
+            explanation: "The four Coffman conditions are Mutual Exclusion, Hold and Wait, No Preemption, and Circular Wait."
+        },
+        {
+            id: 8,
+            question: "What is Virtual Memory?",
+            options: ["Cloud storage", "Illusion of large main memory", "RAM", "Cache"],
+            answer: 1,
+            explanation: "Virtual memory maps memory addresses used by a program, called virtual addresses, into physical addresses in computer memory."
+        },
+        {
+            id: 9,
+            question: "What is a Sephamores?",
+            options: ["Hardware device", "Synchronization variable", "Scheduling algorithm", "File system"],
+            answer: 1,
+            explanation: "A semaphore is a variable or abstract data type used to control access to a common resource by multiple processes."
+        },
+        {
+            id: 10,
+            question: "Which command runs a process in the background in Unix/Linux?",
+            options: ["&", "*", "$", "#"],
+            answer: 0,
+            explanation: "Appending '&' to a command runs it in the background."
+        },
+        {
+            id: 11,
+            question: "What is a 'Kernel'?",
+            options: ["Shell", "Core part of OS", "Application", "CPU"],
+            answer: 1,
+            explanation: "The kernel is the essential center of a computer operating system, the core that provides basic services for all other parts of the OS."
+        },
+        {
+            id: 12,
+            question: "What is 'paging'?",
+            options: ["Sending messages", "Memory management scheme", "Disk scheduling", "Process scheduling"],
+            answer: 1,
+            explanation: "Paging retrieves data from secondary storage for use in main memory."
+        },
+        {
+            id: 13,
+            question: "Which of these is a file system?",
+            options: ["NTFS", "HTTP", "FTP", "DNS"],
+            answer: 0,
+            explanation: "NTFS (New Technology File System) is the file system that the Windows NT operating system uses for storing and retrieving files."
+        },
+        {
+            id: 14,
+            question: "What is 'Spooling'?",
+            options: ["Sending email", "Simultaneous Peripheral Operations On-line", "System Pools", "None"],
+            answer: 1,
+            explanation: "Spooling is a process in which data is temporarily held to be used and executed by a device, program or the system."
+        },
+        {
+            id: 15,
+            question: "Which algorithm deals with page replacement?",
+            options: ["LRU", "BFS", "Round Robin", "Dijkstra"],
+            answer: 0,
+            explanation: "LRU (Least Recently Used) is a common page replacement algorithm."
+        },
+        {
+            id: 16,
+            question: "What is a System Call?",
+            options: ["Calling tech support", "Programmatic way for a program to request service from kernel", "Function call", "API call"],
+            answer: 1,
+            explanation: "A system call is how a program requests a service from the operating system's kernel."
+        },
+        {
+            id: 17,
+            question: "What is 'fragmentation'?",
+            options: ["Breaking disk", "Wasted memory space", "Deleting files", "Slow CPU"],
+            answer: 1,
+            explanation: "Fragmentation is when storage space is used inefficiently, reducing capacity or performance."
+        },
+        {
+            id: 18,
+            question: "Which is a type of Real-Time OS?",
+            options: ["Hard", "Soft", "Firm", "All of the above"],
+            answer: 3,
+            explanation: "Real-time operating systems can be Hard, Soft, or Firm depending on constraint strictness."
+        },
+        {
+            id: 19,
+            question: "What is 'Busy Waiting'?",
+            options: ["Waiting in queue", "Process repeatedly checking a condition", "System idle", "Waiting for I/O"],
+            answer: 1,
+            explanation: "Busy waiting occurs when a process repeatedly checks to see if a condition is true, consuming CPU."
+        },
+        {
+            id: 20,
+            question: "What is a 'zombie' process?",
+            options: ["Virus", "Process that has completed execution but still has an entry in process table", "Sleeping process", "Running process"],
+            answer: 1,
+            explanation: "A zombie process involves a process that has completed execution but hasn't been reaped by its parent."
+        },
+        {
+            id: 21,
+            question: "What is a 'thread'?",
+            options: ["String", "Lightweight process", "Cable", "Wire"],
+            answer: 1,
+            explanation: "A thread is the smallest sequence of programmed instructions that can be managed independently by a scheduler."
+        },
+        {
+            id: 22,
+            question: "Banker's Algorithm is used for?",
+            options: ["Banking", "Deadlock Avoidance", "Sorting", "Searching"],
+            answer: 1,
+            explanation: "The Banker's algorithm is a resource allocation and deadlock avoidance algorithm."
+        },
+        {
+            id: 23,
+            question: "What is 'throughput'?",
+            options: ["Network speed", "Number of processes completed per time unit", "Disk size", "Memory speed"],
+            answer: 1,
+            explanation: "Throughput is the number of units of information a system can process in a given amount of time."
+        },
+        {
+            id: 24,
+            question: "Which memory is volatile?",
+            options: ["ROM", "RAM", "HDD", "Flash"],
+            answer: 1,
+            explanation: "RAM (Random Access Memory) loses its data when power is turned off."
+        },
+        {
+            id: 25,
+            question: "What is 'Belady's Anomaly'?",
+            options: ["More frames leading to more page faults", "Less frames leading to more page faults", "System crash", "Deadlock"],
+            answer: 0,
+            explanation: "It is the phenomenon in which increasing the number of page frames results in an increase in the number of page faults."
+        },
+        {
+            id: 26,
+            question: "What is a 'race condition'?",
+            options: ["Running race", "Output depends on sequence of timing", "Car race", "None"],
+            answer: 1,
+            explanation: "A race condition occurs when a software system's behavior depends on the timing of uncontrollable events."
+        },
+        {
+            id: 27,
+            question: "Which component performs arithmetic logic?",
+            options: ["CU", "ALU", "MU", "Bus"],
+            answer: 1,
+            explanation: "ALU (Arithmetic Logic Unit) performs arithmetic and logical operations."
+        },
+        {
+            id: 28,
+            question: "What is 'BIOS'?",
+            options: ["Basic Input Output System", "Binary Input Output System", "Basic Integrated Operating System", "None"],
+            answer: 0,
+            explanation: "BIOS is non-volatile firmware used to perform hardware initialization during the booting process."
+        },
+        {
+            id: 29,
+            question: "What is 'swapping'?",
+            options: ["Exchanging data", "Moving process between main memory and disk", "Trading", "Networking"],
+            answer: 1,
+            explanation: "Swapping is a mechanism in which a process can be swapped temporarily out of main memory to a backing store."
+        },
+        {
+            id: 30,
+            question: "Who developed Linux?",
+            options: ["Steve Jobs", "Bill Gates", "Linus Torvalds", "Dennis Ritchie"],
+            answer: 2,
+            explanation: "Linus Torvalds developed the Linux kernel."
+        },
+        {
+            id: 31,
+            question: "Difference between multiprogramming and multitasking?",
+            options: ["None", "Multitasking is logical extension of multiprogramming", "Multiprogramming is fast", "Multitasking is single user"],
+            answer: 1,
+            explanation: "Multitasking is the logical extension of multiprogramming, where CPU switches jobs so frequently that users can interact with each."
+        },
+        {
+            id: 32,
+            question: "What is a 'daemon'?",
+            options: ["Virus", "Background process", "Game", "User program"],
+            answer: 1,
+            explanation: "A daemon is a computer program that runs as a background process, rather than being under the direct control of an interactive user."
+        },
+        {
+            id: 33,
+            question: "What does 'RAID' stand for?",
+            options: ["Redundant Array of Independent Disks", "Rapid Access of Indexed Data", "Random Array of Internet Data", "None"],
+            answer: 0,
+            explanation: "RAID is a data storage virtualization technology that combines multiple physical disk drive components."
+        },
+        {
+            id: 34,
+            question: "What is 'Inter-Process Communication' (IPC)?",
+            options: ["Internet", "Processes exchanging data", "Internal protocol", "None"],
+            answer: 1,
+            explanation: "IPC refers to the mechanisms an operating system provides to allow the processes to manage shared data."
+        },
+        {
+            id: 35,
+            question: "Which is a monolithic kernel example?",
+            options: ["Linux", "Minix", "Mach", "QNX"],
+            answer: 0,
+            explanation: "Linux uses a monolithic kernel, where the entire operating system works in kernel space."
         }
         // ... (More OS questions)
     ],
@@ -167,6 +587,216 @@ export const quizzes = {
             options: ["Moving declarations to top", "Lifting weights", "Scaling apps", "Linking files"],
             answer: 0,
             explanation: "Hoisting is JavaScript's behavior of moving declarations to the top of the current scope."
+        },
+        {
+            id: 6,
+            question: "What does CSS stand for?",
+            options: ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"],
+            answer: 1,
+            explanation: "CSS stands for Cascading Style Sheets."
+        },
+        {
+            id: 7,
+            question: "Where in an HTML document is the correct place to refer to an external style sheet?",
+            options: ["In the <body> section", "At the end of the document", "In the <head> section", "In the <title> section"],
+            answer: 2,
+            explanation: "External style sheets are referenced in the <head> section using the <link> tag."
+        },
+        {
+            id: 8,
+            question: "Which HTML tag is used to define an internal style sheet?",
+            options: ["<style>", "<script>", "<css>", "<design>"],
+            answer: 0,
+            explanation: "The <style> tag is used to define internal CSS."
+        },
+        {
+            id: 9,
+            question: "Which HTML attribute is used to define inline styles?",
+            options: ["class", "style", "font", "styles"],
+            answer: 1,
+            explanation: "The 'style' attribute is used to define inline CSS."
+        },
+        {
+            id: 10,
+            question: "Which is the correct CSS syntax?",
+            options: ["body:color=black;", "{body;color:black;}", "body {color: black;}", "{body:color=black;}"],
+            answer: 2,
+            explanation: "The correct syntax is selector {property: value;}."
+        },
+        {
+            id: 11,
+            question: "How do you insert a comment in a CSS file?",
+            options: ["// this is a comment", "/* this is a comment */", "' this is a comment", "// this is a comment //"],
+            answer: 1,
+            explanation: "CSS comments start with /* and end with */."
+        },
+        {
+            id: 12,
+            question: "Which property is used to change the background color?",
+            options: ["color", "bgcolor", "background-color", "back-color"],
+            answer: 2,
+            explanation: "The background-color property sets the background color of an element."
+        },
+        {
+            id: 13,
+            question: "How do you add a background color for all <h1> elements?",
+            options: ["all.h1 {background-color:#FFFFFF;}", "h1.all {background-color:#FFFFFF;}", "h1 {background-color:#FFFFFF;}", ".h1 {background-color:#FFFFFF;}"],
+            answer: 2,
+            explanation: "The selector h1 targets all <h1> elements."
+        },
+        {
+            id: 14,
+            question: "Which CSS property is used to change the text color of an element?",
+            options: ["text-color", "fgcolor", "color", "font-color"],
+            answer: 2,
+            explanation: "The 'color' property is used to set the color of the text."
+        },
+        {
+            id: 15,
+            question: "Which CSS property controls the text size?",
+            options: ["font-style", "text-size", "font-size", "text-style"],
+            answer: 2,
+            explanation: "The font-size property sets the size of the text."
+        },
+        {
+            id: 16,
+            question: "What is the correct HTML for creating a hyperlink?",
+            options: ["<a href='http://www.w3schools.com'>W3Schools</a>", "<a name='http://www.w3schools.com'>W3Schools.com</a>", "<a url='http://www.w3schools.com'>W3Schools.com</a>", "<a>http://www.w3schools.com</a>"],
+            answer: 0,
+            explanation: "The <a> tag with the 'href' attribute creates a hyperlink."
+        },
+        {
+            id: 17,
+            question: "Which character is used to indicate an end tag?",
+            options: ["/", "*", "^", "<"],
+            answer: 0,
+            explanation: "End tags start with a forward slash, e.g., </div>."
+        },
+        {
+            id: 18,
+            question: "How can you open a link in a new tab/browser window?",
+            options: ["<a href='url' target='new'>", "<a href='url' target='_blank'>", "<a href='url' new>", "<a href='url' target='_new'>"],
+            answer: 1,
+            explanation: "target='_blank' specifies that the link should open in a new window or tab."
+        },
+        {
+            id: 19,
+            question: "Which HTML element defines navigation links?",
+            options: ["<nav>", "<navigation>", "<navigate>", "<link>"],
+            answer: 0,
+            explanation: "The <nav> tag defines a set of navigation links."
+        },
+        {
+            id: 20,
+            question: "In HTML, what does the <aside> element define?",
+            options: ["Content aside from the page content", "The main content", "Navigation", "Footer"],
+            answer: 0,
+            explanation: "The <aside> element defines content aside from the content it is placed in (like a sidebar)."
+        },
+        {
+            id: 21,
+            question: "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+            options: ["title", "alt", "src", "longdesc"],
+            answer: 1,
+            explanation: "The 'alt' attribute provides alternative text for an image."
+        },
+        {
+            id: 22,
+            question: "Who is making the Web standards?",
+            options: ["Google", "Microsoft", "Mozilla", "The World Wide Web Consortium (W3C)"],
+            answer: 3,
+            explanation: "The W3C is the main international standards organization for the World Wide Web."
+        },
+        {
+            id: 23,
+            question: "Choose the correct HTML element for the largest heading:",
+            options: ["<heading>", "<h1>", "<h6>", "<head>"],
+            answer: 1,
+            explanation: "<h1> defines the most important heading."
+        },
+        {
+            id: 24,
+            question: "What is the correct HTML for inserting a line break?",
+            options: ["<br>", "<lb>", "<break>", "<newline>"],
+            answer: 0,
+            explanation: "<br> inserts a single line break."
+        },
+        {
+            id: 25,
+            question: "What is the correct HTML for adding a background color?",
+            options: ["<body bg='yellow'>", "<body style='background-color:yellow;'>", "<background>yellow</background>", "<body background='yellow'>"],
+            answer: 1,
+            explanation: "Using inline CSS style='background-color:yellow;' is the correct modern way."
+        },
+        {
+            id: 26,
+            question: "Choose the correct HTML element to define important text",
+            options: ["<b>", "<i>", "<strong>", "<important>"],
+            answer: 2,
+            explanation: "The <strong> tag is used to define text with strong importance."
+        },
+        {
+            id: 27,
+            question: "Which character is used to indicate an ID in CSS?",
+            options: [".", "#", "*", "%"],
+            answer: 1,
+            explanation: "The hash symbol (#) is used to select elements with a specific ID."
+        },
+        {
+            id: 28,
+            question: "How do you select an element with id 'demo'?",
+            options: [".demo", "demo", "#demo", "*demo"],
+            answer: 2,
+            explanation: "#demo selects the element with id='demo'."
+        },
+        {
+            id: 29,
+            question: "How do you select all p elements inside a div element?",
+            options: ["div.p", "div p", "div + p", "div > p"],
+            answer: 1,
+            explanation: "'div p' selects all <p> elements that are descendants of a <div> element."
+        },
+        {
+            id: 30,
+            question: "How do you group selectors?",
+            options: ["Separate each selector with a space", "Separate each selector with a comma", "Separate each selector with a plus sign", "Separate each selector with a hyphen"],
+            answer: 1,
+            explanation: "You can group selectors by separating them with a comma (e.g., h1, h2, p)."
+        },
+        {
+            id: 31,
+            question: "What is the default value of the position property?",
+            options: ["relative", "fixed", "absolute", "static"],
+            answer: 3,
+            explanation: "static is the default position value."
+        },
+        {
+            id: 32,
+            question: "Which HTTP method is idempotent?",
+            options: ["POST", "GET", "PATCH", "CONNECT"],
+            answer: 1,
+            explanation: "GET (and PUT, DELETE) methods are idempotent, meaning multiple identical requests have the same effect as a single one."
+        },
+        {
+            id: 33,
+            question: "What does '404' mean?",
+            options: ["Server Error", "Forbidden", "Not Found", "Bad Request"],
+            answer: 2,
+            explanation: "404 Not Found indicates that the server cannot find the requested resource."
+        },
+        {
+            id: 34,
+            question: "What is localStorage?",
+            options: ["Server storage", "Session based storage", "Persistent browser storage", "Cookie"],
+            answer: 2,
+            explanation: "localStorage allows storing key-value pairs in the browser with no expiration time."
+        },
+        {
+            id: 35,
+            question: "What is the Box Model?",
+            options: ["Layout concept", "Programming pattern", "Database model", "Network model"],
+            answer: 0,
+            explanation: "The CSS Box Model consists of margins, borders, padding, and the actual content."
         }
         // ... (More Web questions)
     ],
@@ -205,6 +835,216 @@ export const quizzes = {
             options: ["Database mirroring", "Splitting a database into smaller chunks", "Data compression", "Encryption"],
             answer: 1,
             explanation: "Sharding is a method of splitting and storing a single logical dataset in multiple databases."
+        },
+        {
+            id: 6,
+            question: "What is 'Load Balancing'?",
+            options: ["Distributing network traffic across multiple servers", "Balancing weights", "Managing power", "None"],
+            answer: 0,
+            explanation: "Load balancing distributes workloads across multiple computing resources to maximize throughput and minimize response time."
+        },
+        {
+            id: 7,
+            question: "Which strategy is used to handle failure in microservices?",
+            options: ["Circuit Breaker", "Load Balancer", "Proxy", "Gateway"],
+            answer: 0,
+            explanation: "The Circuit Breaker pattern prevents an application from repeatedly trying to execute an operation that's likely to fail."
+        },
+        {
+            id: 8,
+            question: "What is 'Caching'?",
+            options: ["Storing data temporarily for fast access", "Deleting data", "Compressing data", "Encrypting data"],
+            answer: 0,
+            explanation: "Caching stores copies of data in a faster storage layer to improve retrieval performance."
+        },
+        {
+            id: 9,
+            question: "What is 'Latency'?",
+            options: ["Bandwidth", "Time taken for data to travel from source to destination", "Speed of light", "Data size"],
+            answer: 1,
+            explanation: "Latency is the delay before a transfer of data begins following an instruction."
+        },
+        {
+            id: 10,
+            question: "What is the role of a 'Reverse Proxy'?",
+            options: ["Hiding client identity", "Hiding server identity and distributing load", "Blocking internet", "None"],
+            answer: 1,
+            explanation: "A reverse proxy retrieves resources on behalf of a client from one or more servers, often for load balancing and security."
+        },
+        {
+            id: 11,
+            question: "What is 'Vertical Scaling'?",
+            options: ["Adding more servers", "Adding more power (CPU/RAM) to an existing server", "Scaling database", "None"],
+            answer: 1,
+            explanation: "Vertical scaling (scaling up) involves adding more resources to the same node."
+        },
+        {
+            id: 12,
+            question: "What is 'Throughput' in system design?",
+            options: ["Network delay", "Number of actions executed per unit time", "Data loss", "CPU usage"],
+            answer: 1,
+            explanation: "Throughput is the rate at which a system processes requests."
+        },
+        {
+            id: 13,
+            question: "What is 'Data Replication'?",
+            options: ["Deleting data", "Storing the same data on multiple nodes", "Splitting data", "None"],
+            answer: 1,
+            explanation: "Replication involves keeping a copy of the same data on multiple machines to increase availability."
+        },
+        {
+            id: 14,
+            question: "Which database property does 'C' in ACID stand for?",
+            options: ["Consistency", "Concurrency", "Capacity", "Compatibility"],
+            answer: 0,
+            explanation: "Consistency ensures that a transaction takes the database from one valid state to another."
+        },
+        {
+            id: 15,
+            question: "What is 'Eventual Consistency'?",
+            options: ["Data is never consistent", "Data will become consistent over time", "Immediate consistency", "None"],
+            answer: 1,
+            explanation: "Eventual consistency allows for temporary inconsistencies but guarantees that if no new updates are made, eventually all accesses will return the last updated value."
+        },
+        {
+            id: 16,
+            question: "What is a 'Microservice' architecture?",
+            options: ["Single large application", "Collection of small, independent services", "Mainframe", "Client-server"],
+            answer: 1,
+            explanation: "Microservices structure an application as a collection of loosely coupled services."
+        },
+        {
+            id: 17,
+            question: "What is 'Consistent Hashing'?",
+            options: ["Standard hashing", "Distributed hashing scheme reducing remapping when nodes change", "Encryption", "None"],
+            answer: 1,
+            explanation: "Consistent hashing minimizes reorganization of keys when a slot (or node) is added or removed."
+        },
+        {
+            id: 18,
+            question: "What is 'API Gateway'?",
+            options: ["Database", "Server that acts as a single entry point for a system", "Firewall", "Router"],
+            answer: 1,
+            explanation: "An API Gateway handles requests, routing them to the appropriate backend service."
+        },
+        {
+            id: 19,
+            question: "Which protocol is commonly used for real-time communication?",
+            options: ["HTTP", "FTP", "WebSocket", "SMTP"],
+            answer: 2,
+            explanation: "WebSockets provide full-duplex communication channels over a single TCP connection."
+        },
+        {
+            id: 20,
+            question: "What is 'Single Point of Failure' (SPOF)?",
+            options: ["A part of a system that, if it fails, stops the entire system", "A bug", "A server", "None"],
+            answer: 0,
+            explanation: "Eliminating SPOFs is critical for high availability."
+        },
+        {
+            id: 21,
+            question: "What is 'Idempotency'?",
+            options: ["Operation can be applied multiple times without changing the result beyond the initial application", "Randomness", "Speed", "Security"],
+            answer: 0,
+            explanation: "Idempotency ensures that retrying an operation doesn't cause unintended side effects (e.g., charging a card twice)."
+        },
+        {
+            id: 22,
+            question: "What is 'Rate Limiting'?",
+            options: ["Limiting internet speed", "Controlling the rate of traffic sent or received", "Limiting users", "None"],
+            answer: 1,
+            explanation: "Rate limiting is used to control the amount of incoming or outgoing traffic to/from a network."
+        },
+        {
+            id: 23,
+            question: "What is a 'Bloom Filter'?",
+            options: ["Image filter", "Probabilistic data structure to test set membership", "Database index", "None"],
+            answer: 1,
+            explanation: "A Bloom filter is a space-efficient probabilistic data structure used to test whether an element is a member of a set (may return false positives)."
+        },
+        {
+            id: 24,
+            question: "What is 'Polling'?",
+            options: ["Voting", "Client repeatedly checking the server for updates", "Server pushing updates", "None"],
+            answer: 1,
+            explanation: "Polling involves the client periodically requesting data from the server."
+        },
+        {
+            id: 25,
+            question: "What is 'Long Polling'?",
+            options: ["Polling for a long time", "Server holds request open until data is available", "Slow polling", "None"],
+            answer: 1,
+            explanation: "In Long Polling, the server holds the request open until new data is available or a timeout occurs."
+        },
+        {
+            id: 26,
+            question: "What is 'Heartbeat' in distributed systems?",
+            options: ["Power supply", "Periodic signal to indicate a node is alive", "CPU clock", "None"],
+            answer: 1,
+            explanation: "Heartbeats are used to monitor the health and availability of nodes."
+        },
+        {
+            id: 27,
+            question: "What is 'Leader Election'?",
+            options: ["Voting for president", "Process of designating a single process as the organizer", "Selecting best algorithm", "None"],
+            answer: 1,
+            explanation: "Leader election is the process of designating a single process as the coordinator for some task."
+        },
+        {
+            id: 28,
+            question: "What is 'Message Queue'?",
+            options: ["Email list", "Asynchronous communication buffer between services", "Traffic jam", "None"],
+            answer: 1,
+            explanation: "Message queues allow components to communicate asynchronously, decoupling the sender and receiver."
+        },
+        {
+            id: 29,
+            question: "What is 'Service Discovery'?",
+            options: ["Finding services manually", "Automatic detection of devices and services on a network", "Search engine", "None"],
+            answer: 1,
+            explanation: "Service discovery serves to automatically detect devices and services on a computer network."
+        },
+        {
+            id: 30,
+            question: "Which pattern is used to separate read and write operations?",
+            options: ["MVC", "CQRS", "Singleton", "Factory"],
+            answer: 1,
+            explanation: "CQRS (Command Query Responsibility Segregation) separates read and update operations for a data store."
+        },
+        {
+            id: 31,
+            question: "What is 'Gossip Protocol'?",
+            options: ["Chat app", "Peer-to-peer communication protocol for information dissemination", "Rumors", "None"],
+            answer: 1,
+            explanation: "Gossip protocols are a class of communication protocols inspired by the way social networks disseminate information."
+        },
+        {
+            id: 32,
+            question: "What is 'Backpressure'?",
+            options: ["Physical pressure", "Resistance or opposition to the flow of data", "Backup", "None"],
+            answer: 1,
+            explanation: "Backpressure occurs when a system prevents a producer from sending too much data to a consumer that cannot handle the load."
+        },
+        {
+            id: 33,
+            question: "What is 'CDN Edge Server'?",
+            options: ["Server at the center", "Server located closer to the user", "Backup server", "None"],
+            answer: 1,
+            explanation: "Edge servers cache content closer to the user to reduce latency."
+        },
+        {
+            id: 34,
+            question: "What is a 'Sticky Session'?",
+            options: ["Session tracking", "Routing requests from a client to the same server", "Persistent cookie", "None"],
+            answer: 1,
+            explanation: "Sticky sessions calculate a hash of the client's IP or cookie to route them to the same backend server."
+        },
+        {
+            id: 35,
+            question: "What is 'Database Normalization'?",
+            options: ["Making data normal", "Organizing data to reduce redundancy", "Deleting data", "None"],
+            answer: 1,
+            explanation: "Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity."
         }
     ],
     javascript: [
@@ -242,6 +1082,216 @@ export const quizzes = {
             options: ["4", "22", "NaN", "Error"],
             answer: 1,
             explanation: "JavaScript coerces the number 2 to a string and concatenates them."
+        },
+        {
+            id: 6,
+            question: "What is 'Bind' in JavaScript?",
+            options: ["Connects to database", "Creates a new function that, when called, has its 'this' keyword set to the provided value", "Joins strings", "None"],
+            answer: 1,
+            explanation: "The bind() method creates a new function that has its 'this' keyword set to separate value."
+        },
+        {
+            id: 7,
+            question: "What is the result of 'typeof null'?",
+            options: ["null", "undefined", "object", "string"],
+            answer: 2,
+            explanation: "In JavaScript, typeof null returns 'object', which is a known bug in the language."
+        },
+        {
+            id: 8,
+            question: "Which function is used to parse a JSON string?",
+            options: ["JSON.stringify()", "JSON.parse()", "JSON.object()", "JSON.toObject()"],
+            answer: 1,
+            explanation: "JSON.parse() parses a JSON string constructing the JavaScript value or object described by the string."
+        },
+        {
+            id: 9,
+            question: "What does 'use strict' do?",
+            options: ["Enables latest features", "Enforces stricter parsing and error handling", "Includes strict library", "None"],
+            answer: 1,
+            explanation: "'use strict' allows you to place a program, or a function, in a 'strict' operating context."
+        },
+        {
+            id: 10,
+            question: "What is an IIFE?",
+            options: ["Immediately Invoked Function Expression", "Internal Interface Function Event", "Immediate Interface", "None"],
+            answer: 0,
+            explanation: "An IIFE is a JavaScript function that runs as soon as it is defined."
+        },
+        {
+            id: 11,
+            question: "What is the difference between 'let' and 'var'?",
+            options: ["No difference", "var is block scoped, let is function scoped", "let is block scoped, var is function scoped", "None"],
+            answer: 2,
+            explanation: "let is block-scoped, whereas var is function-scoped."
+        },
+        {
+            id: 12,
+            question: "What is 'Event Bubbling'?",
+            options: ["Events firing from target up to the root", "Events firing from root down to target", "Creating bubbling effect", "None"],
+            answer: 0,
+            explanation: "Event bubbling is a method of event propagation in the HTML DOM API when an event occurs in an element inside another element, and both elements have registered a handle for that event."
+        },
+        {
+            id: 13,
+            question: "What is a 'Promise'?",
+            options: ["A guarantee", "Object representing the eventual completion or failure of an asynchronous operation", "Function", "String"],
+            answer: 1,
+            explanation: "A Promise is an object representing the eventual completion or failure of an asynchronous operation."
+        },
+        {
+            id: 14,
+            question: "Which method adds elements to the end of an array?",
+            options: ["push()", "pop()", "shift()", "unshift()"],
+            answer: 0,
+            explanation: "push() adds one or more elements to the end of an array."
+        },
+        {
+            id: 15,
+            question: "What is 'Callback Hell'?",
+            options: ["Function calling itself", "Heavily nested callbacks making code hard to read", "Error in callback", "None"],
+            answer: 1,
+            explanation: "Callback hell refers to heavily nested callbacks that make code difficult to read and maintain."
+        },
+        {
+            id: 16,
+            question: "How do you check if a property exists in an object?",
+            options: ["obj.has(prop)", "prop in obj", "exists(obj, prop)", "obj.contains(prop)"],
+            answer: 1,
+            explanation: "The 'in' operator returns true if the specified property is in the specified object."
+        },
+        {
+            id: 17,
+            question: "What is the 'spread' operator?",
+            options: ["...", ">>>", "+++", "&&&"],
+            answer: 0,
+            explanation: "The spread syntax (...) allows an iterable such as an array expression to be expanded."
+        },
+        {
+            id: 18,
+            question: "What is 'Currying'?",
+            options: ["Spicing up code", "Transforming a function with multiple arguments into a sequence of nesting functions", "Mixing arrays", "None"],
+            answer: 1,
+            explanation: "Currying is the technique of translating the evaluation of a function that takes multiple arguments into evaluating a sequence of functions, each with a single argument."
+        },
+        {
+            id: 19,
+            question: "What applies 'Memoization'?",
+            options: ["Caching the return value based on parameters", "Memorizing code", "Removing memory leaks", "None"],
+            answer: 0,
+            explanation: "Memoization is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls."
+        },
+        {
+            id: 20,
+            question: "What is the output of 3 + '3'?",
+            options: ["6", "33", "NaN", "Error"],
+            answer: 1,
+            explanation: "The number 3 is coerced into a string '3', resulting in concatenation '33'."
+        },
+        {
+            id: 21,
+            question: "Which method is used to remove the last element from an array?",
+            options: ["push()", "pop()", "shift()", "splice()"],
+            answer: 1,
+            explanation: "pop() removes the last element from an array."
+        },
+        {
+            id: 22,
+            question: "What is a 'Higher Order Function'?",
+            options: ["Function that calls itself", "Function that takes a function as an argument or returns a function", "Main function", "None"],
+            answer: 1,
+            explanation: "A higher-order function is a function that either takes a function as an argument or returns a function."
+        },
+        {
+            id: 23,
+            question: "What is the difference between map() and forEach()?",
+            options: ["No difference", "map returns a new array, forEach does not", "forEach is faster", "map modifies original array"],
+            answer: 1,
+            explanation: "map() returns a new array with the results of calling a function for every array element, while forEach() executes a provided function once for each array element."
+        },
+        {
+            id: 24,
+            question: "What is 'Event Delegation'?",
+            options: ["Delegating tasks", "Attaching a single event listener to a parent element to manage events for children", "Removing events", "None"],
+            answer: 1,
+            explanation: "Event delegation allows you to avoid adding event listeners to specific nodes; instead, the event listener is added to one parent."
+        },
+        {
+            id: 25,
+            question: "What is a 'Generator' function?",
+            options: ["Function that generates numbers", "Function that can be paused and resumed", "Random number generator", "None"],
+            answer: 1,
+            explanation: "Generator functions provide a powerful alternative: they allow you to define an iterative algorithm by writing a single function whose execution is not continuous."
+        },
+        {
+            id: 26,
+            question: "Which keyword acts as a placeholder for a value?",
+            options: ["null", "undefined", "void", "NaN"],
+            answer: 1,
+            explanation: "A variable that has not been assigned a value is of type undefined."
+        },
+        {
+            id: 27,
+            question: "How to stop event propagation?",
+            options: ["event.stop()", "event.stopPropagation()", "event.halt()", "event.prevent()"],
+            answer: 1,
+            explanation: "stopPropagation() prevents further propagation of the current event in the capturing and bubbling phases."
+        },
+        {
+            id: 28,
+            question: "What is 'Object Destructuring'?",
+            options: ["Destroying object", "Extracting properties from objects and binding them to variables", "Creating object", "None"],
+            answer: 1,
+            explanation: "Destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables."
+        },
+        {
+            id: 29,
+            question: "What is 'Set' in JavaScript?",
+            options: ["Collection of unique values", "List of values", "Key-Value pair", "None"],
+            answer: 0,
+            explanation: "The Set object lets you store unique values of any type."
+        },
+        {
+            id: 30,
+            question: "What is 'WeakMap'?",
+            options: ["Map with weak keys", "Map where keys are objects and weakly referenced", "Map with no keys", "None"],
+            answer: 1,
+            explanation: "A WeakMap is a collection of key/value pairs in which the keys are objects and are weakly referenced."
+        },
+        {
+            id: 31,
+            question: "Which method converts a string to an integer?",
+            options: ["Integer.parse()", "parseInt()", "parseInteger()", "toInteger()"],
+            answer: 1,
+            explanation: "The parseInt() function parses a string argument and returns an integer of the specified radix."
+        },
+        {
+            id: 32,
+            question: "What is 'Prototype'?",
+            options: ["Blueprint", "Mechanism by which JavaScript objects inherit features from one another", "Class", "Function"],
+            answer: 1,
+            explanation: "Prototypes are the mechanism by which JavaScript objects inherit features from one another."
+        },
+        {
+            id: 33,
+            question: "What is the 'Temporal Dead Zone'?",
+            options: ["Time limit", "Period between entering scope and variable declaration", "Memory leak", "None"],
+            answer: 1,
+            explanation: "The TDZ is the time between entering the scope of a variable and its actual declaration."
+        },
+        {
+            id: 34,
+            question: "What is 'Shadowing'?",
+            options: ["Hiding a variable", "Declaring a variable with the same name as a variable in an outer scope", "Dark mode", "None"],
+            answer: 1,
+            explanation: "Shadowing occurs when a variable declared in a certain scope has the same name as a variable defined in an outer scope."
+        },
+        {
+            id: 35,
+            question: "Check if array includes a value?",
+            options: ["has()", "contains()", "includes()", "exists()"],
+            answer: 2,
+            explanation: "The includes() method determines whether an array includes a certain value among its entries."
         }
     ],
     // ... Add placeholders for the rest of the topics to ensure the file is complete enough for the user to see the improvement.
@@ -316,6 +1366,181 @@ export const quizzes = {
             options: ["Component with no state", "Component that implements shouldComponentUpdate with shallow prop comparison", "Component with no props", "None"],
             answer: 1,
             explanation: "PureComponent implements shouldComponentUpdate() with a shallow prop and state comparison."
+        },
+        {
+            id: 11,
+            question: "What is 'Prop Drilling'?",
+            options: ["Drilling holes in props", "Passing data through multiple levels of components", "Fetching data", "None"],
+            answer: 1,
+            explanation: "Prop drilling refers to the process of passing data from a parent component down to a deep child component through intermediate components."
+        },
+        {
+            id: 12,
+            question: "What is the purpose of 'useCallback'?",
+            options: ["Memorize a function", "Memorize a value", "Run side effect", "Manage state"],
+            answer: 0,
+            explanation: "useCallback returns a memoized version of the callback function that only changes if one of the dependencies has changed."
+        },
+        {
+            id: 13,
+            question: "What is the purpose of 'useMemo'?",
+            options: ["Memorize a function", "Memorize a computed value", "Run side effect", "Manage state"],
+            answer: 1,
+            explanation: "useMemo returns a memoized value, recalculating it only when dependencies change."
+        },
+        {
+            id: 14,
+            question: "What is 'React Router'?",
+            options: ["Database", "Library for routing in React apps", "Server", "None"],
+            answer: 1,
+            explanation: "React Router is a standard library for routing in React, enabling navigation between views."
+        },
+        {
+            id: 15,
+            question: "What is a 'Higher-Order Component' (HOC)?",
+            options: ["Parent component", "Function taking a component and returning a new component", "Root component", "None"],
+            answer: 1,
+            explanation: "A HOC is an advanced technique in React for reusing component logic."
+        },
+        {
+            id: 16,
+            question: "What is 'Redux'?",
+            options: ["Database", "State management library", "API", "Server"],
+            answer: 1,
+            explanation: "Redux is a predictable state container for JavaScript apps, often used with React."
+        },
+        {
+            id: 17,
+            question: "What is 'useReducer' used for?",
+            options: ["Simple state", "Complex state logic", "Routing", "Fetching data"],
+            answer: 1,
+            explanation: "useReducer is usually preferable to useState when you have complex state logic that involves multiple sub-values."
+        },
+        {
+            id: 18,
+            question: "What is 'React Fragment'?",
+            options: ["Broken component", "Tool to group list of children without adding extra nodes to the DOM", "Error", "None"],
+            answer: 1,
+            explanation: "Fragments let you group a list of children without adding extra nodes to the DOM."
+        },
+        {
+            id: 19,
+            question: "What is 'Controlled Component'?",
+            options: ["Component controlled by DOM", "Component where React controls the state of form elements", "Slow component", "None"],
+            answer: 1,
+            explanation: "In a controlled component, form data is handled by a React component."
+        },
+        {
+            id: 20,
+            question: "What is 'Uncontrolled Component'?",
+            options: ["Component with no state", "Form data is handled by the DOM itself", "Fast component", "None"],
+            answer: 1,
+            explanation: "In an uncontrolled component, form data is handled by the DOM itself using refs."
+        },
+        {
+            id: 21,
+            question: "How to create a ref in React?",
+            options: ["React.createRef()", "useRef()", "Both A and B", "None"],
+            answer: 2,
+            explanation: "You can use React.createRef() in class components and useRef() in functional components."
+        },
+        {
+            id: 22,
+            question: "What is 'React Portal'?",
+            options: ["Game", "Way to render children into a DOM node outside the parent hierarchy", "Link", "None"],
+            answer: 1,
+            explanation: "Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component."
+        },
+        {
+            id: 23,
+            question: "What is 'Error Boundary'?",
+            options: ["CSS border", "React component that catches JavaScript errors in child component tree", "API error", "None"],
+            answer: 1,
+            explanation: "Error boundaries are React components that catch JavaScript errors anywhere in their child component tree."
+        },
+        {
+            id: 24,
+            question: "What is 'Hydration'?",
+            options: ["Drinking water", "Attaching event listeners to server-rendered HTML", "Loading data", "None"],
+            answer: 1,
+            explanation: "Hydration is the process of using client-side JavaScript to add application state and interactivity to server-rendered HTML."
+        },
+        {
+            id: 25,
+            question: "What is 'Next.js'?",
+            options: ["Java framework", "React framework for production", "Database", "None"],
+            answer: 1,
+            explanation: "Next.js is a React framework that enables features like server-side rendering and static site generation."
+        },
+        {
+            id: 26,
+            question: "What is 'Lazy Loading' in React?",
+            options: ["Loading slowly", "Loading components only when they are needed", "Error", "None"],
+            answer: 1,
+            explanation: "React.lazy() lets you define a component that is loaded dynamically."
+        },
+        {
+            id: 27,
+            question: "What is the rule of hooks?",
+            options: ["Call hooks inside loops", "Only call hooks at the top level", "Call hooks in standard JS functions", "None"],
+            answer: 1,
+            explanation: "Don't call Hooks inside loops, conditions, or nested functions."
+        },
+        {
+            id: 28,
+            question: "What is 'Strict Mode'?",
+            options: ["Hard mode", "Tool for highlighting potential problems in an application", "Secure mode", "None"],
+            answer: 1,
+            explanation: "StrictMode is a tool for highlighting potential problems in an application (e.g., legacy API usage)."
+        },
+        {
+            id: 29,
+            question: "How to optimize performance in React?",
+            options: ["useMemo", "React.memo", "Code splitting", "All of the above"],
+            answer: 3,
+            explanation: "All these techniques help in optimizing React application performance."
+        },
+        {
+            id: 30,
+            question: "What is 'Flux'?",
+            options: ["Physics term", "Application architecture for handling data flow", "React component", "None"],
+            answer: 1,
+            explanation: "Flux is the application architecture that Facebook uses for building client-side web applications."
+        },
+        {
+            id: 31,
+            question: "What is 'SyntheticEvent'?",
+            options: ["Fake event", "Cross-browser wrapper around the browser's native event", "Error", "None"],
+            answer: 1,
+            explanation: "SyntheticEvent is a cross-browser wrapper around the browser's native event."
+        },
+        {
+            id: 32,
+            question: "What is 'Concurrent Mode'?",
+            options: ["Parallel processing", "Feature set that helps React apps stay responsive", "Fast mode", "None"],
+            answer: 1,
+            explanation: "Concurrent Mode is a set of new features that help React apps stay responsive and gracefully adjust to the user's device capabilities and network speed."
+        },
+        {
+            id: 33,
+            question: "What passes data to a component?",
+            options: ["setState", "props", "render", "out"],
+            answer: 1,
+            explanation: "Props are used to pass data from parent to child."
+        },
+        {
+            id: 34,
+            question: "Which package is used for routing?",
+            options: ["react-route", "react-router-dom", "router-react", "react-navigation"],
+            answer: 1,
+            explanation: "react-router-dom is the standard routing library for React web apps."
+        },
+        {
+            id: 35,
+            question: "What is 'Enzyme'?",
+            options: ["Biological catalyst", "Testing utility for React", "Compiler", "None"],
+            answer: 1,
+            explanation: "Enzyme is a JavaScript Testing utility for React that makes it easier to test your React Components' output."
         }
     ],
     python: [

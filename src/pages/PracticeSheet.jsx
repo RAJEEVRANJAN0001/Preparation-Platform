@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ChevronDown, ChevronRight, ExternalLink, CheckCircle, Circle, Trophy, Search, PlayCircle, BookOpen, X, Code } from 'lucide-react';
+import { ChevronDown, ChevronRight, ExternalLink, CheckCircle, Circle, Trophy, Search, PlayCircle, BookOpen } from 'lucide-react';
 import { striverSheetData } from '../data/striverSheetData';
 import { blind75Data } from '../data/blind75Data';
 import { sdeSheetData } from '../data/sdeSheetData';
@@ -18,7 +18,7 @@ const PracticeSheet = () => {
     const [sdeProgress, setSdeProgress] = useState({});
     const [dsaProgress, setDsaProgress] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedProblem, setSelectedProblem] = useState(null); // For modal
+
 
     // Load progress from localStorage
     useEffect(() => {
@@ -239,35 +239,33 @@ const PracticeSheet = () => {
                                                             </div>
 
                                                             <div className="problem-actions">
-                                                                {(problem.link && problem.link !== '#') ? (
-                                                                    <a href={problem.link} target="_blank" rel="noopener noreferrer" className="action-btn solve-btn">
-                                                                        <PlayCircle size={14} />
-                                                                        Solve
-                                                                    </a>
-                                                                ) : (
-                                                                    <a href={getSearchLink(problem)} target="_blank" rel="noopener noreferrer" className="action-btn search-btn">
-                                                                        <Search size={14} />
-                                                                        Find
-                                                                    </a>
-                                                                )}
+                                                                {/* Single Action Button with Priority: Link > Article > Search */}
+                                                                {(() => {
+                                                                    if (problem.link && problem.link !== '#') {
+                                                                        return (
+                                                                            <a href={problem.link} target="_blank" rel="noopener noreferrer" className="action-btn solve-btn">
+                                                                                <PlayCircle size={14} />
+                                                                                Solve
+                                                                            </a>
+                                                                        );
+                                                                    } else if (problem.articleLink) {
+                                                                        return (
+                                                                            <a href={problem.articleLink} target="_blank" rel="noopener noreferrer" className="action-btn notes-btn">
+                                                                                <BookOpen size={14} />
+                                                                                Read
+                                                                            </a>
+                                                                        );
+                                                                    } else {
+                                                                        return (
+                                                                            <a href={getSearchLink(problem)} target="_blank" rel="noopener noreferrer" className="action-btn search-btn">
+                                                                                <Search size={14} />
+                                                                                Find
+                                                                            </a>
+                                                                        );
+                                                                    }
+                                                                })()}
 
-                                                                {problem.articleLink && (
-                                                                    <a href={problem.articleLink} target="_blank" rel="noopener noreferrer" className="action-btn notes-btn">
-                                                                        <BookOpen size={14} />
-                                                                        Notes
-                                                                    </a>
-                                                                )}
 
-                                                                {problem.content && (
-                                                                    <button
-                                                                        className="action-btn solve-btn"
-                                                                        onClick={() => setSelectedProblem(problem)}
-                                                                        style={{ backgroundColor: 'var(--bg-secondary)', color: 'var(--text-main)', borderColor: 'var(--border-main)' }}
-                                                                    >
-                                                                        <Code size={14} />
-                                                                        Solution
-                                                                    </button>
-                                                                )}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -288,33 +286,7 @@ const PracticeSheet = () => {
                 )}
             </div>
 
-            {/* Notes Modal */}
-            {selectedProblem && (
-                <div className="modal-backdrop" onClick={() => setSelectedProblem(null)}>
-                    <div className="modal-content" onClick={e => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <h2>{selectedProblem.title}</h2>
-                            <button className="close-btn" onClick={() => setSelectedProblem(null)}>
-                                <X size={24} />
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            <p className="problem-description">{selectedProblem.content.description}</p>
 
-                            <div className="code-tabs">
-                                {Object.entries(selectedProblem.content.code).map(([lang, code]) => (
-                                    <div key={lang} className="code-block">
-                                        <div className="code-header">
-                                            <span className="lang-label">{lang === 'cpp' ? 'C++' : lang === 'java' ? 'Java' : 'Python'}</span>
-                                        </div>
-                                        <pre><code>{code.replace(/\\n/g, '\n')}</code></pre>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };
