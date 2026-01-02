@@ -11,6 +11,7 @@ import TopicDetail from './pages/TopicDetail'
 
 import Roadmap from './pages/Roadmap'
 import CodingPractice from './pages/CodingPractice'
+import PracticeSheet from './pages/PracticeSheet'
 import VideoFeed from './pages/VideoFeed'
 import CompanyNotes from './pages/CompanyNotes'
 import CompanyDetail from './pages/CompanyDetail'
@@ -36,6 +37,7 @@ function AppContent({ theme, toggleTheme }) {
 
                     <Route path="/roadmap" element={<Roadmap />} />
                     <Route path="/coding-practice" element={<CodingPractice />} />
+                    <Route path="/practice-sheet" element={<PracticeSheet />} />
                     <Route path="/video-feed" element={<VideoFeed />} />
                     <Route path="/company-notes" element={<CompanyNotes />} />
                     <Route path="/company-notes/:companyName" element={<CompanyDetail />} />

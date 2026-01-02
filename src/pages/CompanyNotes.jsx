@@ -175,6 +175,38 @@ function CompanyNotes() {
                     </div>
                 )}
 
+                {/* Special Resources Section */}
+                <div className="section">
+                    <div className="section-header">
+                        <TrendingUp size={18} className="section-icon" />
+                        <h2>Featured Resources</h2>
+                    </div>
+                    <div className="companies-grid">
+                        <div className="company-card special-resource-card" onClick={() => {
+                            navigate('/practice-sheet', { state: { activeTab: 'dsa' } });
+                        }}>
+                            <div className="company-card-header">
+                                <div className="company-icon" style={{ background: 'linear-gradient(135deg, #FF6B6B22, #FF6B6B11)', borderColor: '#FF6B6B33' }}>
+                                    <TrendingUp size={28} style={{ color: '#FF6B6B' }} />
+                                </div>
+                            </div>
+                            <div className="company-card-body">
+                                <h3 className="company-name">Placement DSA Sheet</h3>
+                                <div className="company-stats">
+                                    <div className="stat-item">
+                                        <FileText size={14} />
+                                        <span>300+ Problems</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="company-card-footer">
+                                <span className="view-files-btn">Start Practicing →</span>
+                            </div>
+                            <div className="card-shine"></div>
+                        </div>
+                    </div>
+                </div>
+
                 {/* All Companies Section */}
                 <div className="section">
                     <div className="section-header">
