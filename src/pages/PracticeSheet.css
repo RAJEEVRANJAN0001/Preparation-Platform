@@ -19,6 +19,7 @@
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-main);
     box-shadow: none;
+    flex-wrap: wrap;
     /* Flat design */
 }
 
@@ -103,7 +104,9 @@
 /* Search Bar */
 .search-bar-wrapper {
     position: relative;
-    width: 320px;
+    width: 100%;
+    max-width: 320px;
+    min-width: 200px;
 }
 
 .search-icon {
@@ -201,11 +204,10 @@
     border-radius: 4px;
     overflow: hidden;
     transition: all 0.2s ease;
-    width: 600px;
-    /* Fixed width for equal card sizes */
-    min-width: 500px;
-    /* Wider minimum width for horizontal expansion */
-    max-width: 100%;
+    width: 100%;
+    /* Responsive width */
+    max-width: 800px;
+    /* Max width for larger screens */
     height: auto;
     min-height: 0;
 }
@@ -625,15 +627,138 @@
 }
 
 @media (max-width: 768px) {
+    .practice-sheet-container {
+        padding: var(--sp-4);
+    }
+
+    .practice-hero {
+        flex-direction: column;
+        padding: 16px;
+        gap: var(--sp-4);
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 24px;
+    }
+
+    .hero-content p {
+        font-size: 13px;
+    }
+
+    .controls-wrapper {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .sheet-tabs {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+
+    .sheet-tab {
+        white-space: nowrap;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .search-bar-wrapper {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .progress-card {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .topic-card {
+        width: 100%;
+        min-width: auto;
+        max-width: 100%;
+    }
+
+    .topic-header {
+        padding: 12px;
+    }
+
+    .topic-header h3 {
+        font-size: 14px;
+    }
+
+    .topic-info {
+        gap: 8px;
+    }
+
+    .problem-badge {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+
+    .subtopic-title {
+        padding: 10px 12px;
+        font-size: 11px;
+    }
+
+    .problem-item {
+        padding: 10px 12px;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
     .problem-content {
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
+        width: 100%;
     }
 
     .problem-main {
         flex-direction: column;
         align-items: flex-start;
-        gap: 4px;
+        gap: 6px;
+        width: 100%;
+    }
+
+    .problem-name {
+        font-size: 13px;
+        word-break: break-word;
+    }
+
+    .company-tags {
+        flex-wrap: wrap;
+        margin-left: 0;
+    }
+
+    .problem-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .action-btn {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .modal-header {
+        padding: 12px 16px;
+    }
+
+    .modal-header h2 {
+        font-size: 18px;
+    }
+
+    .modal-body {
+        padding: 16px;
     }
 }
