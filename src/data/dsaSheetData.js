@@ -221,8 +221,8 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Product of array except itself",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/product-of-array-except-self/",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": [
@@ -243,8 +243,8 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Find Duplicate",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/find-the-duplicate-number/",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": [
@@ -274,8 +274,8 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Trapping Rainwater",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/trapping-rain-water/",
+                        "platform": "LeetCode",
                         "difficulty": "Hard",
                         "solutionLink": "Solution Link",
                         "companies": [
@@ -344,8 +344,8 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Peak index in mountain array",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/peak-index-in-a-mountain-array/",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": []
@@ -360,8 +360,8 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Allocate Minimum Pages (Book Allocation)",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://practice.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1",
+                        "platform": "GeeksForGeeks",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": [
@@ -374,16 +374,16 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Painter’s Partition",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://practice.geeksforgeeks.org/problems/the-painters-partition-problem1535/1",
+                        "platform": "GeeksForGeeks",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": []
                     },
                     {
                         "title": "Aggressive cows",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://practice.geeksforgeeks.org/problems/aggressive-cows/1",
+                        "platform": "GeeksForGeeks",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": [
@@ -392,8 +392,8 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Median of 2 Sorted Arrays",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/median-of-two-sorted-arrays/",
+                        "platform": "LeetCode",
                         "difficulty": "Hard",
                         "solutionLink": "#",
                         "companies": [
@@ -468,16 +468,16 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Remove All Occurrences of String",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/remove-all-occurrences-of-a-substring/",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": []
                     },
                     {
                         "title": "Permutation in String",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/permutation-in-string/",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": [
@@ -488,16 +488,16 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "String Compression",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/string-compression/",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": []
                     },
                     {
                         "title": "Group Anagrams",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/group-anagrams/",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "#",
                         "companies": [
@@ -526,8 +526,8 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Kmp Algorithm",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
+                        "platform": "LeetCode",
                         "difficulty": "Hard",
                         "solutionLink": "#",
                         "companies": []
@@ -577,8 +577,8 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Knights Tour",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://practice.geeksforgeeks.org/problems/knight-walk4521/1",
+                        "platform": "GeeksForGeeks",
                         "difficulty": "Medium",
                         "solutionLink": "#",
                         "companies": []
@@ -601,8 +601,8 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Subsets II",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/subsets-ii/",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": []
@@ -692,32 +692,32 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Remove Cycle in LL",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://practice.geeksforgeeks.org/problems/remove-loop-in-linked-list/1",
+                        "platform": "GeeksForGeeks",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": []
                     },
                     {
                         "title": "Flatten LL",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://practice.geeksforgeeks.org/problems/flattening-a-linked-list/1",
+                        "platform": "GeeksForGeeks",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": []
                     },
                     {
                         "title": "Clone LL with Random Pointers",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/copy-list-with-random-pointer/",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": []
                     },
                     {
                         "title": "Add 2 Numbers",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/add-two-numbers/",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "#",
                         "companies": []
@@ -748,8 +748,8 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Reverse Nodes in K Groups",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/reverse-nodes-in-k-group/",
+                        "platform": "LeetCode",
                         "difficulty": "Hard",
                         "solutionLink": "Solution Link",
                         "companies": []
@@ -799,24 +799,24 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "1st Non Repeating in Stream",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://practice.geeksforgeeks.org/problems/first-non-repeating-character-in-a-stream1216/1",
+                        "platform": "GeeksForGeeks",
                         "difficulty": "Easy",
                         "solutionLink": "Solution Link",
                         "companies": []
                     },
                     {
                         "title": "Reverse 1st K Elements of Queue",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://practice.geeksforgeeks.org/problems/reverse-first-k-elements-of-queue/1",
+                        "platform": "GeeksForGeeks",
                         "difficulty": "Easy",
                         "solutionLink": "#",
                         "companies": []
                     },
                     {
                         "title": "Time needed to Buy Tickets ",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/time-needed-to-buy-tickets/",
+                        "platform": "LeetCode",
                         "difficulty": "Easy",
                         "solutionLink": "#",
                         "companies": []
@@ -847,16 +847,16 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Get Min Element from Stack",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/min-stack/",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": []
                     },
                     {
                         "title": "Circular Tour / Gas Station",
-                        "link": "Problem Link",
-                        "platform": "Custom",
+                        "link": "https://leetcode.com/problems/gas-station/",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": []
