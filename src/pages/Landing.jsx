@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Sparkles, Target, Zap, Award, Users, TrendingUp, Code, Database, Globe, Brain, Layout, CheckCircle } from 'lucide-react'
+import { ArrowRight, Sparkles, Target, Zap, Award, Users, TrendingUp, Code, Database, Globe, Brain, Layout, CheckCircle, FileText, HelpCircle } from 'lucide-react'
 import './Landing.css'
 
 function Landing() {
@@ -37,6 +37,20 @@ function Landing() {
             title: 'AI Mock Interviews',
             description: 'Practice with our advanced AI to simulate real interview scenarios.',
             color: '#8b5cf6',
+            size: 'small'
+        },
+        {
+            icon: <FileText size={28} />,
+            title: 'Practice Sheets',
+            description: 'Comprehensive practice problems and coding exercises for hands-on learning.',
+            color: '#06b6d4',
+            size: 'small'
+        },
+        {
+            icon: <HelpCircle size={28} />,
+            title: 'Interactive Quizzes',
+            description: 'Test your knowledge with topic-wise quizzes and instant feedback.',
+            color: '#f97316',
             size: 'small'
         },
         {
