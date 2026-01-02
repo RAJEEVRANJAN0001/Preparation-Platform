@@ -767,7 +767,7 @@ export const dsaSheetData = [
                 "problems": [
                     {
                         "title": "Implement Stack using Queue",
-                        "link": "https://leetcode.com/problems/implement-queue-using-stacks/",
+                        "link": "https://leetcode.com/problems/implement-stack-using-queues/",
                         "platform": "LeetCode",
                         "difficulty": "Easy",
                         "solutionLink": "Solution Link",
@@ -791,7 +791,7 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Valid Parenthesis",
-                        "link": "https://leetcode.com/problems/valid-parenthesis-string/",
+                        "link": "https://leetcode.com/problems/valid-parentheses/",
                         "platform": "LeetCode",
                         "difficulty": "Easy",
                         "solutionLink": "Solution Link",
@@ -824,7 +824,7 @@ export const dsaSheetData = [
                     {
                         "title": "Next Greater Element II",
                         "link": "https://leetcode.com/problems/next-greater-element-ii/",
-                        "platform": "GeeksForGeeks",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "Solution Link",
                         "companies": []
@@ -864,7 +864,7 @@ export const dsaSheetData = [
                     {
                         "title": "Rotten Oranges",
                         "link": "https://leetcode.com/problems/rotting-oranges/",
-                        "platform": "GeeksForGeeks",
+                        "platform": "LeetCode",
                         "difficulty": "Medium",
                         "solutionLink": "#",
                         "companies": []
