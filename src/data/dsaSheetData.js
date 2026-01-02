@@ -534,8 +534,8 @@ export const dsaSheetData = [
                     },
                     {
                         "title": "Robin Karp",
-                        "link": "--concept--",
-                        "platform": "Custom",
+                        "link": "https://www.geeksforgeeks.org/rabin-karp-algorithm-for-pattern-searching/",
+                        "platform": "GeeksForGeeks",
                         "difficulty": "Hard",
                         "solutionLink": "#",
                         "companies": []
