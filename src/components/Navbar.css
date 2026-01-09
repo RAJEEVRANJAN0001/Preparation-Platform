@@ -41,33 +41,23 @@
     transition: transform 200ms ease;
 }
 
+.navbar-logo span {
+    background: linear-gradient(135deg, #3b82f6 0%, #1e40af 50%, #facc15 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .navbar-logo:hover {
     transform: translateY(-1px);
 }
 
-.logo-badge {
-    width: 40px;
+.logo-image {
     height: 40px;
-    background: linear-gradient(135deg, #374151 0%, #1F2937 100%);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-[data-theme='dark'] .logo-badge {
-    background: linear-gradient(135deg, #E5E7EB 0%, #D1D5DB 100%);
-    color: #1F2937;
-}
-
-.logo-icon {
-    color: white;
-}
-
-[data-theme='dark'] .logo-icon {
-    color: #1F2937;
+    width: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    /* Optional: adds subtle rounding if the logo is square */
 }
 
 /* Links */

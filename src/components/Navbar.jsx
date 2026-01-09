@@ -37,9 +37,7 @@ function Navbar({ theme, toggleTheme }) {
       <div className="navbar-container">
 
         <Link to="/" className="navbar-logo">
-          <div className="logo-badge">
-            <Bot className="logo-icon" size={24} />
-          </div>
+          <img src="/logo.png" alt="Creata Mentor Logo" className="logo-image" />
           <span>Creata Mentor</span>
         </Link>
 

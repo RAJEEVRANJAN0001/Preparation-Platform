@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+
 import { ArrowRight, Sparkles, Target, Zap, Award, Users, TrendingUp, Code, Database, Globe, Brain, Layout, CheckCircle, FileText, HelpCircle } from 'lucide-react'
 import './Landing.css'
 
@@ -66,6 +67,8 @@ function Landing() {
         "React", "Node.js", "Python", "System Design", "DSA", "SQL", "DevOps", "Java", "JavaScript", "AWS", "Docker", "Kubernetes", "GraphQL", "MongoDB"
     ]
 
+
+
     return (
         <div className="landing-page">
             {/* Hero Section */}
@@ -82,6 +85,11 @@ function Landing() {
                     <div className="glass-sphere sphere-1"></div>
                     <div className="glass-sphere sphere-2"></div>
                     <div className="glass-sphere sphere-3"></div>
+                </div>
+
+                {/* Top Right Logo */}
+                <div className="landing-hero-logo">
+                    <img src="/logo.png" alt="Creata Mentor" />
                 </div>
 
                 <div className="hero-content centered-poster">

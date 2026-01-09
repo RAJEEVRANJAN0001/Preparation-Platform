@@ -221,13 +221,25 @@ app.get('/api/company-notes/file/:companyName', (req, res) => {
             return res.status(400).json({ success: false, error: 'File path is required' });
         }
 
-        const fullPath = getFilePath(companyName, filePath);
+        // Construct absolute path to the file in public/Company NOTES
+        const fullPath = path.join(__dirname, 'public', 'Company NOTES', companyName, filePath);
 
-        if (!fullPath) {
-            return res.status(404).json({ success: false, error: 'File not found' });
+        // Security check to prevent directory traversal
+        if (!fullPath.startsWith(path.join(__dirname, 'public', 'Company NOTES'))) {
+            return res.status(403).json({ success: false, error: 'Access denied' });
         }
 
-        res.sendFile(fullPath);
+        // Check if file exists (optional, res.sendFile handles it but good for debugging)
+        // For now, let res.sendFile handle it or catch the error
+
+        res.sendFile(fullPath, (err) => {
+            if (err) {
+                console.error('Error sending file:', fullPath, err);
+                if (!res.headersSent) {
+                    res.status(404).json({ success: false, error: 'File not found or unreadable' });
+                }
+            }
+        });
     } catch (error) {
         console.error('Error serving file:', error);
         res.status(500).json({ success: false, error: 'Failed to serve file' });
