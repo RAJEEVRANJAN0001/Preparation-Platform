@@ -59,34 +59,63 @@
     max-width: 600px;
 }
 
+.hero-content {
+    min-width: 0;
+    /* Critical for preventing overflow in flex child */
+    flex: 1;
+}
+
 /* Controls Wrapper */
 .controls-wrapper {
     display: flex;
     align-items: center;
     gap: 16px;
     flex-wrap: wrap;
+    width: 100%;
+    min-width: 0;
+    /* Critical for nested scrollable areas */
 }
 
 /* Sheet Tabs */
 .sheet-tabs {
-    display: inline-flex;
+    display: flex;
+    /* Changed from inline-flex to flex */
     background: var(--bg-surface);
     border: 1px solid var(--border-main);
-    /* Square corners for strict look */
     border-radius: 4px;
     padding: 4px;
     overflow-x: auto;
     max-width: 100%;
+    /* Ensure it doesn't overflow parent */
     flex-wrap: nowrap;
     -webkit-overflow-scrolling: touch;
-    /* Smooth scrolling on iOS */
     scrollbar-width: none;
-    /* Firefox */
+    flex: 1;
+    /* Allow it to take available space */
+    min-width: 0;
+    /* Critical for flex child scrolling */
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
+/* Custom Styled Scrollbar (The Slide) */
 .sheet-tabs::-webkit-scrollbar {
-    display: none;
+    display: block;
+    height: 6px;
+    /* Slightly thicker */
+}
+
+.sheet-tabs::-webkit-scrollbar-track {
+    background: var(--bg-subtle);
+    border-radius: 4px;
+}
+
+.sheet-tabs::-webkit-scrollbar-thumb {
+    background: var(--text-secondary);
+    /* Darker for visibility */
+    border-radius: 4px;
+}
+
+.sheet-tabs::-webkit-scrollbar-thumb:hover {
+    background: var(--text-main);
 }
 
 .sheet-tab {
