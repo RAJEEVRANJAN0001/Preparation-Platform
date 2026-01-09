@@ -710,15 +710,24 @@
     }
 
     .sheet-tabs {
+        display: flex;
         width: 100%;
+        max-width: 100%;
         overflow-x: auto;
         flex-wrap: nowrap;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 4px;
+        /* Space for scrollbar if visible */
     }
 
     .sheet-tab {
         white-space: nowrap;
         font-size: 12px;
-        padding: 6px 12px;
+        padding: 8px 16px;
+        /* Larger touch target */
+        flex: 0 0 auto;
+        /* Prevent shrinking */
     }
 
     .search-bar-wrapper {
