@@ -6,21 +6,17 @@
     "framework": "vite",
     "rewrites": [
         {
-            "source": "/api/(.*)",
-            "destination": "/api/index.js"
-        },
-        {
             "source": "/(.*)",
             "destination": "/index.html"
         }
     ],
     "headers": [
         {
-            "source": "/PLACEMENT NOTES/(.*)",
+            "source": "/Company NOTES/(.*)",
             "headers": [
                 {
                     "key": "Content-Type",
-                    "value": "application/pdf"
+                    "value": "application/octet-stream"
                 },
                 {
                     "key": "Content-Disposition",
