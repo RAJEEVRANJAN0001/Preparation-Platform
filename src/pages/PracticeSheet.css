@@ -84,16 +84,16 @@
     border: 1px solid var(--border-main);
     border-radius: 4px;
     padding: 4px;
-    overflow-x: auto;
+    padding: 4px;
+    overflow-x: visible;
+    /* Prevent scroll on desktop, allow wrap */
     max-width: 100%;
-    /* Ensure it doesn't overflow parent */
-    flex-wrap: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    flex-wrap: wrap;
+    /* Enable wrapping */
+    gap: 4px;
+    /* Space between wrapped rows */
     flex: 1;
-    /* Allow it to take available space */
     min-width: 0;
-    /* Critical for flex child scrolling */
 }
 
 /* Custom Styled Scrollbar (The Slide) */
