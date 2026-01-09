@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ChevronDown, ChevronRight, ExternalLink, CheckCircle, Circle, Trophy, Search, PlayCircle, BookOpen } from 'lucide-react';
+import { ChevronDown, ChevronRight, ExternalLink, CheckCircle, Circle, Trophy, Search, PlayCircle, BookOpen, Lightbulb } from 'lucide-react';
 import { striverSheetData } from '../data/striverSheetData';
 import { blind75Data } from '../data/blind75Data';
 import { sdeSheetData } from '../data/sdeSheetData';
@@ -21,6 +21,7 @@ const PracticeSheet = () => {
     const [dsaProgress, setDsaProgress] = useState({});
     const [sql50Progress, setSql50Progress] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
+    const [expandedTips, setExpandedTips] = useState({}); // Stores which tips are expanded by problem title
 
 
     // Load progress from localStorage
@@ -82,6 +83,13 @@ const PracticeSheet = () => {
             setSql50Progress(newProgress);
             localStorage.setItem('sql50SheetProgress', JSON.stringify(newProgress));
         }
+    };
+
+    const toggleTip = (problemTitle) => {
+        setExpandedTips(prev => ({
+            ...prev,
+            [problemTitle]: !prev[problemTitle]
+        }));
     };
 
     const toggleTopic = (index) => {
@@ -294,9 +302,33 @@ const PracticeSheet = () => {
                                                                     }
                                                                 })()}
 
-
+                                                                {problem.tips && (
+                                                                    <button
+                                                                        className={`action-btn tip-btn ${expandedTips[problem.title] ? 'active' : ''}`}
+                                                                        onClick={() => toggleTip(problem.title)}
+                                                                        title="Show Hint/Tip"
+                                                                    >
+                                                                        <Lightbulb size={14} />
+                                                                        {expandedTips[problem.title] ? 'Hide' : 'Tip'}
+                                                                    </button>
+                                                                )}
                                                             </div>
                                                         </div>
+
+                                                        {/* Render Tip if Expanded */}
+                                                        {
+                                                            problem.tips && expandedTips[problem.title] && (
+                                                                <div className="problem-tip-container">
+                                                                    <div className="tip-header">
+                                                                        <Lightbulb size={16} className="tip-icon-header" />
+                                                                        <span>Hint & Approach:</span>
+                                                                    </div>
+                                                                    <div className="tip-content">
+                                                                        <ReactMarkdown>{problem.tips}</ReactMarkdown>
+                                                                    </div>
+                                                                </div>
+                                                            )
+                                                        }
                                                     </div>
                                                 ))}
                                             </div>
@@ -316,7 +348,7 @@ const PracticeSheet = () => {
             </div>
 
 
-        </div>
+        </div >
     );
 };
 
