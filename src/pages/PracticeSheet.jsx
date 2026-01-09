@@ -4,6 +4,7 @@ import { striverSheetData } from '../data/striverSheetData';
 import { blind75Data } from '../data/blind75Data';
 import { sdeSheetData } from '../data/sdeSheetData';
 import { dsaSheetData } from '../data/dsaSheetData';
+import { sql50Data } from '../data/sql50Data';
 import ReactMarkdown from 'react-markdown';
 import './PracticeSheet.css';
 
@@ -11,12 +12,14 @@ import { useLocation } from 'react-router-dom';
 
 const PracticeSheet = () => {
     const location = useLocation();
-    const [activeSheet, setActiveSheet] = useState('striver'); // 'striver', 'blind75', 'sde'
+    const [activeSheet, setActiveSheet] = useState('striver'); // 'striver', 'blind75', 'sde', 'dsa', 'sql50'
     const [expandedTopic, setExpandedTopic] = useState(null);
     const [striverProgress, setStriverProgress] = useState({});
     const [blind75Progress, setBlind75Progress] = useState({});
     const [sdeProgress, setSdeProgress] = useState({});
+
     const [dsaProgress, setDsaProgress] = useState({});
+    const [sql50Progress, setSql50Progress] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
 
 
@@ -26,12 +29,13 @@ const PracticeSheet = () => {
         const savedBlind75 = localStorage.getItem('blind75Progress');
         const savedSde = localStorage.getItem('sdeSheetProgress');
         const savedDsa = localStorage.getItem('dsaSheetProgress');
+        const savedSql50 = localStorage.getItem('sql50SheetProgress');
 
         if (savedStriver) setStriverProgress(JSON.parse(savedStriver));
         if (savedBlind75) setBlind75Progress(JSON.parse(savedBlind75));
         if (savedSde) setSdeProgress(JSON.parse(savedSde));
         if (savedDsa) setDsaProgress(JSON.parse(savedDsa));
-        if (savedDsa) setDsaProgress(JSON.parse(savedDsa));
+        if (savedSql50) setSql50Progress(JSON.parse(savedSql50));
 
         // Check for navigation state to switch tab
         if (location.state && location.state.activeTab) {
@@ -51,9 +55,12 @@ const PracticeSheet = () => {
     } else if (activeSheet === 'sde') {
         currentData = sdeSheetData;
         currentProgress = sdeProgress;
-    } else {
+    } else if (activeSheet === 'dsa') {
         currentData = dsaSheetData;
         currentProgress = dsaProgress;
+    } else {
+        currentData = sql50Data;
+        currentProgress = sql50Progress;
     }
 
     const toggleProblem = (problemTitle) => {
@@ -68,9 +75,12 @@ const PracticeSheet = () => {
         } else if (activeSheet === 'sde') {
             setSdeProgress(newProgress);
             localStorage.setItem('sdeSheetProgress', JSON.stringify(newProgress));
-        } else {
+        } else if (activeSheet === 'dsa') {
             setDsaProgress(newProgress);
             localStorage.setItem('dsaSheetProgress', JSON.stringify(newProgress));
+        } else {
+            setSql50Progress(newProgress);
+            localStorage.setItem('sql50SheetProgress', JSON.stringify(newProgress));
         }
     };
 
@@ -149,6 +159,12 @@ const PracticeSheet = () => {
                             >
                                 Placement DSA
                             </button>
+                            <button
+                                className={`sheet-tab ${activeSheet === 'sql50' ? 'active' : ''}`}
+                                onClick={() => { setActiveSheet('sql50'); setExpandedTopic(null); }}
+                            >
+                                Top 50 SQL
+                            </button>
                         </div>
 
                         <div className="search-bar-wrapper">
@@ -167,7 +183,7 @@ const PracticeSheet = () => {
                 <div className="progress-card">
                     <div className="progress-header">
                         <span className="progress-label">
-                            {activeSheet === 'striver' ? "Striver's A2Z" : activeSheet === 'blind75' ? "Blind 75" : activeSheet === 'sde' ? "Striver's SDE" : "Placement DSA"} Progress
+                            {activeSheet === 'striver' ? "Striver's A2Z" : activeSheet === 'blind75' ? "Blind 75" : activeSheet === 'sde' ? "Striver's SDE" : activeSheet === 'dsa' ? "Placement DSA" : "Top SQL 50"} Progress
                         </span>
                         <span className="progress-percentage">{calculateProgress()}%</span>
                     </div>
@@ -194,7 +210,15 @@ const PracticeSheet = () => {
                             >
                                 <div className="topic-info">
                                     <div className="topic-index">{index + 1}</div>
-                                    <h3>{topic.title}</h3>
+                                    <div className="topic-title-wrapper">
+                                        <h3>{topic.title}</h3>
+                                        {topic.description && (
+                                            <span className="notes-badge">
+                                                <BookOpen size={12} style={{ marginRight: '4px' }} />
+                                                Notes
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
                                 <div className="topic-actions">
                                     <span className="problem-badge">{topic.totalProblems} Problems</span>
@@ -204,6 +228,11 @@ const PracticeSheet = () => {
 
                             {expandedTopic === index && (
                                 <div className="topic-body">
+                                    {topic.description && (
+                                        <div className="topic-notes">
+                                            <ReactMarkdown>{topic.description}</ReactMarkdown>
+                                        </div>
+                                    )}
                                     {topic.subtopics.map((subtopic, subIndex) => (
                                         <div key={subIndex} className="subtopic-group">
                                             <h4 className="subtopic-title">{subtopic.title}</h4>

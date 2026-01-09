@@ -50,7 +50,7 @@ function AppContent({ theme, toggleTheme }) {
 
 function App() {
     // Theme State
-    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark')
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme)

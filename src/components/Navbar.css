@@ -328,8 +328,8 @@
     border-color: var(--primary);
 }
 
-/* Mobile Responsive Breakpoint */
-@media (max-width: 1024px) {
+/* Mobile Responsive Breakpoint - Enhanced for tablets */
+@media (max-width: 1200px) {
     .navbar-links {
         display: none;
     }
@@ -341,6 +341,17 @@
     .mobile-menu-backdrop {
         display: block;
     }
+
+    .navbar-container {
+        padding: 0 16px;
+    }
+}
+
+/* Improve Mobile Menu Touch Targets */
+.mobile-nav-link {
+    min-height: 52px;
+    /* Larger tap target */
+    font-size: 1.05rem;
 }
 
 /* Prevent body scroll when mobile menu is open */
