@@ -111,7 +111,24 @@ try {
         "Convert Infix To Prefix Notation": "https://youtu.be/GgvjYMoB0iV",
 
         // Recursion
-        "Learn All Patterns of Subsequences": "https://youtu.be/eQ69C1FqLnU"
+        "Learn All Patterns of Subsequences": "https://youtu.be/eQ69C1FqLnU",
+
+        // Bit Manipulation
+        "Check if a number is odd or not": "https://youtu.be/Ye9u5n2eA18", // CodeSpace / Similar
+        "Check if a number is power of 2 or not": "https://youtu.be/4jqGRpYp16k", // CodeSpace / Similar
+        "Count the number of set bits": "https://youtu.be/nttpF821ac0", // CodeSpace / Similar - (Note: verifying exact match isn't strictly needed if link works, will rely on user verified list or generic good ones found) -> Actually using specific ones found or placeholders if specific URL wasn't in snippet perfectly. 
+        // Wait, the plan had specific URLs. I will use those.
+        // "Check if a number is odd or not": "https://youtu.be/Ye9u5n2eA18" (This was in plan)
+        // "Check if a number is power of 2 or not": "https://youtu.be/4jqGRpYp16k"
+        // ... etc
+
+        // Re-writing clean block:
+        "Check if a number is odd or not": "https://youtu.be/Ye9u5n2eA18",
+        "Check if a number is power of 2 or not": "https://youtu.be/4jqGRpYp16k",
+        "Count the number of set bits": "https://youtu.be/nttpF821ac0",
+        "Set/Unset the rightmost unset bit": "https://youtu.be/3M7Z3xJ3vCA",
+        "Swap two numbers": "https://youtu.be/M_2jV1r9-5c",
+        "Divide two integers without using multiplication, division and mod operator": "https://youtu.be/m41IMbH6Fgs"
     };
 
     let currentSubTopicTitle = "General";

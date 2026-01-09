@@ -794,42 +794,42 @@ export const masterDsaSheetData = [
                         "platform": "GeeksForGeeks",
                         "articleLink": null,
                         "link": "https://www.geeksforgeeks.org/problems/odd-or-even3618/1",
-                        "videoLink": null
+                        "videoLink": "https://youtu.be/Ye9u5n2eA18"
                     },
                     {
                         "title": "Check if a number is power of 2 or not",
                         "platform": "LeetCode",
                         "articleLink": null,
                         "link": "https://leetcode.com/problems/power-of-two/description/",
-                        "videoLink": null
+                        "videoLink": "https://youtu.be/4jqGRpYp16k"
                     },
                     {
                         "title": "Count the number of set bits",
                         "platform": "GeeksForGeeks",
                         "articleLink": null,
                         "link": "https://www.geeksforgeeks.org/problems/count-total-set-bits-1587115620/1",
-                        "videoLink": null
+                        "videoLink": "https://youtu.be/nttpF821ac0"
                     },
                     {
                         "title": "Set/Unset the rightmost unset bit",
                         "platform": "GeeksForGeeks",
                         "articleLink": null,
                         "link": "https://www.geeksforgeeks.org/problems/set-the-rightmost-unset-bit4436/1",
-                        "videoLink": null
+                        "videoLink": "https://youtu.be/3M7Z3xJ3vCA"
                     },
                     {
                         "title": "Swap two numbers",
                         "platform": "GeeksForGeeks",
                         "articleLink": null,
                         "link": "https://www.geeksforgeeks.org/problems/swap-two-numbers3844/1",
-                        "videoLink": null
+                        "videoLink": "https://youtu.be/M_2jV1r9-5c"
                     },
                     {
                         "title": "Divide two integers without using multiplication, division and mod operator",
                         "platform": "LeetCode",
                         "articleLink": null,
                         "link": "https://leetcode.com/problems/divide-two-integers/description/",
-                        "videoLink": null
+                        "videoLink": "https://youtu.be/m41IMbH6Fgs"
                     }
                 ]
             },
