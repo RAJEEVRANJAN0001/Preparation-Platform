@@ -74,7 +74,19 @@
     border: 1px solid var(--border-main);
     /* Square corners for strict look */
     border-radius: 4px;
-    padding: 2px;
+    padding: 4px;
+    overflow-x: auto;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.sheet-tabs::-webkit-scrollbar {
+    display: none;
 }
 
 .sheet-tab {
@@ -87,6 +99,8 @@
     border-radius: 2px;
     transition: all 0.1s;
     font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .sheet-tab:hover {
