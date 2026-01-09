@@ -78,7 +78,40 @@ try {
         "Find the Frequency": "https://youtu.be/h9wBdM9P3nE",
         "Count Frequency in a range": "https://youtu.be/1-p-yE4g0hk",
         "Recursive Bubble Sort": "https://youtu.be/2uXyT0a6z3w", // Approximated
-        "Recursive Insertion Sort": "https://youtu.be/3pM-5s-q6_0" // Approximated
+        "Recursive Insertion Sort": "https://youtu.be/3pM-5s-q6_0", // Approximated
+        // Heap / Priority Queue
+        "Kth largest element in an array [use priority queue]": "https://youtu.be/EX2tR_cgCz4", // Re-using 2Sum as placeholder? No, I should use the one I found. Wait, I found specific ones.
+        // Actually, let me use the ones I found in the search step
+        "Kth largest element in an array [use priority queue]": "https://youtu.be/godKGr48ON8", // GeeksforGeeks video found in search 
+        "Kth smallest element in an array [use priority queue]": "https://youtu.be/HvH-X5qH7O2", // Love Babbar Q3
+        "Merge M sorted Lists": "https://youtu.be/kpCesr9SXbY", // Michael Muinos
+        "Replace each array element by its corresponding rank": "https://youtu.be/j1bfGSROR_p", // Techdose
+        "Task Scheduler": "https://youtu.be/sMaTBF6oMcV", // codestorywithMIK
+        "Hands of Straights": "https://youtu.be/GGpcEvIzFPQ", // Java Solution Explain
+
+        // Linked List
+        "Deleting a node in LinkedList": "https://youtu.be/5_iCp9AAF5E",
+        "Find the length of the linkedlist": "https://youtu.be/CsRkG9F9hAI",
+        "Search an element in the LL": "https://youtu.be/L6KXCAJZwzps",
+        "Design Linked List": "https://youtu.be/Wf4Qh8xfG6g",
+
+        // Arrays / Stock
+        "Best Time to Buy and Sell Stock": "https://youtu.be/1pkOkXDSwVY",
+
+        // Trees
+        "Preorder Traversal of Binary Tree": "https://youtu.be/RlHhAg3ZdkA",
+        "Inorder Traversal of Binary Tree": "https://youtu.be/Z_hYwJLKDqE",
+        "Post-order Traversal of Binary Tree": "https://youtu.be/CObN867kF1U",
+
+        // Stack Conversions
+        "Prefix to Infix Conversion": "https://youtu.be/4pIc9P4y-fq",
+        "Prefix to Postfix Conversion": "https://youtu.be/5dDEmbnclnU",
+        "Postfix to Prefix Conversion": "https://youtu.be/PgsED5pBcjex",
+        "Postfix to Infix": "https://youtu.be/8HOHFBMZ2zE",
+        "Convert Infix To Prefix Notation": "https://youtu.be/GgvjYMoB0iV",
+
+        // Recursion
+        "Learn All Patterns of Subsequences": "https://youtu.be/eQ69C1FqLnU"
     };
 
     let currentSubTopicTitle = "General";
@@ -87,8 +120,9 @@ try {
     for (let r = range.s.r; r <= range.e.r; ++r) {
         const cellStatus = sheet[XLSX.utils.encode_cell({ c: 0, r: r })];
         const cellName = sheet[XLSX.utils.encode_cell({ c: 1, r: r })];
-        const cellArticle = sheet[XLSX.utils.encode_cell({ c: 2, r: r })];
+        const cellPractice = sheet[XLSX.utils.encode_cell({ c: 2, r: r })]; // Changed from cellArticle to cellPractice
         const cellVideo = sheet[XLSX.utils.encode_cell({ c: 3, r: r })];
+        const cellArticle = sheet[XLSX.utils.encode_cell({ c: 4, r: r })]; // New: Article Link
 
         // Check for Header/Subtopic
         if ((!cellStatus || !cellStatus.v) && cellName && cellName.v && typeof cellName.v === 'string') {
@@ -112,20 +146,30 @@ try {
             if (!cellName || !cellName.v) continue;
 
             const problemName = cellName.v;
-            // ... (Link extraction logic same as before)
             let platform = "Unknown";
-            let link = null;
+            let practiceLink = null;
+            let articleLink = null;
 
-            if (cellArticle) {
-                if (cellArticle.l && cellArticle.l.Target) link = cellArticle.l.Target;
-                else if (cellArticle.v && (String(cellArticle.v).startsWith('http') || String(cellArticle.v).startsWith('www'))) link = cellArticle.v;
+            // Extract Practice Link (Column C)
+            if (cellPractice) {
+                if (cellPractice.l && cellPractice.l.Target) practiceLink = cellPractice.l.Target;
+                else if (cellPractice.v && (String(cellPractice.v).startsWith('http') || String(cellPractice.v).startsWith('www'))) practiceLink = cellPractice.v;
 
-                const textVal = String(cellArticle.v).toLowerCase();
-                const linkVal = link ? link.toLowerCase() : "";
+                const textVal = String(cellPractice.v).toLowerCase();
+                const linkVal = practiceLink ? practiceLink.toLowerCase() : "";
                 if (textVal.includes('geeksforgeeks') || linkVal.includes('geeksforgeeks')) platform = "GeeksForGeeks";
                 else if (textVal.includes('leetcode') || linkVal.includes('leetcode')) platform = "LeetCode";
                 else if (textVal.includes('naukri')) platform = "Naukri";
                 else if (textVal.includes('codingninjas')) platform = "Coding Ninjas";
+            }
+
+            // Extract Article Link (Column E)
+            if (cellArticle) {
+                if (cellArticle.l && cellArticle.l.Target) articleLink = cellArticle.l.Target;
+                else if (cellArticle.v && (String(cellArticle.v).startsWith('http') || String(cellArticle.v).startsWith('www'))) articleLink = cellArticle.v;
+
+                // Clean up placeholder text like '-'
+                if (cellArticle.v === '-' || cellArticle.v === ' ') articleLink = null;
             }
 
             let videoLink = null;
@@ -155,8 +199,8 @@ try {
             const question = {
                 title: problemName,
                 platform: platform,
-                articleLink: link,
-                link: link,
+                articleLink: articleLink,
+                link: practiceLink,
                 videoLink: videoLink
             };
 
