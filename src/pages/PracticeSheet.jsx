@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { ChevronDown, ChevronRight, ExternalLink, CheckCircle, Circle, Trophy, Search, PlayCircle, BookOpen, Lightbulb } from 'lucide-react';
+import { ChevronDown, ChevronRight, ExternalLink, CheckCircle, Circle, Trophy, Search, PlayCircle, BookOpen, Lightbulb, Youtube } from 'lucide-react';
 import { striverSheetData } from '../data/striverSheetData';
 import { blind75Data } from '../data/blind75Data';
 import { sdeSheetData } from '../data/sdeSheetData';
 import { dsaSheetData } from '../data/dsaSheetData';
+import { masterDsaSheetData } from '../data/masterDsaSheetData';
 import { sql50Data } from '../data/sql50Data';
 import ReactMarkdown from 'react-markdown';
 import './PracticeSheet.css';
@@ -19,6 +20,7 @@ const PracticeSheet = () => {
     const [sdeProgress, setSdeProgress] = useState({});
 
     const [dsaProgress, setDsaProgress] = useState({});
+    const [masterDsaProgress, setMasterDsaProgress] = useState({});
     const [sql50Progress, setSql50Progress] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
     const [expandedTips, setExpandedTips] = useState({}); // Stores which tips are expanded by problem title
@@ -30,12 +32,14 @@ const PracticeSheet = () => {
         const savedBlind75 = localStorage.getItem('blind75Progress');
         const savedSde = localStorage.getItem('sdeSheetProgress');
         const savedDsa = localStorage.getItem('dsaSheetProgress');
+        const savedMasterDsa = localStorage.getItem('masterDsaSheetProgress');
         const savedSql50 = localStorage.getItem('sql50SheetProgress');
 
         if (savedStriver) setStriverProgress(JSON.parse(savedStriver));
         if (savedBlind75) setBlind75Progress(JSON.parse(savedBlind75));
         if (savedSde) setSdeProgress(JSON.parse(savedSde));
         if (savedDsa) setDsaProgress(JSON.parse(savedDsa));
+        if (savedMasterDsa) setMasterDsaProgress(JSON.parse(savedMasterDsa));
         if (savedSql50) setSql50Progress(JSON.parse(savedSql50));
 
         // Check for navigation state to switch tab
@@ -59,6 +63,9 @@ const PracticeSheet = () => {
     } else if (activeSheet === 'dsa') {
         currentData = dsaSheetData;
         currentProgress = dsaProgress;
+    } else if (activeSheet === 'masterdsa') {
+        currentData = masterDsaSheetData;
+        currentProgress = masterDsaProgress;
     } else {
         currentData = sql50Data;
         currentProgress = sql50Progress;
@@ -79,6 +86,9 @@ const PracticeSheet = () => {
         } else if (activeSheet === 'dsa') {
             setDsaProgress(newProgress);
             localStorage.setItem('dsaSheetProgress', JSON.stringify(newProgress));
+        } else if (activeSheet === 'masterdsa') {
+            setMasterDsaProgress(newProgress);
+            localStorage.setItem('masterDsaSheetProgress', JSON.stringify(newProgress));
         } else {
             setSql50Progress(newProgress);
             localStorage.setItem('sql50SheetProgress', JSON.stringify(newProgress));
@@ -168,6 +178,12 @@ const PracticeSheet = () => {
                                 Placement DSA
                             </button>
                             <button
+                                className={`sheet-tab ${activeSheet === 'masterdsa' ? 'active' : ''}`}
+                                onClick={() => { setActiveSheet('masterdsa'); setExpandedTopic(null); }}
+                            >
+                                Master DSA
+                            </button>
+                            <button
                                 className={`sheet-tab ${activeSheet === 'sql50' ? 'active' : ''}`}
                                 onClick={() => { setActiveSheet('sql50'); setExpandedTopic(null); }}
                             >
@@ -191,7 +207,7 @@ const PracticeSheet = () => {
                 <div className="progress-card">
                     <div className="progress-header">
                         <span className="progress-label">
-                            {activeSheet === 'striver' ? "Striver's A2Z" : activeSheet === 'blind75' ? "Blind 75" : activeSheet === 'sde' ? "Striver's SDE" : activeSheet === 'dsa' ? "Placement DSA" : "Top SQL 50"} Progress
+                            {activeSheet === 'striver' ? "Striver's A2Z" : activeSheet === 'blind75' ? "Blind 75" : activeSheet === 'sde' ? "Striver's SDE" : activeSheet === 'dsa' ? "Placement DSA" : activeSheet === 'masterdsa' ? "Master DSA" : "Top SQL 50"} Progress
                         </span>
                         <span className="progress-percentage">{calculateProgress()}%</span>
                     </div>
@@ -301,6 +317,13 @@ const PracticeSheet = () => {
                                                                         );
                                                                     }
                                                                 })()}
+
+                                                                {problem.videoLink && (
+                                                                    <a href={problem.videoLink} target="_blank" rel="noopener noreferrer" className="action-btn video-btn" style={{ marginLeft: '8px', color: '#ff0000', borderColor: '#ff000030', backgroundColor: '#ff000010' }}>
+                                                                        <Youtube size={14} />
+                                                                        Watch
+                                                                    </a>
+                                                                )}
 
                                                                 {problem.tips && (
                                                                     <button
