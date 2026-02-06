@@ -31,166 +31,160 @@
   --sp-12: 48px;
 }
 
-/* Light Theme (Default) - Grayscale */
+/* Light Theme (Professional Indigo) */
 :root {
-  /* Backgrounds - Employee Task Tracker Light Theme */
-  --bg-main: #F9FAFB;
-  /* Gray-50 - Main background */
+  /* Backgrounds */
+  --bg-main: #F8FAFC;
+  /* Slate-50 */
   --bg-surface: #FFFFFF;
-  /* White - Card backgrounds */
-  --bg-secondary: #F3F4F6;
-  /* Gray-100 - Subtle backgrounds */
-  --bg-subtle: #F3F4F6;
-  /* Gray-100 */
-  --bg-inset: #E5E7EB;
-  /* Gray-200 */
+  --bg-secondary: #F1F5F9;
+  /* Slate-100 */
+  --bg-subtle: #F8FAFC;
+  --bg-inset: #E2E8F0;
+  /* Slate-200 */
 
   /* Borders */
-  --border-main: #E5E7EB;
-  /* Gray-200 */
-  --border-subtle: #F3F4F6;
-  /* Gray-100 */
-  --border-color: #E5E7EB;
-  /* Gray-200 */
+  --border-main: #E2E8F0;
+  /* Slate-200 */
+  --border-subtle: #F1F5F9;
+  --border-color: #E2E8F0;
 
   /* Text */
-  --text-main: #111827;
-  /* Gray-900 - Primary text */
-  --text-primary: #111827;
-  /* Gray-900 */
-  --text-secondary: #6B7280;
-  /* Gray-500 - Secondary text */
-  --text-muted: #6B7280;
-  /* Gray-500 */
-  --text-faint: #9CA3AF;
-  /* Gray-400 */
+  --text-main: #0F172A;
+  /* Slate-900 */
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  /* Slate-600 */
+  --text-muted: #64748B;
+  /* Slate-500 */
+  --text-faint: #94A3B8;
+  /* Slate-400 */
 
   /* Primary/Accents */
-  --primary: #374151;
-  /* Gray-700 */
-  --primary-dark: #1F2937;
-  /* Gray-800 */
-  --primary-light: #D1D5DB;
-  /* Gray-300 */
+  --primary: #4F46E5;
+  /* Indigo-600 */
+  --primary-dark: #4338CA;
+  /* Indigo-700 */
+  --primary-light: #818CF8;
+  /* Indigo-400 */
 
-  /* Accent colors - Grayscale */
-  --accent-orange: #6B7280;
-  /* Gray-500 */
-  --accent-green: #4B5563;
-  /* Gray-600 */
-  --accent-purple: #6B7280;
-  /* Gray-500 */
+  /* Accent colors - Restored Vibrancy */
+  --accent-orange: #F97316;
+  /* Orange-500 */
+  --accent-green: #10B981;
+  /* Emerald-500 */
+  --accent-purple: #8B5CF6;
+  /* Violet-500 */
 
-  /* Shadows */
-  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* Shadows - Tinted */
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(79, 70, 229, 0.1), 0 2px 4px -2px rgba(79, 70, 229, 0.1);
+  /* Indigo tint */
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
 
   /* Interview Page Specific */
-  --bg-hover: rgba(0, 0, 0, 0.02);
-  --border-hover: #9CA3AF;
-  --icon-bg: rgba(0, 0, 0, 0.04);
-  --icon-bg-hover: rgba(0, 0, 0, 0.08);
-  --badge-bg: rgba(0, 0, 0, 0.04);
-  --badge-bg-hover: rgba(0, 0, 0, 0.08);
-  --shimmer-color: rgba(255, 255, 255, 0.3);
+  --bg-hover: rgba(79, 70, 229, 0.04);
+  /* Indigo tint */
+  --border-hover: #4F46E5;
+  --icon-bg: rgba(79, 70, 229, 0.08);
+  --icon-bg-hover: rgba(79, 70, 229, 0.15);
+  --badge-bg: rgba(79, 70, 229, 0.08);
+  --badge-bg-hover: rgba(79, 70, 229, 0.15);
+  --shimmer-color: rgba(255, 255, 255, 0.5);
   --input-bg: #FFFFFF;
-  --input-bg-focus: #F9FAFB;
-  --border-focus: #6B7280;
-  --text-placeholder: #9CA3AF;
-  --progress-bg: #E5E7EB;
-  --button-primary-bg: #111827;
+  --input-bg-focus: #FFFFFF;
+  --border-focus: #4F46E5;
+  --text-placeholder: #94A3B8;
+  --progress-bg: #E2E8F0;
+  --button-primary-bg: #4F46E5;
   --button-primary-text: #FFFFFF;
-  --button-primary-hover: #1F2937;
-  --button-disabled-bg: #E5E7EB;
-  --button-disabled-text: #9CA3AF;
-  --error-bg: rgba(239, 68, 68, 0.1);
-  --error-border: rgba(239, 68, 68, 0.3);
+  --button-primary-hover: #4338CA;
+  --button-disabled-bg: #E2E8F0;
+  --button-disabled-text: #94A3B8;
+  --error-bg: #FEF2F2;
+  --error-border: #FCA5A5;
   --error-text: #DC2626;
 
   /* Legacy support */
   --card-bg: #FFFFFF;
 }
 
-/* Dark Theme - Grayscale - Employee Task Tracker */
+/* Dark Theme (Premium Slate/Navy) */
 [data-theme='dark'] {
   /* Backgrounds */
-  --bg-main: #111827;
-  /* Gray-900 - Main background */
-  --bg-surface: #1F2937;
-  /* Gray-800 - Card backgrounds */
-  --bg-secondary: #374151;
-  /* Gray-700 - Subtle backgrounds */
-  --bg-subtle: #374151;
-  /* Gray-700 */
-  --bg-inset: #4B5563;
-  /* Gray-600 */
+  --bg-main: #0B1120;
+  /* Deep Navy/Black */
+  --bg-surface: #1E293B;
+  /* Slate-800 */
+  --bg-secondary: #0F172A;
+  /* Slate-900 */
+  --bg-subtle: #1E293B;
+  --bg-inset: #334155;
+  /* Slate-700 */
 
   /* Borders */
-  --border-main: #4B5563;
-  /* Gray-600 */
-  --border-subtle: #374151;
-  /* Gray-700 */
-  --border-color: #4B5563;
-  /* Gray-600 */
+  --border-main: #334155;
+  /* Slate-700 */
+  --border-subtle: #1E293B;
+  --border-color: #334155;
 
   /* Text */
-  --text-main: #F9FAFB;
-  /* Gray-50 - Primary text */
-  --text-primary: #F9FAFB;
-  /* Gray-50 */
-  --text-secondary: #9CA3AF;
-  /* Gray-400 - Secondary text */
-  --text-muted: #9CA3AF;
-  /* Gray-400 */
-  --text-faint: #6B7280;
-  /* Gray-500 */
+  --text-main: #F8FAFC;
+  /* Slate-50 */
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  /* Slate-400 */
+  --text-muted: #64748B;
+  /* Slate-500 */
+  --text-faint: #475569;
+  /* Slate-600 */
 
   /* Primary/Accents */
-  --primary: #E5E7EB;
-  /* Gray-200 */
-  --primary-dark: #F9FAFB;
-  /* Gray-50 */
-  --primary-light: #4B5563;
-  /* Gray-600 */
+  --primary: #6366F1;
+  /* Indigo-500 */
+  --primary-dark: #818CF8;
+  /* Indigo-400 */
+  --primary-light: #4F46E5;
+  /* Indigo-600 */
 
-  /* Accent colors - Grayscale */
-  --accent-orange: #9CA3AF;
-  /* Gray-400 */
-  --accent-green: #D1D5DB;
-  /* Gray-300 */
-  --accent-purple: #9CA3AF;
-  /* Gray-400 */
+  /* Accent colors */
+  --accent-orange: #FB923C;
+  /* Orange-400 */
+  --accent-green: #34D399;
+  /* Emerald-400 */
+  --accent-purple: #A78BFA;
+  /* Violet-400 */
 
   /* Shadows */
-  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
 
   /* Interview Page Specific */
-  --bg-hover: rgba(255, 255, 255, 0.05);
-  --border-hover: #9CA3AF;
-  --icon-bg: rgba(255, 255, 255, 0.08);
-  --icon-bg-hover: rgba(255, 255, 255, 0.15);
-  --badge-bg: rgba(255, 255, 255, 0.08);
-  --badge-bg-hover: rgba(255, 255, 255, 0.15);
-  --shimmer-color: rgba(255, 255, 255, 0.1);
-  --input-bg: #0f0f0f;
-  --input-bg-focus: #141414;
-  --border-focus: #666;
-  --text-placeholder: #444;
-  --progress-bg: #222;
-  --button-primary-bg: #FFFFFF;
-  --button-primary-text: #000000;
-  --button-primary-hover: #E0E0E0;
-  --button-disabled-bg: #333;
-  --button-disabled-text: #666;
-  --error-bg: #1a0505;
-  --error-border: #4a1a1a;
-  --error-text: #ff6b6b;
+  --bg-hover: rgba(99, 102, 241, 0.1);
+  /* Indigo tint */
+  --border-hover: #6366F1;
+  --icon-bg: rgba(99, 102, 241, 0.15);
+  --icon-bg-hover: rgba(99, 102, 241, 0.25);
+  --badge-bg: rgba(99, 102, 241, 0.15);
+  --badge-bg-hover: rgba(99, 102, 241, 0.25);
+  --shimmer-color: rgba(255, 255, 255, 0.05);
+  --input-bg: #0F172A;
+  --input-bg-focus: #1E293B;
+  --border-focus: #6366F1;
+  --text-placeholder: #475569;
+  --progress-bg: #1E293B;
+  --button-primary-bg: #6366F1;
+  --button-primary-text: #FFFFFF;
+  --button-primary-hover: #818CF8;
+  --button-disabled-bg: #1E293B;
+  --button-disabled-text: #475569;
+  --error-bg: #450A0A;
+  --error-border: #7F1D1D;
+  --error-text: #FCA5A5;
 
   /* Legacy support */
-  --card-bg: #1F2937;
+  --card-bg: #1E293B;
 }
 
 html {
