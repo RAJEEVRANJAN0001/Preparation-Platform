@@ -96,12 +96,12 @@
 
 /* Roadmap Header */
 .roadmap-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
     border-radius: 20px;
     padding: 32px;
     color: white;
     margin-bottom: 32px;
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);
 }
 
 .roadmap-header-content {
@@ -189,10 +189,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #667eea;
+    background: var(--primary);
     color: white;
     font-weight: 700;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
     z-index: 2;
     transition: transform 0.2s;
 }
@@ -434,7 +434,7 @@
     gap: 8px;
     margin-top: 16px;
     padding: 10px 20px;
-    background: #667eea;
+    background: var(--primary);
     color: white;
     text-decoration: none;
     border-radius: 8px;
@@ -444,7 +444,7 @@
 
 .empty-roadmap-state .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
 }
 
 @keyframes fadeIn {
@@ -519,7 +519,7 @@
 .category-header h2 {
     margin: 0;
     font-size: 24px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -549,8 +549,8 @@
 
 .external-roadmap-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
-    border-color: #667eea;
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.2);
+    border-color: var(--primary);
 }
 
 .external-card-icon {

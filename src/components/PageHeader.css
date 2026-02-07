@@ -1,13 +1,15 @@
 /* Page Header with Back Navigation */
 .page-header {
     margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-main);
 }
 
 .page-header-nav {
     display: flex;
     align-items: center;
     gap: var(--sp-4);
-    margin-bottom: var(--sp-6);
+    margin-bottom: var(--sp-5);
 }
 
 .back-button {
@@ -18,30 +20,32 @@
     background: var(--bg-surface);
     border: 1px solid var(--border-main);
     border-radius: var(--radius-md);
-    color: var(--text-main);
+    color: var(--text-secondary);
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
 }
 
 .back-button:hover {
     border-color: var(--primary);
     color: var(--primary);
-    background: var(--primary-light);
+    background: rgba(79, 70, 229, 0.05);
+    transform: translateX(-2px);
 }
 
 .page-title {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
     color: var(--text-main);
-    margin: 0 0 8px 0;
-    line-height: 1.2;
+    margin: 0 0 6px 0;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
 }
 
 .page-subtitle {
-    font-size: 16px;
+    font-size: 15px;
     color: var(--text-muted);
     margin: 0;
     line-height: 1.5;
@@ -49,17 +53,17 @@
 
 /* Ensure visibility in both themes */
 [data-theme="light"] .page-title {
-    color: #1a1a1a;
+    color: #0F172A;
 }
 
 [data-theme="dark"] .page-title {
-    color: #ffffff;
+    color: #F8FAFC;
 }
 
 [data-theme="light"] .back-button {
-    color: #4a4a4a;
+    color: #475569;
 }
 
 [data-theme="dark"] .back-button {
-    color: #e0e0e0;
+    color: #94A3B8;
 }

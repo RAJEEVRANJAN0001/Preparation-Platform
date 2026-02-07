@@ -255,20 +255,51 @@ body {
 .dense-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-main);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--sp-4);
   box-shadow: var(--shadow-card);
-  transition: transform 300ms ease, box-shadow 300ms ease;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms ease;
 }
 
 .dense-card:hover {
-  transform: scale(1.02);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+/* Glass Card Variant */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms ease;
+}
+
+[data-theme='dark'] .glass-card {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(99, 102, 241, 0.15);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(79, 70, 229, 0.1);
+}
+
+/* Focus Ring Utility */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 /* Buttons */
 button {
   font-family: inherit;
+  cursor: pointer;
 }
 
 /* Grid */
@@ -294,16 +325,17 @@ button {
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 2px 8px;
-  border-radius: 4px;
+  padding: 3px 10px;
+  border-radius: 6px;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
 }
 
 .badge-blue {
-  background: rgba(37, 99, 235, 0.1);
+  background: rgba(79, 70, 229, 0.1);
   color: var(--primary);
 }
 
@@ -320,6 +352,19 @@ button {
 .badge-purple {
   background: rgba(139, 92, 246, 0.1);
   color: var(--accent-purple);
+}
+
+[data-theme='dark'] .badge-blue {
+  background: rgba(99, 102, 241, 0.15);
+}
+[data-theme='dark'] .badge-green {
+  background: rgba(52, 211, 153, 0.15);
+}
+[data-theme='dark'] .badge-orange {
+  background: rgba(251, 146, 60, 0.15);
+}
+[data-theme='dark'] .badge-purple {
+  background: rgba(167, 139, 250, 0.15);
 }
 
 /* Enhanced Responsive Utilities */
