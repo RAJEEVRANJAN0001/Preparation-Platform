@@ -109,8 +109,6 @@ function CompanyDetail() {
         );
     }
 
-    const isProduction = import.meta.env.PROD;
-
     return (
         <div className="app-container">
             <AnimatedBackground />
@@ -124,37 +122,6 @@ function CompanyDetail() {
                 <span className="breadcrumb-separator">/</span>
                 <span className="breadcrumb-current">{companyData.displayName}</span>
             </div>
-
-            {/* Production Warning */}
-            {isProduction && (
-                <div style={{
-                    background: 'linear-gradient(135deg, #ff6b6b22, #ff6b6b11)',
-                    border: '1px solid #ff6b6b33',
-                    borderRadius: '12px',
-                    padding: '16px 20px',
-                    margin: '20px auto',
-                    maxWidth: '1200px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px'
-                }}>
-                    <span style={{ fontSize: '24px' }}>⚠️</span>
-                    <div>
-                        <strong style={{ color: '#ff6b6b', display: 'block', marginBottom: '4px' }}>
-                            Production Mode - Files Not Available
-                        </strong>
-                        <p style={{ margin: 0, fontSize: '14px', opacity: 0.8 }}>
-                            Company NOTES files are excluded from production builds due to Vercel's 250 MB size limit.
-                            To access files, please run this application locally using <code style={{
-                                background: 'rgba(0,0,0,0.2)',
-                                padding: '2px 6px',
-                                borderRadius: '4px',
-                                fontFamily: 'monospace'
-                            }}>npm run dev</code>
-                        </p>
-                    </div>
-                </div>
-            )}
 
             <PageHeader
                 title={companyData.displayName}
