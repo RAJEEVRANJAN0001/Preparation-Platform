@@ -88,6 +88,14 @@ function FilePreviewModal({ file, company, onClose }) {
         }
     }, [file, company]);
 
+    // Prevent body scroll when modal is open
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, []);
+
     const fetchContent = async () => {
         try {
             setLoading(true);
@@ -116,7 +124,11 @@ function FilePreviewModal({ file, company, onClose }) {
     };
 
     return createPortal(
-        <div className={`file-preview-overlay ${isFullscreen ? 'fullscreen' : ''}`} onClick={onClose}>
+        <div
+            className={`file-preview-overlay ${isFullscreen ? 'fullscreen' : ''}`}
+            onClick={onClose}
+            onWheel={(e) => e.stopPropagation()}
+        >
             <div className="preview-backdrop" />
 
             <div
