@@ -6,3 +6,7 @@ node_modules
 .DS_Store
 dist
 .vercel
+
+# Exclude large files from deployment (885 MB)
+public/Company NOTES
+public/PLACEMENT NOTES
