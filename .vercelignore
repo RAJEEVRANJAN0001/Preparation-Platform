@@ -7,10 +7,7 @@ node_modules
 dist
 .vercel
 
-# Exclude from serverless function deployment (885 MB)
+# Exclude large file folders from deployment (885 MB total)
+# These will be served via GitHub raw URLs in production
 public/Company NOTES
 public/PLACEMENT NOTES
-
-# Keep server.js excluded from deployment (not needed for static site)
-server.js
-api/
