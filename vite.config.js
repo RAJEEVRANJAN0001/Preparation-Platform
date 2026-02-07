@@ -27,8 +27,7 @@ export default defineConfig({
         },
         chunkSizeWarningLimit: 1000,
         sourcemap: false,
-        // Don't copy public folder to dist (saves 885 MB)
-        // Files will be served via API endpoints instead
-        copyPublicDir: false
+        // Copy public folder to dist for logo, favicon, and PLACEMENT NOTES
+        copyPublicDir: true
     }
 })

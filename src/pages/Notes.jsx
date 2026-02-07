@@ -23,6 +23,7 @@ function Notes() {
 
         if (['pdf'].includes(extension)) type = 'PDF';
         else if (['doc', 'docx'].includes(extension)) type = 'Document';
+        else if (['xls', 'xlsx'].includes(extension)) type = 'Spreadsheet';
         else if (['txt'].includes(extension)) type = 'Text';
         else if (['md'].includes(extension)) type = 'Markdown';
         else if (['html', 'htm'].includes(extension)) type = 'HTML';
@@ -176,7 +177,7 @@ function Notes() {
                                         <Eye size={14} /> Preview
                                     </button>
                                     <a
-                                        href={`/PLACEMENT NOTES/${note.fileName}`}
+                                        href={`/PLACEMENT NOTES/${encodeURIComponent(note.fileName)}`}
                                         download
                                         className="pdf-action-btn secondary"
                                     >

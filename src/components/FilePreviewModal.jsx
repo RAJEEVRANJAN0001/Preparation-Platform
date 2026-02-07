@@ -146,7 +146,7 @@ function FilePreviewModal({ file, company, onClose }) {
                             </div>
                             <div className="download-info">
                                 <h3>{file.name}</h3>
-                                <p>This file is ready to view</p>
+                                <p>This file type ({file.type}) cannot be previewed in the browser. Download it to open with a compatible application.</p>
                             </div>
                             <button className="primary-download-btn" onClick={handleDownload}>
                                 <Download size={20} />
@@ -195,9 +195,9 @@ function FilePreviewModal({ file, company, onClose }) {
                 {/* Footer Status Bar */}
                 <div className="preview-footer">
                     <div className="footer-info">
-                        <span>{file.sizeFormatted}</span>
+                        <span>{file.type}</span>
                         <span className="separator">•</span>
-                        <span>{isMarkdown ? 'Markdown View' : isTextFile ? 'Text View' : 'Preview Mode'}</span>
+                        <span>{isMarkdown ? 'Markdown View' : isTextFile ? 'Text View' : isIframe ? 'Document Preview' : file.type === 'Image' ? 'Image Preview' : 'Download Mode'}</span>
                     </div>
                 </div>
             </div>

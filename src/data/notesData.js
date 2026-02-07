@@ -93,7 +93,9 @@ export const pdfNotes = [
     { id: 70, title: 'Pro Git Book', category: 'DevOps', difficulty: 'Medium', fileName: 'Pro Git.pdf', tags: ['git', 'version-control'] },
     { id: 71, title: 'The Terraform Book', category: 'DevOps', difficulty: 'Hard', fileName: 'The_Terraform_Book.pdf', tags: ['terraform', 'iac'] },
     { id: 72, title: 'AWS Cloud Guide', category: 'DevOps', difficulty: 'Medium', fileName: 'aws cloud.pdf', tags: ['aws', 'cloud'] },
-    { id: 73, title: 'SQL Interview Questions (DOCX)', category: 'DBMS', difficulty: 'Medium', fileName: 'sql interview.docx', tags: ['sql', 'interview'] }
+    { id: 73, title: 'DSA Sheet (Excel)', category: 'DSA', difficulty: 'Medium', fileName: 'DSA SHEET.xlsx', tags: ['dsa', 'sheet', 'practice'] },
+    { id: 74, title: 'N8n Automation Guide', category: 'DevOps', difficulty: 'Medium', fileName: 'n8n.pdf', tags: ['n8n', 'automation'] },
+    { id: 75, title: 'Python Notes (Handwritten)', category: 'Python', difficulty: 'Easy', fileName: 'python notes  (1).pdf', tags: ['python', 'notes'] }
 ]
 
 export const categories = ['All', 'DSA', 'System Design', 'Web Dev', 'DBMS', 'OS', 'Networks', 'OOP', 'Python', 'AI/ML', 'DevOps', 'Interview', 'Career', 'General']
