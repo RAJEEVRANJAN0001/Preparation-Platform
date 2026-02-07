@@ -6,3 +6,11 @@ node_modules
 .DS_Store
 dist
 .vercel
+
+# Exclude from serverless function deployment (885 MB)
+public/Company NOTES
+public/PLACEMENT NOTES
+
+# Keep server.js excluded from deployment (not needed for static site)
+server.js
+api/
