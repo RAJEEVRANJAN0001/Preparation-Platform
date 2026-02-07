@@ -9,7 +9,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Load environment variables
-dotenv.config({ path: '.env.server' });
+// In Vercel, env vars come from dashboard settings, not .env files
+// In local dev, try .env.server first, then fall back to .env
+if (!process.env.VERCEL) {
+    dotenv.config({ path: '.env.server' });
+    if (!process.env.GEMINI_API_KEY) {
+        dotenv.config();
+    }
+}
 
 const app = express();
 const PORT = process.env.PORT || 3001;
