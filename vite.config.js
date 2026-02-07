@@ -13,5 +13,19 @@ export default defineConfig({
                 secure: false,
             }
         }
+    },
+    build: {
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    'react-vendor': ['react', 'react-dom'],
+                    'router': ['react-router-dom'],
+                    'icons': ['lucide-react', 'react-icons'],
+                    'markdown': ['react-markdown', 'remark-gfm']
+                }
+            }
+        },
+        chunkSizeWarningLimit: 1000,
+        sourcemap: false
     }
 })
