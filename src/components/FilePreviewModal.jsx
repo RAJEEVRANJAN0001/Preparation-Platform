@@ -32,11 +32,15 @@ function FilePreviewModal({ file, company, onClose }) {
     // We can access them directly via URL
     // Ensure we handle subdirectories correctly by encoding segments but keeping slashes
     // Fix for Knowledge Base/Notes section: files are in /PLACEMENT NOTES, not /Company NOTES/PLACEMENT NOTES
-    let baseUrl = `/Company NOTES/${company}`;
+    let fileUrl;
     if (company === 'PLACEMENT NOTES') {
-        baseUrl = '/PLACEMENT NOTES';
+        // For PLACEMENT NOTES, file.path is just the filename
+        fileUrl = `/PLACEMENT NOTES/${encodeURIComponent(file.path)}`;
+    } else {
+        // For Company NOTES, construct the full path
+        const baseUrl = `/Company NOTES/${company}`;
+        fileUrl = `${baseUrl}/${file.path.split('/').map(encodeURIComponent).join('/')}`;
     }
-    const fileUrl = `${baseUrl}/${file.path.split('/').map(encodeURIComponent).join('/')}`;
 
     const isTextFile = file.type === 'Text';
     const isMarkdown = file.type === 'Markdown';
