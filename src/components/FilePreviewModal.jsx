@@ -5,6 +5,10 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import './FilePreviewModal.css';
 
+// GitHub raw base URL for serving files in production (Vercel can't host 526MB+ of PDFs)
+const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/RAJEEVRANJAN0001/Preparation-Platform/main/public';
+const isProduction = import.meta.env.PROD;
+
 // Local helper function to get file icon
 function getFileIcon(type, extension) {
     if (type === 'PDF') return FileText;
@@ -26,20 +30,48 @@ function FilePreviewModal({ file, company, onClose }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    // Handle different file paths
-    // With Vercel/Static deployment, all files are in public/Company NOTES
-    // We can access them directly via URL
-    // We can access them directly via URL
-    // Ensure we handle subdirectories correctly by encoding segments but keeping slashes
-    // Fix for Knowledge Base/Notes section: files are in /PLACEMENT NOTES, not /Company NOTES/PLACEMENT NOTES
+    // Build file URLs based on environment
+    // In development: files are served from public/ by Vite dev server
+    // In production (Vercel): files are too large to deploy, so we use GitHub raw URLs
     let fileUrl;
+    let downloadUrl;
+    let previewUrl; // For PDF iframe preview (may use Google Docs Viewer in production)
+
     if (company === 'PLACEMENT NOTES') {
-        // For PLACEMENT NOTES, file.path is just the filename
-        fileUrl = `/PLACEMENT NOTES/${encodeURIComponent(file.path)}`;
+        if (isProduction) {
+            // Production: serve from GitHub raw
+            const rawUrl = `${GITHUB_RAW_BASE}/PLACEMENT%20NOTES/${encodeURIComponent(file.path)}`;
+            fileUrl = rawUrl;
+            downloadUrl = rawUrl;
+            // Use Google Docs Viewer for PDF preview in production (raw.githubusercontent.com doesn't set correct Content-Type for iframe embedding)
+            if (file.type === 'PDF') {
+                previewUrl = `https://docs.google.com/gview?url=${encodeURIComponent(rawUrl)}&embedded=true`;
+            } else {
+                previewUrl = rawUrl;
+            }
+        } else {
+            // Development: serve from local public/
+            fileUrl = `/PLACEMENT NOTES/${encodeURIComponent(file.path)}`;
+            downloadUrl = fileUrl;
+            previewUrl = fileUrl;
+        }
     } else {
-        // For Company NOTES, construct the full path
-        const baseUrl = `/Company NOTES/${company}`;
-        fileUrl = `${baseUrl}/${file.path.split('/').map(encodeURIComponent).join('/')}`;
+        // Company NOTES (also use GitHub raw in production)
+        if (isProduction) {
+            const rawUrl = `${GITHUB_RAW_BASE}/Company%20NOTES/${company}/${file.path.split('/').map(encodeURIComponent).join('/')}`;
+            fileUrl = rawUrl;
+            downloadUrl = rawUrl;
+            if (file.type === 'PDF') {
+                previewUrl = `https://docs.google.com/gview?url=${encodeURIComponent(rawUrl)}&embedded=true`;
+            } else {
+                previewUrl = rawUrl;
+            }
+        } else {
+            const baseUrl = `/Company NOTES/${company}`;
+            fileUrl = `${baseUrl}/${file.path.split('/').map(encodeURIComponent).join('/')}`;
+            downloadUrl = fileUrl;
+            previewUrl = fileUrl;
+        }
     }
 
     const isTextFile = file.type === 'Text';
@@ -74,8 +106,10 @@ function FilePreviewModal({ file, company, onClose }) {
 
     const handleDownload = () => {
         const link = document.createElement('a');
-        link.href = fileUrl;
+        link.href = downloadUrl;
         link.download = file.name;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -107,7 +141,7 @@ function FilePreviewModal({ file, company, onClose }) {
                             <Download size={18} />
                         </button>
                         <a
-                            href={fileUrl}
+                            href={downloadUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="action-btn"
@@ -131,7 +165,7 @@ function FilePreviewModal({ file, company, onClose }) {
                         </div>
                     ) : error ? (
                         <div className="preview-error">
-                            <div className="error-icon">⚠️</div>
+                            <div className="error-icon">!</div>
                             <h3>Preview Failed</h3>
                             <p>{error}</p>
                             <button className="retry-btn" onClick={fetchContent}>Try Again</button>
@@ -180,10 +214,10 @@ function FilePreviewModal({ file, company, onClose }) {
                                 </div>
                             )}
 
-                            {/* Fallback / Iframe content */}
+                            {/* Fallback / Iframe content — uses Google Docs Viewer in production for PDFs */}
                             {isIframe && (
                                 <iframe
-                                    src={fileUrl}
+                                    src={previewUrl}
                                     title={file.name}
                                     className="preview-iframe"
                                 />

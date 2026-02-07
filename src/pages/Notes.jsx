@@ -7,6 +7,17 @@ import AnimatedBackground from '../components/AnimatedBackground'
 import FilePreviewModal from '../components/FilePreviewModal'
 import './Notes.css'
 
+// GitHub raw base URL for serving files in production (Vercel can't host 526MB+ of PDFs)
+const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/RAJEEVRANJAN0001/Preparation-Platform/main/public'
+const isProduction = import.meta.env.PROD
+
+function getDownloadUrl(fileName) {
+    if (isProduction) {
+        return `${GITHUB_RAW_BASE}/PLACEMENT%20NOTES/${encodeURIComponent(fileName)}`
+    }
+    return `/PLACEMENT NOTES/${encodeURIComponent(fileName)}`
+}
+
 function Notes() {
     const [activeCategory, setActiveCategory] = useState('All')
     const [searchQuery, setSearchQuery] = useState('')
@@ -177,8 +188,9 @@ function Notes() {
                                         <Eye size={14} /> Preview
                                     </button>
                                     <a
-                                        href={`/PLACEMENT NOTES/${encodeURIComponent(note.fileName)}`}
-                                        download
+                                        href={getDownloadUrl(note.fileName)}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="pdf-action-btn secondary"
                                     >
                                         <Download size={14} />
