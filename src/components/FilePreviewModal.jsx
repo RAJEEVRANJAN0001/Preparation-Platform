@@ -1,10 +1,24 @@
-import { X, Download, Maximize2, ExternalLink, FileText, Code, Loader, ChevronDown } from 'lucide-react';
+import { X, Download, Maximize2, ExternalLink, FileText, Code, Loader, ChevronDown, File, FileCode, FileImage, FileSpreadsheet, Presentation, Lock } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { getFileIcon } from '../utils/companyNotesUtils';
 import './FilePreviewModal.css';
+
+// Local helper function to get file icon
+function getFileIcon(type, extension) {
+    if (type === 'PDF') return FileText;
+    if (type === 'Document') return FileText;
+    if (type === 'Text') return FileText;
+    if (type === 'HTML') return FileCode;
+    if (type === 'Markdown') return Code;
+    if (type === 'Image') return FileImage;
+    if (type === 'Spreadsheet') return FileSpreadsheet;
+    if (type === 'Presentation') return Presentation;
+    if (type === 'Encrypted') return Lock;
+    return File;
+}
+
 
 function FilePreviewModal({ file, company, onClose }) {
     const [isFullscreen, setIsFullscreen] = useState(false);

@@ -45,6 +45,47 @@ function Notes() {
                 subtitle={`${pdfNotes.length} PDF resources from your PLACEMENT NOTES folder`}
             />
 
+            {/* GitHub Releases Download Banner */}
+            <div style={{
+                background: 'linear-gradient(135deg, #4CAF5022, #4CAF5011)',
+                border: '1px solid #4CAF5033',
+                borderRadius: '12px',
+                padding: '20px 24px',
+                margin: '20px auto',
+                maxWidth: '1200px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '16px'
+            }}>
+                <span style={{ fontSize: '32px' }}>📦</span>
+                <div style={{ flex: 1 }}>
+                    <strong style={{ color: '#4CAF50', display: 'block', marginBottom: '8px', fontSize: '18px' }}>
+                        Company-Specific Notes Available
+                    </strong>
+                    <p style={{ margin: '0', fontSize: '14px', opacity: 0.9, lineHeight: '1.6' }}>
+                        Download company-specific placement preparation materials and interview notes.
+                    </p>
+                </div>
+                <a
+                    href="https://github.com/RAJEEVRANJAN0001/Preparation-Platform/releases/download/v1.0.0-notes/company-notes.tar.gz"
+                    style={{
+                        background: '#4CAF50',
+                        color: 'white',
+                        padding: '12px 24px',
+                        borderRadius: '8px',
+                        textDecoration: 'none',
+                        fontSize: '14px',
+                        fontWeight: '600',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        whiteSpace: 'nowrap'
+                    }}
+                >
+                    ⬇️ Download Company NOTES
+                </a>
+            </div>
+
             <div className="notes-layout">
 
                 {/* Sidebar */}

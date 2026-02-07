@@ -19,7 +19,6 @@ function Navbar({ theme, toggleTheme }) {
     { name: 'Practice Sheet', path: '/practice-sheet', icon: <BookOpen size={18} /> },
     { name: 'Video Feed', path: '/video-feed', icon: <Youtube size={18} /> },
     { name: 'Notes', path: '/notes', icon: <FileText size={18} /> },
-    { name: 'Company Notes', path: '/company-notes', icon: <Briefcase size={18} /> },
     { name: 'Interview', path: '/interview', icon: <Mic size={18} /> },
     { name: 'Quiz', path: '/quiz', icon: <BrainCircuit size={18} /> },
   ];
