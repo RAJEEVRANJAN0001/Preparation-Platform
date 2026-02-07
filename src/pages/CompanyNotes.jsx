@@ -104,6 +104,86 @@ function CompanyNotes() {
                 subtitle={`${companies.length} companies • ${companies.reduce((sum, c) => sum + c.fileCount, 0)} total files`}
             />
 
+            {/* GitHub Releases Download Banner */}
+            <div style={{
+                background: 'linear-gradient(135deg, #4CAF5022, #4CAF5011)',
+                border: '1px solid #4CAF5033',
+                borderRadius: '12px',
+                padding: '20px 24px',
+                margin: '20px auto',
+                maxWidth: '1200px',
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '16px'
+            }}>
+                <span style={{ fontSize: '32px' }}>📦</span>
+                <div style={{ flex: 1 }}>
+                    <strong style={{ color: '#4CAF50', display: 'block', marginBottom: '8px', fontSize: '18px' }}>
+                        Download Company NOTES Files
+                    </strong>
+                    <p style={{ margin: '0 0 12px 0', fontSize: '14px', opacity: 0.9, lineHeight: '1.6' }}>
+                        Due to Vercel's 250 MB deployment limit, the Company NOTES files (885 MB) are hosted on GitHub Releases.
+                        Download the archives below to access all placement preparation materials.
+                    </p>
+                    <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                        <a
+                            href="https://github.com/RAJEEVRANJAN0001/Preparation-Platform/releases/download/v1.0.0-notes/company-notes.tar.gz"
+                            style={{
+                                background: '#4CAF50',
+                                color: 'white',
+                                padding: '10px 20px',
+                                borderRadius: '8px',
+                                textDecoration: 'none',
+                                fontSize: '14px',
+                                fontWeight: '600',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '8px'
+                            }}
+                        >
+                            ⬇️ Download Company NOTES (297 MB)
+                        </a>
+                        <a
+                            href="https://github.com/RAJEEVRANJAN0001/Preparation-Platform/releases/download/v1.0.0-notes/placement-notes.tar.gz"
+                            style={{
+                                background: '#2196F3',
+                                color: 'white',
+                                padding: '10px 20px',
+                                borderRadius: '8px',
+                                textDecoration: 'none',
+                                fontSize: '14px',
+                                fontWeight: '600',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '8px'
+                            }}
+                        >
+                            ⬇️ Download Placement NOTES (461 MB)
+                        </a>
+                        <a
+                            href="https://github.com/RAJEEVRANJAN0001/Preparation-Platform/releases/tag/v1.0.0-notes"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                background: 'rgba(255,255,255,0.1)',
+                                color: 'inherit',
+                                padding: '10px 20px',
+                                borderRadius: '8px',
+                                textDecoration: 'none',
+                                fontSize: '14px',
+                                fontWeight: '600',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                border: '1px solid rgba(255,255,255,0.2)'
+                            }}
+                        >
+                            🔗 View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <div className="company-notes-layout">
                 {/* Search Bar */}
                 <div className="search-section">
